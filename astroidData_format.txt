@@ -1,0 +1,114 @@
+Jump to: Upcoming Approaches Composition Imagery
+Aphelion (AU): 1.459936639399153
+Semi-major Axis (AU): 1.349689648496459
+Inclination (deg): 1.661150372152747
+Perihelion (AU): 1.239442657593766
+Period (days): 572.7291693097955
+EMOID (AU): 0.233734
+e: 0.08171679280724964
+epoch: 2457000.5
+dv (km/s): 5.484517
+ma (deg @ epoch): 216.5037093253716
+om (deg @ J2000): 171.4758421605865
+w (deg @ J2000): 43.13619532117428
+
+
+
+[notice ] ofApp::setup: [
+   {
+      "A1" : "",
+      "A2" : "",
+      "A3" : "",
+      "BV" : "",
+      "DT" : "",
+      "G" : "",
+      "GM" : "",
+      "H" : 19.1,
+      "H_sigma" : "",
+      "IR" : "",
+      "K1" : "",
+      "K2" : "",
+      "M1" : "",
+      "M2" : "",
+      "PC" : "",
+      "UB" : "",
+      
+      "a" : 1.349631273880569,  : Semi-major Axis
+
+
+      "ad" : 1.459918813054452, :  Aphelon
+
+
+      "albedo" : "",
+      "class" : "AMO",
+      "closeness" : 4098.636851834602,
+      "condition_code" : 0,
+      "data_arc" : 11073,
+      "diameter" : "",
+      "diameter_sigma" : "",
+      "dv" : 5.484517,
+
+      
+      "e" : 0.08171679280724964,  : e
+
+
+      "epoch" : 2457000.5,
+      "epoch_cal" : 20141209,
+      "epoch_mjd" : 57000,
+      "equinox" : "J2000",
+      "est_diameter" : 0.5193729792671287,
+      "extent" : "",
+      "first_obs" : "1984-08-02",
+      "full_name" : "138911 (2001 AE2)",
+      "i" : 1.661280213365617,          :  Inclination
+      "id" : "a0138911",
+      "last_obs" : "2014-11-26",
+      "ma" : 216.5037093253716,
+      "moid" : 0.234907,
+      "moid_ld" : 91.41875718999999,
+      "n" : 0.6286101280856241,
+      "n_del_obs_used" : "",
+      "n_dop_obs_used" : "",
+      "n_obs_used" : 428,
+      "name" : "",
+      "neo" : "Y",
+      "om" : 171.4758421605865,
+      "orbit_id" : "JPL 98",
+      "pdes" : 138911,
+      "per" : 572.6920135638727,   : Period
+      "per_y" : 1.56794528012012,
+      "pha" : "N",
+      "prefix" : "",
+      "price" : 151847.2817796182,
+      "producer" : "Otto Matic",
+      "profit" : 33204.22255938328,
+      "prov_des" : "2001 AE2",
+      "q" : 1.239343734706686,   : Perihelion
+      "rms" : 0.58311,
+      "rot_per" : "",
+      "saved" : -76050180291.29213,
+      "score" : 3.036945635592364e-07,
+      "sigma_a" : 2.9919e-09,
+      "sigma_ad" : 3.2364e-09,
+      "sigma_e" : 3.9663e-08,
+      "sigma_i" : 2.9562e-06,
+      "sigma_ma" : 2.3264e-05,
+      "sigma_n" : 2.0903e-09,
+      "sigma_om" : 0.00013836,
+      "sigma_per" : 1.9044e-06,
+      "sigma_q" : 5.4363e-08,
+      "sigma_tp" : 3.7211e-05,
+      "sigma_w" : 0.00014013,
+      "spec" : "T",
+      "spec_B" : "T",
+      "spec_T" : "",
+      "spkid" : 2138911,
+      "t_jup" : 4.87,
+      "tp" : 2457228.775499015,
+      "tp_cal" : 20150725.275499,
+      "two_body" : "",
+      "w" : 43.13619532117428
+   }
+]
+
+1
