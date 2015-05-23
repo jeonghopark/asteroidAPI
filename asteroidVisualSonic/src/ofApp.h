@@ -3,6 +3,14 @@
 #include "ofMain.h"
 #include "ofxJSON.h"
 
+struct orbit{
+    
+    ofPolyline path;
+    double inclination;
+    double omega;
+    
+};
+
 class ofApp : public ofBaseApp {
 
 public:
@@ -30,6 +38,6 @@ public:
     
     ofSpherePrimitive sun;
     
-    vector<ofPolyline> orbits;
+    vector<orbit> orbits;
 
 };
