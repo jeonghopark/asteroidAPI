@@ -73,12 +73,15 @@ void ofApp::setup() {
     
     cout << orbits.size() << endl;
     
+    rotateZ = 0;
     
 }
 
 void ofApp::update(){
     
     timePlanet = timePlanet + 1;
+    
+    rotateZ = rotateZ + 0.25;
     
 }
 
@@ -91,6 +94,8 @@ void ofApp::draw() {
     ofSetColor(255);
     
     cam.begin();
+    
+    ofRotateZ( rotateZ );
     
     sun.draw();
     
