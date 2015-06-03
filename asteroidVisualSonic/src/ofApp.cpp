@@ -9,6 +9,8 @@
 
 void ofApp::setup() {
     
+    ofSetDataPathRoot("../Resources/data/");
+
     ofBackground(0);
     ofEnableAntiAliasing();
     
@@ -24,12 +26,6 @@ void ofApp::setup() {
     } else {
         ofLogNotice("ofApp::setup") << "Failed to parse JSON.";
     }
-
-#ifdef DEBUG
-
-#else
-    ofSetDataPathRoot("../Resources/");
-#endif
     
     sun.set(2, 10);
     
@@ -71,8 +67,6 @@ void ofApp::setup() {
         
     }
     
-    cout << orbits.size() << endl;
-    
     rotateZ = 0;
     
 }
@@ -113,6 +107,7 @@ void ofApp::draw() {
     }
     
     cam.end();
+    
     
     
 }
