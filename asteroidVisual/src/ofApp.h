@@ -41,5 +41,8 @@ public:
     vector<orbit> orbits;
 
     float rotateZ;
-        
+    
+    int movingPathFactor;
+    
+    ofMesh mesh;
 };

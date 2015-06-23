@@ -15,7 +15,7 @@ void ofApp::setup() {
     ofEnableAntiAliasing();
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=2000";
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=200";
     
     // Now parse the JSON
     bool parsingSuccessful = json.open(url);
@@ -33,6 +33,9 @@ void ofApp::setup() {
     
     orbits.resize( json.size() );
     
+    ofMesh _mesh;
+    mesh.setMode(OF_PRIMITIVE_POINTS);
+
     for(int i=0; i<json.size(); i++) {
         
         orbit _orbitE;
@@ -46,6 +49,7 @@ void ofApp::setup() {
         
         ofPolyline _orbitPath;
         
+
         for (int i=0; i<360; i++) {
             // http://mathworld.wolfram.com/SemilatusRectum.html
             double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(i)));
@@ -56,6 +60,9 @@ void ofApp::setup() {
             
             _orbitPath.addVertex( _x1, _y1 );
         }
+ 
+        mesh.addVertex( ofVec3f( 0, 0, 0) );
+
         _orbitPath.setClosed(true);
         
         
@@ -76,7 +83,8 @@ void ofApp::update(){
     timePlanet = timePlanet + 1;
     
     rotateZ = rotateZ + 0.25;
-    
+
+    movingPathFactor = movingPathFactor + 1;
 }
 
 
@@ -89,7 +97,7 @@ void ofApp::draw() {
     
     cam.begin();
     
-    ofRotateZ( rotateZ );
+//    ofRotateZ( rotateZ );
     
     sun.draw();
     
@@ -103,8 +111,29 @@ void ofApp::draw() {
             orbits[i].path.draw();
             
             ofPopMatrix();
+
+            ofPushMatrix();
+            ofPushStyle();
+            ofSetColor(255);
+            ofRotateY( orbits[i].inclination );
+            ofRotateZ( orbits[i].omega );
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(movingPathFactor%360, 0, 360, 0, 1));
+            
+            mesh.setVertex(0, _path);
+            mesh.draw();
+            
+            ofPopStyle();
+            ofPopMatrix();
+
         }
+        
+        
+
     }
+    
+    
+    
+    
     
     cam.end();
     
