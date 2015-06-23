@@ -3,6 +3,13 @@
 #include "ofMain.h"
 #include "ofxJSON.h"
 
+
+#define BUFFER_SIZE 8192
+#define SAMPLE_RATE 44100
+#define INITIAL_BUFFER_SIZE 512
+#define BIT 512
+
+
 struct orbit{
     
     ofPolyline path;
@@ -30,6 +37,39 @@ public:
     void gotMessage(ofMessage msg);
     
     
+    void audioRequested(float * output, int bufferSize, int nChannels);
+
+    
+    float line;
+    
+    int	maxHertz;
+    int	minHertz;
+    
+    double sineBufferLeft[514];
+    double sineBufferRight[514];
+    float remainderLeft;
+    float remainderRight;
+    float waveLeft;
+    float waveRight;
+    float ampLeft[BIT];
+    float ampRight[BIT];
+    int hertzScaleLeft[BIT];
+    int hertzScaleRight[BIT];
+    float phasesLeft[BIT];
+    float phasesRight[BIT];
+
+    bool bPlaying;
+    
+    float getPixelLeft(int x, int y);
+    float getAmpLeft(float x, float y);
+    float getFreqLeft(float y);
+    float getPixelRight(int x, int y);
+    float getAmpRight(float x, float y);
+    float getFreqRight(float y);
+    
+    float getAmpLeft(float x, float y, ofPixels _p);
+
+    
     ofxJSONElement json;
 
     ofEasyCam cam;
@@ -47,5 +87,8 @@ public:
     ofMesh mesh;
     
     vector<float> per_y;
+    
+    ofFbo astroidFBO;
+    float threshold;
     
 };
