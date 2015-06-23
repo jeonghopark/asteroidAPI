@@ -42,7 +42,10 @@ public:
 
     float rotateZ;
     
-    int movingPathFactor;
+    float movingPathFactor;
     
     ofMesh mesh;
+    
+    vector<float> per_y;
+    
 };

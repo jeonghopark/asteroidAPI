@@ -46,6 +46,8 @@ void ofApp::setup() {
         double _q = json[i]["q"].asDouble();
         double _i = json[i]["i"].asDouble();
         double _om = json[i]["om"].asDouble();
+
+        per_y.push_back( json[i]["per_y"].asDouble() );
         
         ofPolyline _orbitPath;
         
@@ -84,7 +86,7 @@ void ofApp::update(){
     
     rotateZ = rotateZ + 0.25;
 
-    movingPathFactor = movingPathFactor + 1;
+    movingPathFactor = movingPathFactor + 0.1;
 }
 
 
@@ -102,7 +104,7 @@ void ofApp::draw() {
     sun.draw();
     
     if (orbits.size()>0) {
-        ofSetColor(255, 30);
+        ofSetColor(255, 20);
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
@@ -117,7 +119,7 @@ void ofApp::draw() {
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
             ofRotateZ( orbits[i].omega );
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(movingPathFactor%360, 0, 360, 0, 1));
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap((int)(movingPathFactor * per_y[i])%360, 0, 360, 0, 1));
             
             mesh.setVertex(0, _path);
             mesh.draw();
@@ -130,8 +132,6 @@ void ofApp::draw() {
         
 
     }
-    
-    
     
     
     
