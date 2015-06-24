@@ -205,7 +205,7 @@ void ofApp::draw() {
 //    earthOrbit.path.draw();
     
     if (orbits.size()>0) {
-        ofSetColor(255, 30);
+        ofSetColor(255, 15);
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
