@@ -94,4 +94,8 @@ public:
     
     orbit earthOrbit;
     
+    ofPixels capturePixels;
+    int circleResolution;
+
+    
 };

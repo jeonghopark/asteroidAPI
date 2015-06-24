@@ -34,7 +34,7 @@ void ofApp::setup() {
     maxHertz = 12000;
     minHertz = 550;
     
-    astroidFBO.allocate(30, BIT*2, GL_RGB);
+    astroidFBO.allocate(2, BIT*2, GL_RGB);
     
     // http://www.asterank.com/api
     string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=300";
@@ -60,7 +60,9 @@ void ofApp::setup() {
     ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
     
-    for (int i=0; i<360; i++) {
+    circleResolution = 360 * 5;
+    
+    for (int i=0; i<circleResolution; i++) {
         double _r = 1.0167 * (1 - (0.01671123 * 0.01671123)) / (1 + 0.01671123 * cos(ofDegToRad(i)));
         
         float _size = 100;
@@ -90,7 +92,7 @@ void ofApp::setup() {
         
         ofMesh _mesh;
         
-        for (int degree=0; degree<360; degree++) {
+        for (int degree=0; degree<circleResolution; degree++) {
             // http://mathworld.wolfram.com/SemilatusRectum.html
             double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
             
@@ -130,7 +132,7 @@ void ofApp::update(){
     
     rotateZ = rotateZ + 0.25;
     
-    movingPathFactor = movingPathFactor + 0.1;
+    movingPathFactor = movingPathFactor + 0.075;
     
     
     astroidFBO.begin();
@@ -145,11 +147,13 @@ void ofApp::update(){
             ofRotateY( orbits[i].inclination );
 //            ofRotateZ( orbits[i].omega );
             
-            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % 360;
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
+            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % circleResolution;
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, circleResolution, 0, 1));
+            _path = orbits[i].path.getPointAtIndexInterpolated( _chMovingPath );
             mesh.setVertex(0, _path);
             
-            glPointSize(10);
+            glPointSize(3);
+            glColor3b(120,120,120);
             mesh.draw();
             
             ofPopStyle();
@@ -160,13 +164,13 @@ void ofApp::update(){
     ofPopMatrix();
     astroidFBO.end();
     
-    ofPixels _p;
-    astroidFBO.readToPixels(_p);
+    
+    astroidFBO.readToPixels(capturePixels);
     
     if ( bPlaying ) {
         for(int n = 0;n<BIT;n++){
             int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            ampLeft[n] = (ampLeft[n] * line + getAmpLeft(0, _yRatioLeft, _p)) / (line + 1);
+            ampLeft[n] = (ampLeft[n] * line + getAmpLeft(0, _yRatioLeft, capturePixels)) / (line + 1);
             hertzScaleLeft[n] = (int)getFreqLeft(n);
             
             //            int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
@@ -175,6 +179,7 @@ void ofApp::update(){
         }
     }
     
+
     
 }
 
@@ -216,9 +221,10 @@ void ofApp::draw() {
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
 //            ofRotateZ( orbits[i].omega );
-            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % 360;
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
-            
+            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % circleResolution;
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, circleResolution, 0, 1));
+            _path = orbits[i].path.getPointAtIndexInterpolated( _chMovingPath );
+
             mesh.setVertex(0, _path);
             glPointSize(1);
             mesh.draw();
@@ -267,12 +273,12 @@ void ofApp::draw() {
     cam.end();
     
     
-    //    ofPushMatrix();
-    //    ofPushStyle();
-    //    ofSetColor(255);
-    //    astroidFBO.draw(0,0);
-    //    ofPopStyle();
-    //    ofPopMatrix();
+        ofPushMatrix();
+        ofPushStyle();
+        ofSetColor(255);
+        astroidFBO.draw(0,0);
+        ofPopStyle();
+        ofPopMatrix();
     
     ofSetColor(255);
     ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
