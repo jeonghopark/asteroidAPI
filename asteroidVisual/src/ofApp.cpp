@@ -97,8 +97,8 @@ void ofApp::setup() {
             double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
             
             float _size = 100;
-            float _x1 = _r * cos(ofDegToRad(degree)) * _size;
-            float _y1 = _r * sin(ofDegToRad(degree)) * _size;
+            float _x1 = _r * cos(ofDegToRad(degree + _om)) * _size;
+            float _y1 = _r * sin(ofDegToRad(degree + _om)) * _size;
             
             _orbitPath.addVertex( _x1, _y1 );
             _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
@@ -147,8 +147,8 @@ void ofApp::update(){
             ofRotateY( orbits[i].inclination );
 //            ofRotateZ( orbits[i].omega );
             
-            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % circleResolution;
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, circleResolution, 0, 1));
+            float _chMovingPath = (movingPathFactor * per_y[i]);
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap((int)_chMovingPath%circleResolution, 0, circleResolution, 0, 1));
             _path = orbits[i].path.getPointAtIndexInterpolated( _chMovingPath );
             mesh.setVertex(0, _path);
             
@@ -205,7 +205,7 @@ void ofApp::draw() {
 //    earthOrbit.path.draw();
     
     if (orbits.size()>0) {
-        ofSetColor(255, 10);
+        ofSetColor(255, 30);
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
@@ -221,9 +221,13 @@ void ofApp::draw() {
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
 //            ofRotateZ( orbits[i].omega );
-            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % circleResolution;
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, circleResolution, 0, 1));
-            _path = orbits[i].path.getPointAtIndexInterpolated( _chMovingPath );
+            
+//            float _chMovingPath = ((movingPathFactor * per_y[i]));
+//            ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
+            
+            float _chMovingPath = (movingPathFactor * per_y[i]);
+//            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap((int)_chMovingPath%circleResolution, 0, circleResolution, 0, 1));
+            ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated( _chMovingPath );
 
             mesh.setVertex(0, _path);
             glPointSize(1);
