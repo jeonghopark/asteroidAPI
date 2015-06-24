@@ -15,34 +15,35 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 void ofApp::setup() {
     
     ofSetDataPathRoot("../Resources/data/");
-
+    
     ofBackground(0);
     ofEnableAntiAliasing();
+//    ofEnableDepthTest();
     
     
     for (int i=0; i<514 ; i++) {
         sineBufferLeft[i] = sines[i];
         sineBufferRight[i] = sines[i];
     }
-
+    
     ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
     ofSoundStreamStop();
     bPlaying = false;
-    line = 10;
+    line = 8;
     
-    maxHertz = 8000;
-    minHertz = 50;
-
-    astroidFBO.allocate(30, ofGetHeight(), GL_RGB);
+    maxHertz = 12000;
+    minHertz = 550;
+    
+    astroidFBO.allocate(30, BIT*2, GL_RGB);
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=200";
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=300";
     
     // Now parse the JSON
     bool parsingSuccessful = json.open(url);
-
+    
     threshold = 0.9;
-
+    
     
     if (parsingSuccessful) {
         ofLogNotice("ofApp::setup") << json.getRawString(true);
@@ -58,7 +59,18 @@ void ofApp::setup() {
     
     ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
+    
+    for (int i=0; i<360; i++) {
+        double _r = 1.0167 * (1 - (0.01671123 * 0.01671123)) / (1 + 0.01671123 * cos(ofDegToRad(i)));
+        
+        float _size = 100;
+        float _x1 = _r * cos(ofDegToRad(i)) * _size;
+        float _y1 = _r * sin(ofDegToRad(i)) * _size;
+        
+        earthOrbit.path.addVertex( _x1, _y1 );
+    }
 
+    
     for(int i=0; i<json.size(); i++) {
         
         orbit _orbitE;
@@ -69,32 +81,41 @@ void ofApp::setup() {
         double _q = json[i]["q"].asDouble();
         double _i = json[i]["i"].asDouble();
         double _om = json[i]["om"].asDouble();
-
+        
         per_y.push_back( json[i]["per_y"].asDouble() );
         
-        ofPolyline _orbitPath;
-        
-
-        for (int i=0; i<360; i++) {
-            // http://mathworld.wolfram.com/SemilatusRectum.html
-            double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(i)));
-            
-            float _size = 100;
-            float _x1 = _r * cos(ofDegToRad(i)) * _size;
-            float _y1 = _r * sin(ofDegToRad(i)) * _size;
-            
-            _orbitPath.addVertex( _x1, _y1 );
-        }
- 
         mesh.addVertex( ofVec3f( 0, 0, 0) );
 
+        ofPolyline _orbitPath;
+        
+        ofMesh _mesh;
+        
+        for (int degree=0; degree<360; degree++) {
+            // http://mathworld.wolfram.com/SemilatusRectum.html
+            double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
+            
+            float _size = 100;
+            float _x1 = _r * cos(ofDegToRad(degree)) * _size;
+            float _y1 = _r * sin(ofDegToRad(degree)) * _size;
+            
+            _orbitPath.addVertex( _x1, _y1 );
+            _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
+            _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
+        }
+        
+        
         _orbitPath.setClosed(true);
+        
+        for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
+            _mesh.addIndex(meshIndexA);
+            _mesh.addIndex(meshIndexA+1);
+        }
         
         
         _orbitE.path = _orbitPath;
         _orbitE.inclination = _i;
         _orbitE.omega = _om;
-        
+        _orbitE.mesh = _mesh;
         orbits[i] = _orbitE;
         
     }
@@ -108,11 +129,13 @@ void ofApp::update(){
     timePlanet = timePlanet + 1;
     
     rotateZ = rotateZ + 0.25;
-
+    
     movingPathFactor = movingPathFactor + 0.1;
     
     
     astroidFBO.begin();
+    ofPushMatrix();
+    ofTranslate(0, ofGetHeight());
     ofClear(0,255);
     if (orbits.size()>0) {
         for(int i = 0; i<orbits.size(); i++) {
@@ -120,10 +143,13 @@ void ofApp::update(){
             ofPushStyle();
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
-            ofRotateZ( orbits[i].omega );
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap((int)(movingPathFactor * per_y[i])%360, 0, 360, 0, 1));
+//            ofRotateZ( orbits[i].omega );
             
+            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % 360;
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
             mesh.setVertex(0, _path);
+            
+            glPointSize(10);
             mesh.draw();
             
             ofPopStyle();
@@ -131,21 +157,24 @@ void ofApp::update(){
             
         }
     }
+    ofPopMatrix();
     astroidFBO.end();
     
-    
+    ofPixels _p;
+    astroidFBO.readToPixels(_p);
     
     if ( bPlaying ) {
         for(int n = 0;n<BIT;n++){
             int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            ampLeft[n] = (ampLeft[n]*line + getAmpLeft(ofGetWidth()*0.5, _yRatioLeft))/(line+1);
-            hertzScaleLeft[n] = int(getFreqLeft(n));
-//            ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
-//            hertzScaleRight[n] = int(getFreqRight(n));
+            ampLeft[n] = (ampLeft[n] * line + getAmpLeft(0, _yRatioLeft, _p)) / (line + 1);
+            hertzScaleLeft[n] = (int)getFreqLeft(n);
+            
+            //            int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            //            ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
+            //            hertzScaleRight[n] = int(getFreqRight(n));
         }
     }
-
+    
     
 }
 
@@ -155,56 +184,98 @@ void ofApp::draw() {
     
     ofBackgroundGradient(ofColor(0,0,40), ofColor(0,0,10));
     
+    
     ofSetColor(255);
     
     cam.begin();
+    ofRotateX(180);
+    //    ofRotateZ( rotateZ );
     
-//    ofRotateZ( rotateZ );
+    ofPushMatrix();
     
+    //    ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
     sun.draw();
     
+    ofSetColor(255, 250);
+//    earthOrbit.path.draw();
+    
     if (orbits.size()>0) {
-        ofSetColor(255, 20);
+        ofSetColor(255, 10);
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
             ofRotateY( orbits[i].inclination );
-            ofRotateZ( orbits[i].omega );
+//            ofRotateZ( orbits[i].omega );
 //            orbits[i].path.draw();
+            orbits[i].mesh.draw();
             
             ofPopMatrix();
-
+            
             ofPushMatrix();
             ofPushStyle();
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
-            ofRotateZ( orbits[i].omega );
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap((int)(movingPathFactor * per_y[i])%360, 0, 360, 0, 1));
+//            ofRotateZ( orbits[i].omega );
+            float _chMovingPath = (int)(movingPathFactor * per_y[i] + orbits[i].omega) % 360;
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
             
             mesh.setVertex(0, _path);
+            glPointSize(1);
             mesh.draw();
+            
+
+            ofSetColor(255,120);
+            if((abs(_path.x)<5)&&(_path.y<0)) {
+                
+                float _x = _path.x;
+                float _y = _path.y;
+                
+                ofDrawLine(_x, _y, -15, _x, _y, 15);
+            }
+
             
             ofPopStyle();
             ofPopMatrix();
-
+            
         }
-        
-        
-
     }
     
+    ofPopMatrix();
     
+    ofPushMatrix();
+    ofPushStyle();
+    ofRotateX(180);
+    ofRotateY(90);
+    ofNoFill();
+    ofSetColor(255, 120);
+    ofDrawRectangle(-15, 0, 30, BIT);
+    ofFill();
+    ofSetColor(255, 20);
+    ofDrawRectangle(-15, 0, 30, BIT);
+    ofPopStyle();
+    ofPopMatrix();
+    
+    
+    ofPushMatrix();
+    ofPushStyle();
+    ofSetColor(255, 40);
+    ofDrawLine(-500, 0, 500, 0);
+    ofDrawLine(0, 500, 0, -500);
+    ofPopStyle();
+    ofPopMatrix();
     
     cam.end();
     
-    ofPixels _p;
-    astroidFBO.readToPixels(_p);
     
-    ofImage _temp;
-    _temp.setFromPixels(_p.getData(), 30, ofGetHeight(), OF_IMAGE_COLOR);
+    //    ofPushMatrix();
+    //    ofPushStyle();
+    //    ofSetColor(255);
+    //    astroidFBO.draw(0,0);
+    //    ofPopStyle();
+    //    ofPopMatrix();
+    
     ofSetColor(255);
-    _temp.draw(0,0);
-    
+    ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
     
 }
 
@@ -244,7 +315,7 @@ float ofApp::getPixelRight(int x, int y){
     
     ofPixels _p;
     astroidFBO.readToPixels(_p);
-
+    
     ofColor _color = _p.getColor(x, y);
     
     float _r = _color.r;
@@ -348,7 +419,7 @@ float ofApp::getFreqRight(float y){
 
 //--------------------------------------------------------------
 void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
-
+    
     if (bPlaying) {
         
         for (int i = 0; i < bufferSize; i+=2){
@@ -371,18 +442,18 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
                     waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
                 }
                 
-//                if (ampRight[n]>0.00001) {
-//                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
-//                    
-//                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
-//                    
-//                    //remainder = phases[n] - floor(phases[n]);
-//                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-//                    
-//                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
-//                    
-//                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
-//                }
+                //                if (ampRight[n]>0.00001) {
+                //                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
+                //
+                //                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
+                //
+                //                    //remainder = phases[n] - floor(phases[n]);
+                //                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+                //
+                //                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
+                //
+                //                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
+                //                }
                 
             }
             
@@ -395,7 +466,7 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
             
             float _volume = 0.85;
             output[i*nChannels    ] = waveLeft * _volume;
-            output[i*nChannels + 1] = waveRight * _volume;
+            output[i*nChannels + 1] = waveLeft * _volume;
         }
         
     } else {
@@ -404,7 +475,7 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
             output[i*nChannels + 1] = 0;
         }
     }
-
+    
 }
 
 
@@ -429,7 +500,7 @@ void ofApp::keyReleased(int key){
     } else {
         ofSoundStreamStop();
     }
-
+    
     
 }
 

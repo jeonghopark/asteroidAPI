@@ -13,6 +13,7 @@
 struct orbit{
     
     ofPolyline path;
+    ofMesh mesh;
     double inclination;
     double omega;
     
@@ -90,5 +91,7 @@ public:
     
     ofFbo astroidFBO;
     float threshold;
+    
+    orbit earthOrbit;
     
 };
