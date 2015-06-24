@@ -31,13 +31,13 @@ void ofApp::setup() {
     bPlaying = false;
     line = 2;
     
-    maxHertz = 8000;
+    maxHertz = 18000;
     minHertz = 150;
     
     astroidFBO.allocate(30, BIT*2, GL_RGB);
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=200";
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=300";
     
     // Now parse the JSON
     bool parsingSuccessful = json.open(url);
@@ -95,8 +95,8 @@ void ofApp::setup() {
             double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
             
             float _size = 100;
-            float _x1 = _r * cos(ofDegToRad(degree)) * _size;
-            float _y1 = _r * sin(ofDegToRad(degree)) * _size;
+            float _x1 = _r * cos(ofDegToRad(degree + _om)) * _size;
+            float _y1 = _r * sin(ofDegToRad(degree + _om)) * _size;
             
             _orbitPath.addVertex( _x1, _y1 );
             _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
@@ -130,35 +130,35 @@ void ofApp::update(){
     
     rotateZ = rotateZ + 0.25;
     
-    movingPathFactor = movingPathFactor + 0.075;
+    movingPathFactor = movingPathFactor + 0.125;
     
     
-//        astroidFBO.begin();
-//        ofPushMatrix();
-//        ofTranslate(0, ofGetHeight());
-//        ofClear(0,255);
-//        if (orbits.size()>0) {
-//            for(int i = 0; i<orbits.size(); i++) {
-//                ofPushMatrix();
-//                ofPushStyle();
-//                ofSetColor(255);
-//                ofRotateY( orbits[i].inclination );
-//                //            ofRotateZ( orbits[i].omega );
-//    
-//                float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
-//                ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
-//                mesh.setVertex(0, _path);
-//    
-//                glPointSize(10);
-//                mesh.draw();
-//    
-//                ofPopStyle();
-//                ofPopMatrix();
-//    
-//            }
-//        }
-//        ofPopMatrix();
-//        astroidFBO.end();
+    //        astroidFBO.begin();
+    //        ofPushMatrix();
+    //        ofTranslate(0, ofGetHeight());
+    //        ofClear(0,255);
+    //        if (orbits.size()>0) {
+    //            for(int i = 0; i<orbits.size(); i++) {
+    //                ofPushMatrix();
+    //                ofPushStyle();
+    //                ofSetColor(255);
+    //                ofRotateY( orbits[i].inclination );
+    //                //            ofRotateZ( orbits[i].omega );
+    //
+    //                float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
+    //                ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
+    //                mesh.setVertex(0, _path);
+    //
+    //                glPointSize(10);
+    //                mesh.draw();
+    //
+    //                ofPopStyle();
+    //                ofPopMatrix();
+    //
+    //            }
+    //        }
+    //        ofPopMatrix();
+    //        astroidFBO.end();
     
     
     vector< vector<float> > _nYPos;
@@ -167,9 +167,9 @@ void ofApp::update(){
         vector<float> _f;
         _f.clear();
         for(int i = 0; i<orbits.size(); i++) {
-            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i]) % 360;
+            float _chMovingPath = ((movingPathFactor * per_y[i]));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
-            if (_chMovingPath==270){
+            if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
                 _f.push_back( BIT + _path.y );
             }
             
@@ -178,19 +178,19 @@ void ofApp::update(){
         
     }
     
-        ofPixels _p;
-        astroidFBO.readToPixels(_p);
+    ofPixels _p;
+    astroidFBO.readToPixels(_p);
     
     if ( bPlaying ) {
-//                for(int n=0; n<BIT; n++){
-//                    int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-//                    ampLeft[n] = (ampLeft[n] * line + getAmpLeft(0, _yRatioLeft, _p)) / (line + 1);
-//                    hertzScaleLeft[n] = (int)getFreqLeft(n);
-//        
-////                    int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-////                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
-////                    hertzScaleRight[n] = int(getFreqRight(n));
-//                }
+        for(int n=0; n<BIT; n++){
+            //                    int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            //                    ampLeft[n] = (ampLeft[n] * line + getAmpLeft(0, _yRatioLeft, _p)) / (line + 1);
+            //                    hertzScaleLeft[n] = (int)getFreqLeft(n);
+            //
+            ////                    int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            ////                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
+            ////                    hertzScaleRight[n] = int(getFreqRight(n));
+        }
         
         for(int i=0; i<BIT; i++){
             ampLeft[i] = 0;
@@ -235,12 +235,12 @@ void ofApp::draw() {
     //    earthOrbit.path.draw();
     
     if (orbits.size()>0) {
-        ofSetColor(255, 10);
+        ofSetColor(255, 15);
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
             ofRotateY( orbits[i].inclination );
-            //            ofRotateZ( orbits[i].omega );
+            //                        ofRotateZ( orbits[i].omega );
             //            orbits[i].path.draw();
             orbits[i].mesh.draw();
             
@@ -250,8 +250,8 @@ void ofApp::draw() {
             ofPushStyle();
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
-            //            ofRotateZ( orbits[i].omega );
-            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i]) % 360;
+            //                        ofRotateZ( orbits[i].omega );
+            float _chMovingPath = ((movingPathFactor * per_y[i]));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             
             mesh.setVertex(0, _path);
@@ -260,7 +260,7 @@ void ofApp::draw() {
             
             
             ofSetColor(255,120);
-            if(_chMovingPath==270) {
+            if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
                 float _x = _path.x;
                 float _y = _path.y;
                 
