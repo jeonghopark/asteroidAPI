@@ -60,7 +60,8 @@ void ofApp::setup() {
     ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
     
-    circleResolution = 360 * 5;
+    circleResolution = 360;
+    
     
     for (int i=0; i<circleResolution; i++) {
         double _r = 1.0167 * (1 - (0.01671123 * 0.01671123)) / (1 + 0.01671123 * cos(ofDegToRad(i)));
@@ -108,7 +109,7 @@ void ofApp::setup() {
         
         _orbitPath.setClosed(true);
         
-        for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
+        for (int meshIndexA=0; meshIndexA<circleResolution-1; meshIndexA++) {
             _mesh.addIndex(meshIndexA);
             _mesh.addIndex(meshIndexA+1);
         }
@@ -160,6 +161,7 @@ void ofApp::update(){
             ofPopMatrix();
             
         }
+        
     }
     ofPopMatrix();
     astroidFBO.end();
