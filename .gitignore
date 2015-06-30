@@ -9,3 +9,4 @@ DerivedData/
 project.xcworkspace
 *.mp4
 *.mov
+*.json
