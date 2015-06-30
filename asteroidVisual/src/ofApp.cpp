@@ -37,19 +37,18 @@ void ofApp::setup() {
     astroidFBO.allocate(30, BIT*2, GL_RGB);
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=300";
-    
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=200";
+
     // Now parse the JSON
     bool parsingSuccessful = json.open(url);
     
     threshold = 0.9;
     
-    
-    if (parsingSuccessful) {
-        ofLogNotice("ofApp::setup") << json.getRawString(true);
-    } else {
-        ofLogNotice("ofApp::setup") << "Failed to parse JSON.";
-    }
+//    if (parsingSuccessful) {
+//        ofLogNotice("ofApp::setup") << json.getRawString(true);
+//    } else {
+//        ofLogNotice("ofApp::setup") << "Failed to parse JSON.";
+//    }
     
     sun.set(2, 10);
     
@@ -60,8 +59,9 @@ void ofApp::setup() {
     ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
     
+    float _eEarth = 0.01671123;
     for (int i=0; i<360; i++) {
-        double _r = 1.0167 * (1 - (0.01671123 * 0.01671123)) / (1 + 0.01671123 * cos(ofDegToRad(i)));
+        double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
         
         float _size = 100;
         float _x1 = _r * cos(ofDegToRad(i)) * _size;
@@ -91,7 +91,6 @@ void ofApp::setup() {
         ofMesh _mesh;
         
         for (int degree=0; degree<360; degree++) {
-            // http://mathworld.wolfram.com/SemilatusRectum.html
             double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
             
             float _size = 100;
