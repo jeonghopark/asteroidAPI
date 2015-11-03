@@ -14,7 +14,7 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 
 void ofApp::setup() {
 
-    ofSetDataPathRoot("../Resources/data/");
+//    ofSetDataPathRoot("../Resources/data/");
 
     ofBackground(0);
     ofEnableAntiAliasing();
@@ -40,7 +40,7 @@ void ofApp::setup() {
     string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=200";
 
     // Now parse the JSON
-    bool parsingSuccessful = json.open(url);
+    bool parsingSuccessful = json.open("asteroid_300.json");
 
     threshold = 0.9;
 
@@ -310,6 +310,9 @@ void ofApp::draw() {
 
     ofSetColor(255);
     ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
+    ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
+    ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
+    ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
 
 }
 
@@ -491,14 +494,14 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
 
             }
 
-            waveRight/=10.0;
-            waveLeft/=10.0;
-            if(waveRight>1.0) waveRight=1.0;
-            if(waveRight<-1.0) waveRight=-1.0;
-            if(waveLeft>1.0) waveLeft=1.0;
-            if(waveLeft<-1.0) waveLeft=-1.0;
+            waveRight /= 10.0;
+            waveLeft /= 10.0;
+            if (waveRight > 1.0) waveRight=1.0;
+            if (waveRight<-1.0) waveRight=-1.0;
+            if (waveLeft>1.0) waveLeft=1.0;
+            if (waveLeft<-1.0) waveLeft=-1.0;
 
-            float _volume = 0.85;
+            float _volume = 10.85;
             output[i*nChannels    ] = waveLeft * _volume;
             output[i*nChannels + 1] = waveLeft * _volume;
         }
