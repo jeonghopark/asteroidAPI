@@ -12,6 +12,7 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 
 #include "ofApp.h"
 
+
 //--------------------------------------------------------------
 void ofApp::setup() {
 
@@ -29,10 +30,13 @@ void ofApp::setup() {
         sineBufferRight[i] = sines[i];
     }
 
+    
     ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
     ofSoundStreamStop();
     bPlaying = false;
     line = 2;
+
+    audioUnitSetting();
 
     maxHertz = 18000;
     minHertz = 150;
@@ -504,6 +508,8 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
 
     if (bPlaying) {
 
+        float *ptr = output;
+        
         for (int i = 0; i < bufferSize; i+=2){
 
             waveRight = 0.0;
@@ -547,9 +553,14 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
             if (waveLeft<-1.0) waveLeft=-1.0;
 
             float _volume = 10.85;
-            output[i*nChannels    ] = waveLeft * _volume;
-            output[i*nChannels + 1] = waveLeft * _volume;
+            *ptr++ = waveLeft * _volume;
+//            output[i*nChannels + 1] = waveLeft * _volume;
+            
+
         }
+
+//        delay.process(output, output);
+        reverb.process(output, output);
 
     } else {
         for (int i = 0; i < bufferSize; i++){
@@ -658,3 +669,88 @@ void ofApp::billboardEnd(){
     // stored modelview matrix
     glPopMatrix();
 }
+
+
+
+
+//--------------------------------------------------------------
+void ofApp::audioUnitSetting(){
+    
+    pan = 0; pan_t = 0;
+    amp = 0; amp_t = 0;
+
+    
+    ofxAUPlugin::init(SAMPLE_RATE, INITIAL_BUFFER_SIZE);
+    
+    //
+    // dump installed plugins
+    //
+    
+    ofxAUPlugin::listPlugins();
+    
+    
+    //
+    // load plugin from .aupreset file
+    //
+    
+//    delay.loadPreset("delay.aupreset");
+    
+    delay.loadPlugin("Apple: AUDelay");
+    
+    
+    //
+    // or plugin name
+    //
+    
+    reverb.loadPlugin("Apple: AUMatrixReverb");
+    
+    
+    //
+    // get plugin's i/o channels count
+    //
+    
+    printf("input ch:%i, output ch:%i\n", delay.numInput(), delay.numOutput());
+    
+    
+    //
+    // start sound stream
+    //
+    
+//    ofSoundStreamSetup(2, 0, this, SAMPLE_RATE, BUFFER_SIZE, 4);
+    
+    
+    //
+    // List prams info
+    //
+    
+    reverb.listParamInfo();
+    reverb.setParam("Large Delay", 0.1);
+    reverb.setParam("Large Size", 0.1);
+    reverb.setParam("Modulation Depth", 0.0);
+    reverb.setParam("Modulation Rate", 0.001);
+    
+    
+//#0: Dry/Wet Mix [0 ~ 100]
+//#15: Filter Bandwidth [0.05 ~ 4]
+//#14: Filter Frequency [10 ~ 22050]
+//#16: Filter Gain [-18 ~ 18]
+//#5: Large Delay [0.001 ~ 0.1]
+//#8: Large Delay Range [0 ~ 1]
+//#7: Large Density [0 ~ 1]
+//#10: Large HiFreq Absorption [0.1 ~ 1]
+//#3: Large Size [0.005 ~ 0.15]
+//#13: Modulation Depth [0 ~ 1]
+//#12: Modulation Rate [0.001 ~ 2]
+//#4: Pre-Delay [0.001 ~ 0.03]
+//#11: Small Delay Range [0 ~ 1]
+//#6: Small Density [0 ~ 1]
+//#9: Small HiFreq Absorption [0.1 ~ 1]
+//#2: Small Size [0.0001 ~ 0.05]
+//#1: Small/Large Mix [0 ~ 100]
+    
+}
+
+
+
+
+

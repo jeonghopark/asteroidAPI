@@ -6,9 +6,9 @@
 ################################################################################
 # OF ROOT
 #   The location of your root openFrameworks installation
-#       (default) OF_ROOT = ../../.. 
+#       (default) OF_ROOT = ../../../../openFrameworks/../openFrameworks 
 ################################################################################
-# OF_ROOT = ../../..
+# OF_ROOT = ../../../../openFrameworks/../openFrameworks
 
 ################################################################################
 # PROJECT ROOT

@@ -1,2 +1,2 @@
+ofxAUPlugin
 ofxJSON
-addons
