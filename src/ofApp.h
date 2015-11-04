@@ -3,6 +3,7 @@
 #include "ofMain.h"
 #include "ofxJSON.h"
 #include "ofxAUPlugin.h"
+#include "ofxGui.h"
 
 #define BUFFER_SIZE 8192
 #define SAMPLE_RATE 44100
@@ -111,5 +112,9 @@ public:
     float amp, amp_t;
 
     void audioUnitSetting();
+    
+    
+    ofxPanel gui;
+    ofxToggle onOffInternet;
     
 };

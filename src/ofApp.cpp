@@ -15,126 +15,143 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 
 //--------------------------------------------------------------
 void ofApp::setup() {
+    
+#ifdef DEBUG
+    
+#else
+    ofSetDataPathRoot("../Resources/data/");
+#endif
 
-//    ofSetDataPathRoot("../Resources/data/");
-
+    
     ofBackground(0);
     ofEnableAntiAliasing();
     //    ofEnableDepthTest();
-
+    
+    
+    
+    gui.setup();
+    gui.add(onOffInternet.setup("Connect Internet", false));
+    
+    
     sunName.load("NewMedia Fett.ttf", 20, true);
     sunName.setGlobalDpi(72);
-
+    
     for (int i=0; i<514 ; i++) {
         sineBufferLeft[i] = sines[i];
         sineBufferRight[i] = sines[i];
     }
-
+    
     
     ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
     ofSoundStreamStop();
     bPlaying = false;
     line = 2;
-
+    
     audioUnitSetting();
-
-    maxHertz = 18000;
+    
+    maxHertz = 5000;
     minHertz = 150;
-
+    
     astroidFBO.allocate(30, BIT*2, GL_RGB);
-
+    
     // http://www.asterank.com/api
     string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=400";
-
+    
     // Now parse the JSON
-    bool parsingSuccessful = json.open(url);
-
+    bool parsingInternetSuccessful = json.open(url);
+    if (!parsingInternetSuccessful) {
+        json.open("asteroid_300.json");
+    }
+    
     threshold = 0.9;
-
+    
     
     cam.setAutoDistance(false);
     cam.setDistance(400);
     
     
-//    if (parsingSuccessful) {
-//        ofLogNotice("ofApp::setup") << json.getRawString(true);
-//    } else {
-//        ofLogNotice("ofApp::setup") << "Failed to parse JSON.";
-//    }
-
+    //    if (parsingSuccessful) {
+    //        ofLogNotice("ofApp::setup") << json.getRawString(true);
+    //    } else {
+    //        ofLogNotice("ofApp::setup") << "Failed to parse JSON.";
+    //    }
+    
     sun.set(2, 10);
-
+    
     ofNoFill();
-
+    
     orbits.resize( json.size() );
-
+    
     ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
-
+    
     float _eEarth = 0.01671123;
     for (int i=0; i<360; i++) {
         double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
-
+        
         float _size = 100;
         float _x1 = _r * cos(ofDegToRad(i)) * _size;
         float _y1 = _r * sin(ofDegToRad(i)) * _size;
-
+        
         earthOrbit.path.addVertex( _x1, _y1 );
     }
-
-
+    
+    
     for(int i=0; i<json.size(); i++) {
-
+        
         orbit _orbitE;
-
+        
         double _a = json[i]["a"].asDouble();
         double _ad = json[i]["ad"].asDouble();
         double _e = json[i]["e"].asDouble();
         double _q = json[i]["q"].asDouble();
         double _i = json[i]["i"].asDouble();
         double _om = json[i]["om"].asDouble();
-
+        
         per_y.push_back( json[i]["per_y"].asDouble() );
-
+        
         mesh.addVertex( ofVec3f( 0, 0, 0) );
-
+        
         ofPolyline _orbitPath;
-
+        
         ofMesh _mesh;
-
+        
         for (int degree=0; degree<360; degree++) {
             double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
-
+            
             float _size = 100;
             float _x1 = _r * cos(ofDegToRad(degree + _om)) * _size;
             float _y1 = _r * sin(ofDegToRad(degree + _om)) * _size;
-
+            
             _orbitPath.addVertex( _x1, _y1 );
             _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
             _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
         }
-
-
+        
+        
         _orbitPath.setClosed(true);
-
+        
         for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
             _mesh.addIndex(meshIndexA);
             _mesh.addIndex(meshIndexA+1);
         }
-
-
+        
+        
         _orbitE.path = _orbitPath;
         _orbitE.inclination = _i;
         _orbitE.omega = _om;
         _orbitE.mesh = _mesh;
         orbits[i] = _orbitE;
-
+        
     }
-
+    
     rotateZ = 0;
     
     _nYPos.resize(orbits.size());
-
+    
+    
+    
+    
 }
 
 
@@ -142,14 +159,14 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update(){
-
+    
     timePlanet = timePlanet + 1;
-
+    
     rotateZ = rotateZ + 0.25;
-
+    
     movingPathFactor = movingPathFactor + 0.125;
-
-
+    
+    
     //        astroidFBO.begin();
     //        ofPushMatrix();
     //        ofTranslate(0, ofGetHeight());
@@ -176,9 +193,9 @@ void ofApp::update(){
     //        }
     //        ofPopMatrix();
     //        astroidFBO.end();
-
-
-
+    
+    
+    
     if (orbits.size()>0) {
         for(int i = 0; i<orbits.size(); i++) {
             vector<float> _f;
@@ -193,10 +210,10 @@ void ofApp::update(){
     }
     
     
-
-//    ofPixels _p;
-//    astroidFBO.readToPixels(_p);
-
+    
+    //    ofPixels _p;
+    //    astroidFBO.readToPixels(_p);
+    
     if ( bPlaying ) {
         for(int n=0; n<BIT; n++){
             //                    int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
@@ -207,11 +224,11 @@ void ofApp::update(){
             ////                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
             ////                    hertzScaleRight[n] = int(getFreqRight(n));
         }
-
+        
         for(int i=0; i<BIT; i++){
             ampLeft[i] = 0;
         }
-
+        
         for(int n=0; n<_nYPos.size(); n++){
             int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
             if (_nYPos[n].size()>0) {
@@ -221,12 +238,12 @@ void ofApp::update(){
                 hertzScaleLeft[_index] = (int)getFreqLeft(_index);
             }
         }
-
+        
     }
-
-//    _nYPos.clear();
-
-
+    
+    //    _nYPos.clear();
+    
+    
 }
 
 
@@ -235,36 +252,36 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-
+    
     ofBackgroundGradient(ofColor(0,0,40), ofColor(0,0,0));
-
-
+    
+    
     cam.begin();
     ofRotateX(180);
-
+    
     ofPushMatrix();
-
+    
     
     drawSun();
     
-
+    
     ofPushStyle();
     ofSetColor(0, 0, 255, 255);
     earthOrbit.path.draw();
     ofPopStyle();
-
+    
     if (orbits.size()>0) {
         ofSetColor(255, 15);
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
-
+            
             ofRotateY( orbits[i].inclination );
             //                        ofRotateZ( orbits[i].omega );
             //            orbits[i].path.draw();
             orbits[i].mesh.draw();
-
+            
             ofPopMatrix();
-
+            
             ofPushMatrix();
             ofPushStyle();
             ofSetColor(255);
@@ -272,30 +289,30 @@ void ofApp::draw() {
             //                        ofRotateZ( orbits[i].omega );
             float _chMovingPath = ((movingPathFactor * per_y[i]));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
-
+            
             mesh.setVertex(0, _path);
             glPointSize(1);
             mesh.draw();
-
-
+            
+            
             ofSetColor(255,120);
             if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
                 float _x = _path.x;
                 float _y = _path.y;
-
+                
                 ofDrawLine(_x, _y, -15, _x, _y, 15);
             }
-
-
+            
+            
             ofPopStyle();
             ofPopMatrix();
-
+            
         }
-
+        
     }
-
+    
     ofPopMatrix();
-
+    
     ofPushMatrix();
     ofPushStyle();
     ofRotateX(180);
@@ -308,8 +325,8 @@ void ofApp::draw() {
     ofDrawRectangle(-15, 0, 30, BIT);
     ofPopStyle();
     ofPopMatrix();
-
-
+    
+    
     ofPushMatrix();
     ofPushStyle();
     ofSetColor(255, 40);
@@ -317,23 +334,26 @@ void ofApp::draw() {
     ofDrawLine(0, 500, 0, -500);
     ofPopStyle();
     ofPopMatrix();
-
+    
     cam.end();
-
-
+    
+    
     //    ofPushMatrix();
     //    ofPushStyle();
     //    ofSetColor(255);
     //    astroidFBO.draw(0,0);
     //    ofPopStyle();
     //    ofPopMatrix();
-
+    
     ofSetColor(255);
     ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
     ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
     ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
     ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
-
+    
+    //    gui.draw();
+    
+    
 }
 
 
@@ -346,11 +366,11 @@ void ofApp::drawSun(){
     ofPushStyle();
     
     ofSetColor(255,255,0);
-
+    
     billboardBegin();
     
     ofScale(0.1, 0.1);
-//    sunName.drawString("SUN", 60, 0);
+    //    sunName.drawString("SUN", 60, 0);
     
     billboardEnd();
     
@@ -358,8 +378,10 @@ void ofApp::drawSun(){
     sun.draw();
     
     ofPopStyle();
-
+    
     ofPopMatrix();
+    
+    
     
 }
 
@@ -367,169 +389,169 @@ void ofApp::drawSun(){
 
 //--------------------------------------------------------------
 float ofApp::getAmpLeft(float x, float y, ofPixels _p){
-
+    
     float _amp = 0;
-
+    
     ofColor _color = _p.getColor(x, y);
-
+    
     float _r = _color.r;
     float _g = _color.g;
     float _b = _color.b;
-
+    
     _amp = 1.0 - (_r + _g + _b) / 255.0 / 3.0;
-
+    
     if (_amp>threshold) {
         _amp = 0;
     }
-
+    
     return _amp;
-
-
+    
+    
 }
 
 
 //--------------------------------------------------------------
 float ofApp::getPixelLeft(int x, int y){
-
-
+    
+    
     //    return _sum;
-
+    
 }
 
 //--------------------------------------------------------------
 float ofApp::getPixelRight(int x, int y){
-
+    
     ofPixels _p;
     astroidFBO.readToPixels(_p);
-
+    
     ofColor _color = _p.getColor(x, y);
-
+    
     float _r = _color.r;
     float _g = _color.g;
     float _b = _color.b;
-
+    
     float _sum = 1.0 - (_r + _g + _b) / 255.0 / 3.0;
-
+    
     return _sum;
-
+    
 }
 
 
 
 //--------------------------------------------------------------
 float ofApp::getAmpLeft(float x, float y){
-
+    
     float _amp = 0;
-
+    
     ofPixels _p;
     astroidFBO.readToPixels(_p);
-
+    
     ofColor _color = _p.getColor(x, y);
-
+    
     float _r = _color.r;
     float _g = _color.g;
     float _b = _color.b;
-
+    
     _amp = 1.0 - (_r + _g + _b) / 255.0 / 3.0;
-
+    
     if (_amp>threshold) {
         _amp = 0;
     }
-
+    
     return _amp;
-
-
+    
+    
 }
 
 
 //--------------------------------------------------------------
 float ofApp::getAmpRight(float x, float y){
-
+    
     float _amp = 0;
     _amp = getPixelRight(x, y);
-
+    
     if (_amp>threshold) {
         _amp = 0;
     }
-
+    
     return _amp;
-
-
+    
+    
 }
 
 //--------------------------------------------------------------
 float ofApp::getFreqLeft(float y){
     float freq=0;
-
+    
     float _maxHz = maxHertz;
     float _minHz = minHertz;
     float yToFreq = (y/BIT)*_maxHz;
-
+    
     //TODO logarithmic scale
     freq = 1-(log(yToFreq)-log(_minHz)) / (log(_maxHz)-log(_minHz));
     freq *= _maxHz;
     //    freq = 1-(yToFreq-_minHz) / (_maxHz-_minHz);
     //    freq = (BIT-y+_minHz)/BIT*(_maxHz-_minHz);
-
-
+    
+    
     return freq;
-
-
+    
+    
 }
 
 //--------------------------------------------------------------
 float ofApp::getFreqRight(float y){
     float freq=0;
-
+    
     //    if(height>0){
     //    y-=9;
-
+    
     float _maxHz = maxHertz;
     float _minHz = minHertz;
     float yToFreq = (y/BIT)*_maxHz;
-
+    
     //TODO logarithmic scale
     freq = 1-(log(yToFreq)-log(_minHz)) / (log(_maxHz)-log(_minHz));
     freq *= _maxHz;
     //freq = 1-(yToFreq-minHz) / (maxHz-minHz);
     //freq= (spectrumHeight-y+minHz)/spectrumHeight*(maxHz-minHz);
     //    }
-
-
+    
+    
     return freq;
-
-
+    
+    
 }
 
 
 
 //--------------------------------------------------------------
 void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
-
+    
     if (bPlaying) {
-
+        
         float *ptr = output;
         
         for (int i = 0; i < bufferSize; i+=2){
-
+            
             waveRight = 0.0;
             waveLeft = 0.0;
-
+            
             for(int n=0; n<BIT; n++){
-
+                
                 if (ampLeft[n]>0.00001) {
                     phasesLeft[n] += 512./(44100.0/(hertzScaleLeft[n]));
-
+                    
                     if ( phasesLeft[n] >= 511 ) phasesLeft[n] -= 512;
-
+                    
                     //remainder = phases[n] - floor(phases[n]);
                     //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-
+                    
                     if ( phasesLeft[n] < 0 ) phasesLeft[n] = 0;
-
+                    
                     waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
                 }
-
+                
                 //                if (ampRight[n]>0.00001) {
                 //                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
                 //
@@ -542,94 +564,94 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
                 //
                 //                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
                 //                }
-
+                
             }
-
+            
             waveRight /= 10.0;
             waveLeft /= 10.0;
             if (waveRight > 1.0) waveRight=1.0;
             if (waveRight<-1.0) waveRight=-1.0;
             if (waveLeft>1.0) waveLeft=1.0;
             if (waveLeft<-1.0) waveLeft=-1.0;
-
+            
             float _volume = 10.85;
             *ptr++ = waveLeft * _volume;
-//            output[i*nChannels + 1] = waveLeft * _volume;
+            //            output[i*nChannels + 1] = waveLeft * _volume;
             
-
+            
         }
-
-//        delay.process(output, output);
+        
+        //        delay.process(output, output);
         reverb.process(output, output);
-
+        
     } else {
         for (int i = 0; i < bufferSize; i++){
             output[i*nChannels    ] = 0;
             output[i*nChannels + 1] = 0;
         }
     }
-
+    
 }
 
 
 
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key){
-
+    
     if (key=='f') {
         fullscreen = !fullscreen;
         ofSetFullscreen(fullscreen);
     }
-
+    
     if (key==' ') bPlaying = !bPlaying;
-
+    
     if (bPlaying)  {
         ofSoundStreamStart();
     } else {
         ofSoundStreamStop();
     }
-
-
+    
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
-
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
-
+    
 }
 
 
@@ -678,50 +700,16 @@ void ofApp::audioUnitSetting(){
     
     pan = 0; pan_t = 0;
     amp = 0; amp_t = 0;
-
+    
     
     ofxAUPlugin::init(SAMPLE_RATE, INITIAL_BUFFER_SIZE);
     
-    //
-    // dump installed plugins
-    //
-    
     ofxAUPlugin::listPlugins();
     
-    
-    //
-    // load plugin from .aupreset file
-    //
-    
-//    delay.loadPreset("delay.aupreset");
-    
     delay.loadPlugin("Apple: AUDelay");
-    
-    
-    //
-    // or plugin name
-    //
-    
     reverb.loadPlugin("Apple: AUMatrixReverb");
     
-    
-    //
-    // get plugin's i/o channels count
-    //
-    
     printf("input ch:%i, output ch:%i\n", delay.numInput(), delay.numOutput());
-    
-    
-    //
-    // start sound stream
-    //
-    
-//    ofSoundStreamSetup(2, 0, this, SAMPLE_RATE, BUFFER_SIZE, 4);
-    
-    
-    //
-    // List prams info
-    //
     
     reverb.listParamInfo();
     reverb.setParam("Large Delay", 0.1);
@@ -729,24 +717,23 @@ void ofApp::audioUnitSetting(){
     reverb.setParam("Modulation Depth", 0.0);
     reverb.setParam("Modulation Rate", 0.001);
     
-    
-//#0: Dry/Wet Mix [0 ~ 100]
-//#15: Filter Bandwidth [0.05 ~ 4]
-//#14: Filter Frequency [10 ~ 22050]
-//#16: Filter Gain [-18 ~ 18]
-//#5: Large Delay [0.001 ~ 0.1]
-//#8: Large Delay Range [0 ~ 1]
-//#7: Large Density [0 ~ 1]
-//#10: Large HiFreq Absorption [0.1 ~ 1]
-//#3: Large Size [0.005 ~ 0.15]
-//#13: Modulation Depth [0 ~ 1]
-//#12: Modulation Rate [0.001 ~ 2]
-//#4: Pre-Delay [0.001 ~ 0.03]
-//#11: Small Delay Range [0 ~ 1]
-//#6: Small Density [0 ~ 1]
-//#9: Small HiFreq Absorption [0.1 ~ 1]
-//#2: Small Size [0.0001 ~ 0.05]
-//#1: Small/Large Mix [0 ~ 100]
+    //#0: Dry/Wet Mix [0 ~ 100]
+    //#15: Filter Bandwidth [0.05 ~ 4]
+    //#14: Filter Frequency [10 ~ 22050]
+    //#16: Filter Gain [-18 ~ 18]
+    //#5: Large Delay [0.001 ~ 0.1]
+    //#8: Large Delay Range [0 ~ 1]
+    //#7: Large Density [0 ~ 1]
+    //#10: Large HiFreq Absorption [0.1 ~ 1]
+    //#3: Large Size [0.005 ~ 0.15]
+    //#13: Modulation Depth [0 ~ 1]
+    //#12: Modulation Rate [0.001 ~ 2]
+    //#4: Pre-Delay [0.001 ~ 0.03]
+    //#11: Small Delay Range [0 ~ 1]
+    //#6: Small Density [0 ~ 1]
+    //#9: Small HiFreq Absorption [0.1 ~ 1]
+    //#2: Small Size [0.0001 ~ 0.05]
+    //#1: Small/Large Mix [0 ~ 100]
     
 }
 
