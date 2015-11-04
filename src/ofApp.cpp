@@ -12,6 +12,7 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 
 #include "ofApp.h"
 
+//--------------------------------------------------------------
 void ofApp::setup() {
 
 //    ofSetDataPathRoot("../Resources/data/");
@@ -20,6 +21,8 @@ void ofApp::setup() {
     ofEnableAntiAliasing();
     //    ofEnableDepthTest();
 
+    sunName.load("NewMedia Fett.ttf", 20, true);
+    sunName.setGlobalDpi(72);
 
     for (int i=0; i<514 ; i++) {
         sineBufferLeft[i] = sines[i];
@@ -37,13 +40,18 @@ void ofApp::setup() {
     astroidFBO.allocate(30, BIT*2, GL_RGB);
 
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":4},\"a\":{\"$lt\":4.5}}&limit=200";
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=400";
 
     // Now parse the JSON
-    bool parsingSuccessful = json.open("asteroid_300.json");
+    bool parsingSuccessful = json.open(url);
 
     threshold = 0.9;
 
+    
+    cam.setAutoDistance(false);
+    cam.setDistance(400);
+    
+    
 //    if (parsingSuccessful) {
 //        ofLogNotice("ofApp::setup") << json.getRawString(true);
 //    } else {
@@ -120,9 +128,15 @@ void ofApp::setup() {
     }
 
     rotateZ = 0;
+    
+    _nYPos.resize(orbits.size());
 
 }
 
+
+
+
+//--------------------------------------------------------------
 void ofApp::update(){
 
     timePlanet = timePlanet + 1;
@@ -160,25 +174,24 @@ void ofApp::update(){
     //        astroidFBO.end();
 
 
-    vector< vector<float> > _nYPos;
 
     if (orbits.size()>0) {
-        vector<float> _f;
-        _f.clear();
         for(int i = 0; i<orbits.size(); i++) {
+            vector<float> _f;
+            _f.clear();
             float _chMovingPath = ((movingPathFactor * per_y[i]));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
                 _f.push_back( BIT + _path.y );
             }
-
+            _nYPos[i] = _f;
         }
-        _nYPos.push_back( _f );
-
     }
+    
+    
 
-    ofPixels _p;
-    astroidFBO.readToPixels(_p);
+//    ofPixels _p;
+//    astroidFBO.readToPixels(_p);
 
     if ( bPlaying ) {
         for(int n=0; n<BIT; n++){
@@ -207,31 +220,34 @@ void ofApp::update(){
 
     }
 
-    _nYPos.clear();
+//    _nYPos.clear();
 
 
 }
 
 
 
+
+
+//--------------------------------------------------------------
 void ofApp::draw() {
 
-    ofBackgroundGradient(ofColor(0,0,40), ofColor(0,0,10));
+    ofBackgroundGradient(ofColor(0,0,40), ofColor(0,0,0));
 
-
-    ofSetColor(255);
 
     cam.begin();
     ofRotateX(180);
-    //    ofRotateZ( rotateZ );
 
     ofPushMatrix();
 
-    //    ofTranslate(ofGetWidth() * 0.5, ofGetHeight() * 0.5);
-    sun.draw();
+    
+    drawSun();
+    
 
-    ofSetColor(255, 250);
-    //    earthOrbit.path.draw();
+    ofPushStyle();
+    ofSetColor(0, 0, 255, 255);
+    earthOrbit.path.draw();
+    ofPopStyle();
 
     if (orbits.size()>0) {
         ofSetColor(255, 15);
@@ -315,6 +331,35 @@ void ofApp::draw() {
     ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
 
 }
+
+
+
+//--------------------------------------------------------------
+void ofApp::drawSun(){
+    
+    ofPushMatrix();
+    
+    ofPushStyle();
+    
+    ofSetColor(255,255,0);
+
+    billboardBegin();
+    
+    ofScale(0.1, 0.1);
+//    sunName.drawString("SUN", 60, 0);
+    
+    billboardEnd();
+    
+    
+    sun.draw();
+    
+    ofPopStyle();
+
+    ofPopMatrix();
+    
+}
+
+
 
 //--------------------------------------------------------------
 float ofApp::getAmpLeft(float x, float y, ofPixels _p){
@@ -574,4 +619,42 @@ void ofApp::gotMessage(ofMessage msg){
 //--------------------------------------------------------------
 void ofApp::dragEvent(ofDragInfo dragInfo){
 
+}
+
+
+
+//--------------------------------------------------------------
+void ofApp::billboardBegin() {
+    
+    float modelview[16];
+    int i,j;
+    
+    // save the current modelview matrix
+    glPushMatrix();
+    
+    // get the current modelview matrix
+    glGetFloatv(GL_MODELVIEW_MATRIX , modelview);
+    
+    // undo all rotations
+    // beware all scaling is lost as well
+    for( i=0; i<3; i++ )
+        for( j=0; j<3; j++ ) {
+            if ( i==j )
+                modelview[i*4+j] = 1.0;
+            else
+                modelview[i*4+j] = 0.0;
+        }
+    
+    // set the modelview with no rotations
+    glLoadMatrixf(modelview);
+}
+
+
+
+//--------------------------------------------------------------
+void ofApp::billboardEnd(){
+    
+    // restore the previously
+    // stored modelview matrix
+    glPopMatrix();
 }

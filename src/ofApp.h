@@ -94,4 +94,13 @@ public:
     
     orbit earthOrbit;
     
+    void drawSun();
+    ofTrueTypeFont sunName;
+    
+    // from TextFacingCameraSample sourcecode
+    void billboardBegin();
+    void billboardEnd();
+
+    vector< vector<float> > _nYPos;
+
 };
