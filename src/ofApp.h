@@ -2,7 +2,6 @@
 
 #include "ofMain.h"
 #include "ofxJSON.h"
-#include "ofxAUPlugin.h"
 #include "ofxGui.h"
 
 #define BUFFER_SIZE 8192
@@ -104,17 +103,16 @@ public:
 
     vector< vector<float> > _nYPos;
 
-    // AudioUnit
-    ofxAUPlugin delay;
-    ofxAUPlugin reverb;
 
-    float pan, pan_t;
-    float amp, amp_t;
-
-    void audioUnitSetting();
     
     
     ofxPanel gui;
     ofxToggle onOffInternet;
+    
+    void textInformation();
+    
+    ofSpherePrimitive one, two;
+    
+    
     
 };

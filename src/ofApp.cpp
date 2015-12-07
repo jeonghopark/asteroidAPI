@@ -4,6 +4,9 @@
 
 // http://mathworld.wolfram.com/SemilatusRectum.html
 
+// http://www.asterank.com/api
+
+
 
 float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.085785,0.097992,0.1102,0.12241,0.13455,0.1467,0.15884,0.17093,0.18301,0.19507,0.20709,0.21909,0.23105,0.24295,0.25485,0.26669,0.2785,0.29025,0.30197,0.31366,0.32529,0.33685,0.34839,0.35986,0.37128,0.38266,0.39395,0.40521,0.41641,0.42752,0.4386,0.44958,0.46051,0.47137,0.48215,0.49286,0.50351,0.51407,0.52457,0.53497,0.54529,0.55554,0.5657,0.57578,0.58575,0.59567,0.60547,0.6152,0.62482,0.63437,0.6438,0.65314,0.66238,0.67151,0.68057,0.68951,0.69833,0.70706,0.7157,0.72421,0.7326,0.74091,0.74908,0.75717,0.76514,0.77298,0.7807,0.7883,0.79581,0.80316,0.81042,0.81754,0.82455,0.83142,0.8382,0.84482,0.85132,0.8577,0.86392,0.87006,0.87604,0.88187,0.8876,0.89319,0.89862,0.90396,0.90912,0.91415,0.91907,0.92383,0.92847,0.93295,0.93729,0.9415,0.94556,0.94949,0.95325,0.95691,0.96039,0.96375,0.96692,0.97,0.9729,0.97565,0.97827,0.98074,0.98306,0.98523,0.98724,0.98914,0.99084,0.99243,0.99387,0.99515,0.99628,0.99725,0.99808,0.99875,0.99927,0.99966,0.99988,0.99997,0.99988,0.99966,0.99927,0.99875,0.99808,0.99725,0.99628,0.99515,0.99387,0.99243,0.99084,0.98914,0.98724,0.98523,0.98306,0.98074,0.97827,0.97565,0.9729,0.97,0.96692,0.96375,0.96039,0.95691,0.95325,0.94949,0.94556,0.9415,0.93729,0.93295,0.92847,0.92383,0.91907,0.91415,0.90912,0.90396,0.89862,0.89319,0.8876,0.88187,0.87604,0.87006,0.86392,0.8577,0.85132,0.84482,0.8382,0.83142,0.82455,0.81754,0.81042,0.80316,0.79581,0.7883,0.7807,0.77298,0.76514,0.75717,0.74908,0.74091,0.7326,0.72421,0.7157,0.70706,0.69833,0.68951,0.68057,0.67151,0.66238,0.65314,0.6438,0.63437,0.62482,0.6152,0.60547,0.59567,0.58575,0.57578,0.5657,0.55554,0.54529,0.53497,0.52457,0.51407,0.50351,0.49286,0.48215,0.47137,0.46051,0.44958,0.4386,0.42752,0.41641,0.40521,0.39395,0.38266,0.37128,0.35986,0.34839,0.33685,0.32529,0.31366,0.30197,0.29025,0.2785,0.26669,0.25485,0.24295,0.23105,0.21909,0.20709,0.19507,0.18301,0.17093,0.15884,0.1467,0.13455,0.12241,0.1102,0.097992,0.085785,0.073547,0.06131,0.049042,0.036804,0.024536,0.012268,0,-0.012268,-0.024536,-0.036804,-0.049042,-0.06131,-0.073547,-0.085785,-0.097992,-0.1102,-0.12241,-0.13455,-0.1467,-0.15884,-0.17093,-0.18301,-0.19507,-0.20709,-0.21909,-0.23105,-0.24295,-0.25485,-0.26669,-0.2785,-0.29025,-0.30197,-0.31366,-0.32529,-0.33685,-0.34839,-0.35986,-0.37128,-0.38266,-0.39395,-0.40521,-0.41641,-0.42752,-0.4386,-0.44958,-0.46051,-0.47137,-0.48215,-0.49286,-0.50351,-0.51407,-0.52457,-0.53497,-0.54529,-0.55554,-0.5657,-0.57578,-0.58575,-0.59567,-0.60547,-0.6152,-0.62482,-0.63437,-0.6438,-0.65314,-0.66238,-0.67151,-0.68057,-0.68951,-0.69833,-0.70706,-0.7157,-0.72421,-0.7326,-0.74091,-0.74908,-0.75717,-0.76514,-0.77298,-0.7807,-0.7883,-0.79581,-0.80316,-0.81042,-0.81754,-0.82455,-0.83142,-0.8382,-0.84482,-0.85132,-0.8577,-0.86392,-0.87006,-0.87604,-0.88187,-0.8876,-0.89319,-0.89862,-0.90396,-0.90912,-0.91415,-0.91907,-0.92383,-0.92847,-0.93295,-0.93729,-0.9415,-0.94556,-0.94949,-0.95325,-0.95691,-0.96039,-0.96375,-0.96692,-0.97,-0.9729,-0.97565,-0.97827,-0.98074,-0.98306,-0.98523,-0.98724,-0.98914,-0.99084,-0.99243,-0.99387,-0.99515,-0.99628,-0.99725,-0.99808,-0.99875,-0.99927,-0.99966,-0.99988,-0.99997,-0.99988,-0.99966,-0.99927,-0.99875,-0.99808,-0.99725,-0.99628,-0.99515,-0.99387,-0.99243,-0.99084,-0.98914,-0.98724,-0.98523,-0.98306,-0.98074,-0.97827,-0.97565,-0.9729,-0.97,-0.96692,-0.96375,-0.96039,-0.95691,-0.95325,-0.94949,-0.94556,-0.9415,-0.93729,-0.93295,-0.92847,-0.92383,-0.91907,-0.91415,-0.90912,-0.90396,-0.89862,-0.89319,-0.8876,-0.88187,-0.87604,-0.87006,-0.86392,-0.8577,-0.85132,-0.84482,-0.8382,-0.83142,-0.82455,-0.81754,-0.81042,-0.80316,-0.79581,-0.7883,-0.7807,-0.77298,-0.76514,-0.75717,-0.74908,-0.74091,-0.7326,-0.72421,-0.7157,-0.70706,-0.69833,-0.68951,-0.68057,-0.67151,-0.66238,-0.65314,-0.6438,-0.63437,-0.62482,-0.6152,-0.60547,-0.59567,-0.58575,-0.57578,-0.5657,-0.55554,-0.54529,-0.53497,-0.52457,-0.51407,-0.50351,-0.49286,-0.48215,-0.47137,-0.46051,-0.44958,-0.4386,-0.42752,-0.41641,-0.40521,-0.39395,-0.38266,-0.37128,-0.35986,-0.34839,-0.33685,-0.32529,-0.31366,-0.30197,-0.29025,-0.2785,-0.26669,-0.25485,-0.24295,-0.23105,-0.21909,-0.20709,-0.19507,-0.18301,-0.17093,-0.15884,-0.1467,-0.13455,-0.12241,-0.1102,-0.097992,-0.085785,-0.073547,-0.06131,-0.049042,-0.036804,-0.024536,-0.012268,0,0.012268};
 
@@ -47,7 +50,6 @@ void ofApp::setup() {
     bPlaying = false;
     line = 2;
     
-    audioUnitSetting();
     
     maxHertz = 5000;
     minHertz = 150;
@@ -55,7 +57,7 @@ void ofApp::setup() {
     astroidFBO.allocate(30, BIT*2, GL_RGB);
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=400";
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=500";
     
     // Now parse the JSON
     bool parsingInternetSuccessful = json.open(url);
@@ -86,7 +88,7 @@ void ofApp::setup() {
     mesh.setMode(OF_PRIMITIVE_POINTS);
     
     float _eEarth = 0.01671123;
-    for (int i=0; i<360; i++) {
+    for (int i=0; i<=360; i++) {
         double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
         
         float _size = 100;
@@ -150,6 +152,8 @@ void ofApp::setup() {
     _nYPos.resize(orbits.size());
     
     
+    one.setRadius(0.2);
+    two.setRadius(0.2);
     
     
 }
@@ -164,7 +168,7 @@ void ofApp::update(){
     
     rotateZ = rotateZ + 0.25;
     
-    movingPathFactor = movingPathFactor + 0.125;
+    movingPathFactor = movingPathFactor + 0.125 * 5;
     
     
     //        astroidFBO.begin();
@@ -255,9 +259,33 @@ void ofApp::draw() {
     
     ofBackgroundGradient(ofColor(0,0,40), ofColor(0,0,0));
     
+
+    int _movingIndex = 210;
+    float _chMovingPath = ((movingPathFactor * per_y[_movingIndex]));
+    ofVec3f _pathCam = orbits[_movingIndex].path.getPointAtIndexInterpolated(_chMovingPath);
+    cam.setPosition( _pathCam + ofVec3f(0, 0, 0) );
+    
+    int _followingIndex = 210;
+    float _chLookPath = ((movingPathFactor * per_y[_followingIndex])) + 10;
+    ofVec3f _pathLook = orbits[_followingIndex].path.getPointAtIndexInterpolated(_chLookPath);
+    cam.lookAt( _pathLook );
+    
+    cam.roll(90);
     
     cam.begin();
-    ofRotateX(180);
+    
+
+    ofDrawAxis(100);
+    
+    ofPushMatrix();
+    ofSetColor(255, 0, 0);
+    one.setPosition( _pathCam );
+    one.draw();
+    ofSetColor(0, 255, 0);
+    two.setPosition( _pathLook );
+    two.draw();
+    ofPopMatrix();
+    
     
     ofPushMatrix();
     
@@ -345,16 +373,27 @@ void ofApp::draw() {
     //    ofPopStyle();
     //    ofPopMatrix();
     
-    ofSetColor(255);
-    ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
-    ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
-    ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
-    ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
+    
+    // textInformation();
     
     //    gui.draw();
     
     
 }
+
+
+
+//--------------------------------------------------------------
+void ofApp::textInformation(){
+    
+    ofSetColor(255);
+    ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
+    ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
+    ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
+    ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
+
+}
+
 
 
 
@@ -530,7 +569,6 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
     
     if (bPlaying) {
         
-        float *ptr = output;
         
         for (int i = 0; i < bufferSize; i+=2){
             
@@ -575,14 +613,11 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
             if (waveLeft<-1.0) waveLeft=-1.0;
             
             float _volume = 10.85;
-            *ptr++ = waveLeft * _volume;
-            //            output[i*nChannels + 1] = waveLeft * _volume;
+            output[i*nChannels + 1] = waveLeft * _volume;
             
             
         }
         
-        //        delay.process(output, output);
-        reverb.process(output, output);
         
     } else {
         for (int i = 0; i < bufferSize; i++){
@@ -690,51 +725,6 @@ void ofApp::billboardEnd(){
     // restore the previously
     // stored modelview matrix
     glPopMatrix();
-}
-
-
-
-
-//--------------------------------------------------------------
-void ofApp::audioUnitSetting(){
-    
-    pan = 0; pan_t = 0;
-    amp = 0; amp_t = 0;
-    
-    
-    ofxAUPlugin::init(SAMPLE_RATE, INITIAL_BUFFER_SIZE);
-    
-    ofxAUPlugin::listPlugins();
-    
-    delay.loadPlugin("Apple: AUDelay");
-    reverb.loadPlugin("Apple: AUMatrixReverb");
-    
-    printf("input ch:%i, output ch:%i\n", delay.numInput(), delay.numOutput());
-    
-    reverb.listParamInfo();
-    reverb.setParam("Large Delay", 0.1);
-    reverb.setParam("Large Size", 0.1);
-    reverb.setParam("Modulation Depth", 0.0);
-    reverb.setParam("Modulation Rate", 0.001);
-    
-    //#0: Dry/Wet Mix [0 ~ 100]
-    //#15: Filter Bandwidth [0.05 ~ 4]
-    //#14: Filter Frequency [10 ~ 22050]
-    //#16: Filter Gain [-18 ~ 18]
-    //#5: Large Delay [0.001 ~ 0.1]
-    //#8: Large Delay Range [0 ~ 1]
-    //#7: Large Density [0 ~ 1]
-    //#10: Large HiFreq Absorption [0.1 ~ 1]
-    //#3: Large Size [0.005 ~ 0.15]
-    //#13: Modulation Depth [0 ~ 1]
-    //#12: Modulation Rate [0.001 ~ 2]
-    //#4: Pre-Delay [0.001 ~ 0.03]
-    //#11: Small Delay Range [0 ~ 1]
-    //#6: Small Density [0 ~ 1]
-    //#9: Small HiFreq Absorption [0.1 ~ 1]
-    //#2: Small Size [0.0001 ~ 0.05]
-    //#1: Small/Large Mix [0 ~ 100]
-    
 }
 
 
