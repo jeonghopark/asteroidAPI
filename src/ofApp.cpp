@@ -171,7 +171,7 @@ void ofApp::update(){
     
     rotateZ = rotateZ + 0.25;
     
-    movingPathFactor = movingPathFactor + 0.125;
+    movingPathFactor = movingPathFactor + 0.225;
     
     
     //        astroidFBO.begin();
