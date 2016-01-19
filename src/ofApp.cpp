@@ -19,11 +19,11 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-#ifdef DEBUG
-    
-#else
+//#ifdef DEBUG
+//    
+//#else
     ofSetDataPathRoot("../Resources/data/");
-#endif
+//#endif
 
     
     ofBackground(0);
@@ -61,6 +61,7 @@ void ofApp::setup() {
     
     // Now parse the JSON
     bool parsingInternetSuccessful = json.open(url);
+    parsingInternetSuccessful = false;
     if (!parsingInternetSuccessful) {
         json.open("asteroid_300.json");
     }
