@@ -4,6 +4,9 @@
 
 // http://mathworld.wolfram.com/SemilatusRectum.html
 
+// http://www.asterank.com/api
+
+
 
 // http://www.asterank.com/api
 
@@ -19,11 +22,11 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-#ifdef DEBUG
-    
-#else
+//#ifdef DEBUG
+//    
+//#else
     ofSetDataPathRoot("../Resources/data/");
-#endif
+//#endif
 
     
     ofBackground(0);
@@ -57,7 +60,7 @@ void ofApp::setup() {
     astroidFBO.allocate(30, BIT*2, GL_RGB);
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=400";
+    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=500";
     
     // Now parse the JSON
     bool parsingInternetSuccessful = json.open(url);
@@ -88,7 +91,7 @@ void ofApp::setup() {
     mesh.setMode(OF_PRIMITIVE_POINTS);
     
     float _eEarth = 0.01671123;
-    for (int i=0; i<360; i++) {
+    for (int i=0; i<=360; i++) {
         double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
         
         float _size = 100;
@@ -152,6 +155,8 @@ void ofApp::setup() {
     _nYPos.resize(orbits.size());
     
     
+    one.setRadius(0.2);
+    two.setRadius(0.2);
     
     
 }
@@ -269,7 +274,7 @@ void ofApp::draw() {
     
     drawSun();
     
-
+    
     
     
     ofPushStyle();
@@ -362,6 +367,20 @@ void ofApp::draw() {
     
     
 }
+
+
+
+//--------------------------------------------------------------
+void ofApp::textInformation(){
+    
+    ofSetColor(255);
+    ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
+    ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
+    ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
+    ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
+
+}
+
 
 
 
@@ -694,9 +713,5 @@ void ofApp::billboardEnd(){
     // stored modelview matrix
     glPopMatrix();
 }
-
-
-
-
 
 

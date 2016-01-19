@@ -108,4 +108,10 @@ public:
     ofxPanel gui;
     ofxToggle onOffInternet;
     
+    void textInformation();
+    
+    ofSpherePrimitive one, two;
+    
+    
+    
 };
