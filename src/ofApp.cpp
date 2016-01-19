@@ -47,7 +47,6 @@ void ofApp::setup() {
     bPlaying = false;
     line = 2;
     
-    audioUnitSetting();
     
     maxHertz = 5000;
     minHertz = 150;
@@ -227,6 +226,7 @@ void ofApp::update(){
         
         for(int i=0; i<BIT; i++){
             ampLeft[i] = 0;
+            ampRight[i] = 0;
         }
         
         for(int n=0; n<_nYPos.size(); n++){
@@ -235,7 +235,9 @@ void ofApp::update(){
                 int _index = _nYPos[n].at(0);
                 float _valueY = ofMap(_index, 0, BIT, 0, 1);
                 ampLeft[_index] = (ampLeft[_index] * line + _valueY) / (line + 1);
+                ampRight[_index] = (ampRight[_index] * line + _valueY) / (line + 1);
                 hertzScaleLeft[_index] = (int)getFreqLeft(_index);
+                hertzScaleRight[_index] = (int)getFreqRight(_index);
             }
         }
         
@@ -530,7 +532,6 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
     
     if (bPlaying) {
         
-        float *ptr = output;
         
         for (int i = 0; i < bufferSize; i+=2){
             
@@ -552,18 +553,18 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
                     waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
                 }
                 
-                //                if (ampRight[n]>0.00001) {
-                //                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
-                //
-                //                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
-                //
-                //                    //remainder = phases[n] - floor(phases[n]);
-                //                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-                //
-                //                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
-                //
-                //                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
-                //                }
+                if (ampRight[n]>0.00001) {
+                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
+
+                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
+
+                    //remainder = phases[n] - floor(phases[n]);
+                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+
+                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
+
+                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
+                }
                 
             }
             
@@ -575,14 +576,11 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
             if (waveLeft<-1.0) waveLeft=-1.0;
             
             float _volume = 10.85;
-            *ptr++ = waveLeft * _volume;
-            //            output[i*nChannels + 1] = waveLeft * _volume;
-            
+            output[i*nChannels    ] = waveRight * _volume;
+            output[i*nChannels + 1] = waveLeft * _volume;
             
         }
         
-        //        delay.process(output, output);
-        reverb.process(output, output);
         
     } else {
         for (int i = 0; i < bufferSize; i++){
@@ -692,50 +690,6 @@ void ofApp::billboardEnd(){
     glPopMatrix();
 }
 
-
-
-
-//--------------------------------------------------------------
-void ofApp::audioUnitSetting(){
-    
-    pan = 0; pan_t = 0;
-    amp = 0; amp_t = 0;
-    
-    
-    ofxAUPlugin::init(SAMPLE_RATE, INITIAL_BUFFER_SIZE);
-    
-    ofxAUPlugin::listPlugins();
-    
-    delay.loadPlugin("Apple: AUDelay");
-    reverb.loadPlugin("Apple: AUMatrixReverb");
-    
-    printf("input ch:%i, output ch:%i\n", delay.numInput(), delay.numOutput());
-    
-    reverb.listParamInfo();
-    reverb.setParam("Large Delay", 0.1);
-    reverb.setParam("Large Size", 0.1);
-    reverb.setParam("Modulation Depth", 0.0);
-    reverb.setParam("Modulation Rate", 0.001);
-    
-    //#0: Dry/Wet Mix [0 ~ 100]
-    //#15: Filter Bandwidth [0.05 ~ 4]
-    //#14: Filter Frequency [10 ~ 22050]
-    //#16: Filter Gain [-18 ~ 18]
-    //#5: Large Delay [0.001 ~ 0.1]
-    //#8: Large Delay Range [0 ~ 1]
-    //#7: Large Density [0 ~ 1]
-    //#10: Large HiFreq Absorption [0.1 ~ 1]
-    //#3: Large Size [0.005 ~ 0.15]
-    //#13: Modulation Depth [0 ~ 1]
-    //#12: Modulation Rate [0.001 ~ 2]
-    //#4: Pre-Delay [0.001 ~ 0.03]
-    //#11: Small Delay Range [0 ~ 1]
-    //#6: Small Density [0 ~ 1]
-    //#9: Small HiFreq Absorption [0.1 ~ 1]
-    //#2: Small Size [0.0001 ~ 0.05]
-    //#1: Small/Large Mix [0 ~ 100]
-    
-}
 
 
 

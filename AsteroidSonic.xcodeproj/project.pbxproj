@@ -7,18 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		02E3BAF4C45F6039432B97F7 /* ofxAUPlugin.mm in Sources */ = {isa = PBXBuildFile; fileRef = D36A511621D826DD52B397A3 /* ofxAUPlugin.mm */; };
-		05AED1E2161CAA3F1FE126EF /* CACFDictionary.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1548BAAC45299CDBBB761B87 /* CACFDictionary.cpp */; };
-		07621262DC01F6AC681C0D60 /* CAAudioChannelLayout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8C305A67B554811BAB219C59 /* CAAudioChannelLayout.cpp */; };
-		0BD4864B86049C841CAA82C7 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D8526F809815F2D2C17E9E8F /* CAStreamBasicDescription.cpp */; };
-		11BBF3F9D51DF867DA80D4CB /* CAAudioUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 937EB4D43A598DC0D2259808 /* CAAudioUnit.cpp */; };
-		462ABD2C3000C91281A58381 /* CAAUProcessor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C48A1ABBDF52103AED4FCB14 /* CAAUProcessor.cpp */; };
 		5CCFB2A36396A0511400C909 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 684C4A6525DAC1BF8D7DFEEF /* jsoncpp.cpp */; };
-		76AA28569E497069DDEBFE96 /* CAComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8FDB2DE446198B474DC28360 /* CAComponent.cpp */; };
-		878B57169DDD796D73AB55CA /* CAComponentDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4C2100E72401FAF1ED609B1F /* CAComponentDescription.cpp */; };
-		8DA230C7846CEF8D460FAA7F /* CACFNumber.cpp in Sources */ = {isa = PBXBuildFile; fileRef = EAC71D256F68CC024F499FFF /* CACFNumber.cpp */; };
 		9455F3F777137963C1194F60 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 081473F8EA3EB8A9C41C0FBE /* ofxJSONElement.cpp */; };
-		94C8882A5CD0339F2AEACD50 /* CACFString.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F0F59DD5536932DC5E66F2C /* CACFString.cpp */; };
 		A81375EF1BEA0CA6001A92CF /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375DE1BEA0CA5001A92CF /* ofxBaseGui.cpp */; };
 		A81375F01BEA0CA6001A92CF /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E01BEA0CA5001A92CF /* ofxButton.cpp */; };
 		A81375F11BEA0CA6001A92CF /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E31BEA0CA5001A92CF /* ofxGuiGroup.cpp */; };
@@ -27,9 +17,6 @@
 		A81375F41BEA0CA6001A92CF /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E91BEA0CA6001A92CF /* ofxSlider.cpp */; };
 		A81375F51BEA0CA6001A92CF /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375EB1BEA0CA6001A92CF /* ofxSliderGroup.cpp */; };
 		A81375F61BEA0CA6001A92CF /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375ED1BEA0CA6001A92CF /* ofxToggle.cpp */; };
-		A8902D8B1BE982D00094846D /* AudioUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8902D8A1BE982D00094846D /* AudioUnit.framework */; };
-		ACA541D7098357AD0A00E6EC /* AUOutputBL.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8F2270CD20E9217EF804097E /* AUOutputBL.cpp */; };
-		B344A0DDE850E2A57044DBE2 /* CADebugMacros.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5D96ECAC51191591987C6993 /* CADebugMacros.cpp */; };
 		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
 		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
 		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
@@ -67,27 +54,9 @@
 /* Begin PBXFileReference section */
 		081473F8EA3EB8A9C41C0FBE /* ofxJSONElement.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxJSONElement.cpp; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.cpp; sourceTree = SOURCE_ROOT; };
 		0A11AF00667CE72348E900E3 /* ofxJSON.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSON.h; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSON.h; sourceTree = SOURCE_ROOT; };
-		0FC02CAC53D3D83F3EB30FFB /* CADebugMacros.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CADebugMacros.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CADebugMacros.h; sourceTree = SOURCE_ROOT; };
-		1548BAAC45299CDBBB761B87 /* CACFDictionary.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CACFDictionary.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CACFDictionary.cpp; sourceTree = SOURCE_ROOT; };
-		1C4433AEC42953A59B621727 /* CAAudioUnit.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAAudioUnit.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAAudioUnit.h; sourceTree = SOURCE_ROOT; };
-		24CBA76A6BDC2C16EE6813B5 /* CAReferenceCounted.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAReferenceCounted.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAReferenceCounted.h; sourceTree = SOURCE_ROOT; };
-		2903E80CC554BB07A6344E11 /* CAComponent.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAComponent.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAComponent.h; sourceTree = SOURCE_ROOT; };
-		297EA6B3620B404BE6ABBDF2 /* CACFString.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CACFString.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CACFString.h; sourceTree = SOURCE_ROOT; };
-		2D6214AB178B2EC31E715D6A /* CAMath.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAMath.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAMath.h; sourceTree = SOURCE_ROOT; };
-		301301FF0ABDB7D99B259FDE /* CAAudioChannelLayout.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAAudioChannelLayout.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAAudioChannelLayout.h; sourceTree = SOURCE_ROOT; };
-		3774A93D7BE536099C22D75A /* CAComponentDescription.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAComponentDescription.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAComponentDescription.h; sourceTree = SOURCE_ROOT; };
-		4C2100E72401FAF1ED609B1F /* CAComponentDescription.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAComponentDescription.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAComponentDescription.cpp; sourceTree = SOURCE_ROOT; };
-		5D96ECAC51191591987C6993 /* CADebugMacros.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CADebugMacros.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CADebugMacros.cpp; sourceTree = SOURCE_ROOT; };
 		684C4A6525DAC1BF8D7DFEEF /* jsoncpp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = jsoncpp.cpp; path = ../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src/jsoncpp.cpp; sourceTree = SOURCE_ROOT; };
-		727587D0F878190279517EF2 /* AUOutputBL.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = AUOutputBL.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/AUOutputBL.h; sourceTree = SOURCE_ROOT; };
 		816AD209BB96C6B23CCD47EF /* ofxJSONElement.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSONElement.h; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.h; sourceTree = SOURCE_ROOT; };
 		8C0C738EAA20D82EA41BE976 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json.h; sourceTree = SOURCE_ROOT; };
-		8C305A67B554811BAB219C59 /* CAAudioChannelLayout.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAAudioChannelLayout.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAAudioChannelLayout.cpp; sourceTree = SOURCE_ROOT; };
-		8F0F59DD5536932DC5E66F2C /* CACFString.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CACFString.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CACFString.cpp; sourceTree = SOURCE_ROOT; };
-		8F2270CD20E9217EF804097E /* AUOutputBL.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = AUOutputBL.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/AUOutputBL.cpp; sourceTree = SOURCE_ROOT; };
-		8FDB2DE446198B474DC28360 /* CAComponent.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAComponent.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAComponent.cpp; sourceTree = SOURCE_ROOT; };
-		937EB4D43A598DC0D2259808 /* CAAudioUnit.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAAudioUnit.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAAudioUnit.cpp; sourceTree = SOURCE_ROOT; };
-		A3730BAF1EF2E6367946183F /* CACFDictionary.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CACFDictionary.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CACFDictionary.h; sourceTree = SOURCE_ROOT; };
 		A81375DE1BEA0CA5001A92CF /* ofxBaseGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
 		A81375DF1BEA0CA5001A92CF /* ofxBaseGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
 		A81375E01BEA0CA5001A92CF /* ofxButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxButton.cpp; sourceTree = "<group>"; };
@@ -105,14 +74,7 @@
 		A81375EC1BEA0CA6001A92CF /* ofxSliderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSliderGroup.h; sourceTree = "<group>"; };
 		A81375ED1BEA0CA6001A92CF /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
 		A81375EE1BEA0CA6001A92CF /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
-		A8902D8A1BE982D00094846D /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
-		BA90841A8F51EEEBB29428E6 /* CAAUProcessor.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAAUProcessor.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAAUProcessor.h; sourceTree = SOURCE_ROOT; };
 		BDC3EB0AEE46369A27A2E74A /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
-		C48A1ABBDF52103AED4FCB14 /* CAAUProcessor.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAAUProcessor.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAAUProcessor.cpp; sourceTree = SOURCE_ROOT; };
-		D36A511621D826DD52B397A3 /* ofxAUPlugin.mm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = ofxAUPlugin.mm; path = ../../../../openFrameworks/addons/ofxAUPlugin/src/ofxAUPlugin.mm; sourceTree = SOURCE_ROOT; };
-		D8526F809815F2D2C17E9E8F /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAStreamBasicDescription.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAStreamBasicDescription.cpp; sourceTree = SOURCE_ROOT; };
-		DF0CC0FFC61680999B4827C9 /* ofxAUPlugin.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = ofxAUPlugin.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/src/ofxAUPlugin.h; sourceTree = SOURCE_ROOT; };
-		E07C85B143DC97F31729179A /* CACFNumber.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CACFNumber.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CACFNumber.h; sourceTree = SOURCE_ROOT; };
 		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../../openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
 		E4B69B5B0A3A1756003C02F2 /* AsteroidSonicDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidSonicDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
@@ -121,8 +83,6 @@
 		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-		EAC71D256F68CC024F499FFF /* CACFNumber.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CACFNumber.cpp; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CACFNumber.cpp; sourceTree = SOURCE_ROOT; };
-		FD4085A553A3ADA6C6BFC864 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp.preprocessed; fileEncoding = 30; name = CAStreamBasicDescription.h; path = ../../../../openFrameworks/addons/ofxAUPlugin/libs/CAStreamBasicDescription.h; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,7 +90,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A8902D8B1BE982D00094846D /* AudioUnit.framework in Frameworks */,
 				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -157,15 +116,6 @@
 			name = src;
 			sourceTree = "<group>";
 		};
-		313A5BA7829DE2FC8CCB368F /* ofxAUPlugin */ = {
-			isa = PBXGroup;
-			children = (
-				D3A89DCE8FE5D87DD744E9C1 /* src */,
-				851B004676F30E43CF96F1D2 /* libs */,
-			);
-			name = ofxAUPlugin;
-			sourceTree = "<group>";
-		};
 		58AD3BD71B781D9BC25763C8 /* json */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,37 +130,6 @@
 			children = (
 			);
 			name = local_addons;
-			sourceTree = "<group>";
-		};
-		851B004676F30E43CF96F1D2 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				8F2270CD20E9217EF804097E /* AUOutputBL.cpp */,
-				727587D0F878190279517EF2 /* AUOutputBL.h */,
-				8C305A67B554811BAB219C59 /* CAAudioChannelLayout.cpp */,
-				301301FF0ABDB7D99B259FDE /* CAAudioChannelLayout.h */,
-				937EB4D43A598DC0D2259808 /* CAAudioUnit.cpp */,
-				1C4433AEC42953A59B621727 /* CAAudioUnit.h */,
-				C48A1ABBDF52103AED4FCB14 /* CAAUProcessor.cpp */,
-				BA90841A8F51EEEBB29428E6 /* CAAUProcessor.h */,
-				1548BAAC45299CDBBB761B87 /* CACFDictionary.cpp */,
-				A3730BAF1EF2E6367946183F /* CACFDictionary.h */,
-				EAC71D256F68CC024F499FFF /* CACFNumber.cpp */,
-				E07C85B143DC97F31729179A /* CACFNumber.h */,
-				8F0F59DD5536932DC5E66F2C /* CACFString.cpp */,
-				297EA6B3620B404BE6ABBDF2 /* CACFString.h */,
-				8FDB2DE446198B474DC28360 /* CAComponent.cpp */,
-				2903E80CC554BB07A6344E11 /* CAComponent.h */,
-				4C2100E72401FAF1ED609B1F /* CAComponentDescription.cpp */,
-				3774A93D7BE536099C22D75A /* CAComponentDescription.h */,
-				5D96ECAC51191591987C6993 /* CADebugMacros.cpp */,
-				0FC02CAC53D3D83F3EB30FFB /* CADebugMacros.h */,
-				2D6214AB178B2EC31E715D6A /* CAMath.h */,
-				24CBA76A6BDC2C16EE6813B5 /* CAReferenceCounted.h */,
-				D8526F809815F2D2C17E9E8F /* CAStreamBasicDescription.cpp */,
-				FD4085A553A3ADA6C6BFC864 /* CAStreamBasicDescription.h */,
-			);
-			name = libs;
 			sourceTree = "<group>";
 		};
 		977A836DD2C489CCC5E330FF /* jsoncpp */ = {
@@ -259,7 +178,6 @@
 			isa = PBXGroup;
 			children = (
 				A81375DC1BEA0CA5001A92CF /* ofxGui */,
-				313A5BA7829DE2FC8CCB368F /* ofxAUPlugin */,
 				2865DAEF86B1907A704CA70B /* ofxJSON */,
 			);
 			name = addons;
@@ -269,15 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				684C4A6525DAC1BF8D7DFEEF /* jsoncpp.cpp */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		D3A89DCE8FE5D87DD744E9C1 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				DF0CC0FFC61680999B4827C9 /* ofxAUPlugin.h */,
-				D36A511621D826DD52B397A3 /* ofxAUPlugin.mm */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -301,7 +210,6 @@
 		E4B69B4A0A3A1720003C02F2 = {
 			isa = PBXGroup;
 			children = (
-				A8902D8A1BE982D00094846D /* AudioUnit.framework */,
 				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
 				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
 				E4B69E1C0A3A1BDC003C02F2 /* src */,
@@ -430,24 +338,12 @@
 				A81375F51BEA0CA6001A92CF /* ofxSliderGroup.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				A81375F21BEA0CA6001A92CF /* ofxLabel.cpp in Sources */,
-				02E3BAF4C45F6039432B97F7 /* ofxAUPlugin.mm in Sources */,
 				A81375F61BEA0CA6001A92CF /* ofxToggle.cpp in Sources */,
-				ACA541D7098357AD0A00E6EC /* AUOutputBL.cpp in Sources */,
-				07621262DC01F6AC681C0D60 /* CAAudioChannelLayout.cpp in Sources */,
 				A81375F41BEA0CA6001A92CF /* ofxSlider.cpp in Sources */,
-				11BBF3F9D51DF867DA80D4CB /* CAAudioUnit.cpp in Sources */,
-				462ABD2C3000C91281A58381 /* CAAUProcessor.cpp in Sources */,
 				A81375F01BEA0CA6001A92CF /* ofxButton.cpp in Sources */,
-				05AED1E2161CAA3F1FE126EF /* CACFDictionary.cpp in Sources */,
-				8DA230C7846CEF8D460FAA7F /* CACFNumber.cpp in Sources */,
 				A81375F31BEA0CA6001A92CF /* ofxPanel.cpp in Sources */,
 				A81375F11BEA0CA6001A92CF /* ofxGuiGroup.cpp in Sources */,
-				94C8882A5CD0339F2AEACD50 /* CACFString.cpp in Sources */,
-				76AA28569E497069DDEBFE96 /* CAComponent.cpp in Sources */,
-				878B57169DDD796D73AB55CA /* CAComponentDescription.cpp in Sources */,
 				A81375EF1BEA0CA6001A92CF /* ofxBaseGui.cpp in Sources */,
-				B344A0DDE850E2A57044DBE2 /* CADebugMacros.cpp in Sources */,
-				0BD4864B86049C841CAA82C7 /* CAStreamBasicDescription.cpp in Sources */,
 				9455F3F777137963C1194F60 /* ofxJSONElement.cpp in Sources */,
 				5CCFB2A36396A0511400C909 /* jsoncpp.cpp in Sources */,
 			);
