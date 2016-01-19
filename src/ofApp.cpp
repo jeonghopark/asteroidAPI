@@ -269,6 +269,8 @@ void ofApp::draw() {
     
     drawSun();
     
+
+    
     
     ofPushStyle();
     ofSetColor(0, 0, 255, 255);
