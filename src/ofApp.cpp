@@ -64,8 +64,11 @@ void ofApp::setup() {
     
     // Now parse the JSON
     bool parsingInternetSuccessful = json.open(url);
+    parsingInternetSuccessful = false;
     if (!parsingInternetSuccessful) {
-        json.open("asteroid_300.json");
+        json.open("asteroid_500.json");
+    } else {
+        json.open(url);
     }
     
     threshold = 0.9;
