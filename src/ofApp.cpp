@@ -47,9 +47,27 @@ void ofApp::setup() {
         sineBufferRight[i] = sines[i];
     }
     
+    soundStream.printDeviceList();
+
+    ofSoundStreamSettings settings;
+
+    //    ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
     
-    ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
-    ofSoundStreamStop();
+//    auto devices = soundStream.getMatchingDevices("default");
+    auto devices = soundStream.getDeviceList();
+    if (!devices.empty()) {
+        settings.setOutDevice(devices[1]);
+    }
+    
+    settings.setOutListener(this);
+    settings.bufferSize = INITIAL_BUFFER_SIZE;
+    settings.sampleRate = SAMPLE_RATE;
+    settings.numInputChannels = 0;
+    settings.numOutputChannels = 2;
+    
+    soundStream.setup(settings);
+    
+//    ofSoundStreamStop();
     bPlaying = false;
     line = 2;
     
@@ -328,6 +346,8 @@ void ofApp::draw() {
     
     ofPopMatrix();
     
+    
+    
     ofPushMatrix();
     ofPushStyle();
     ofRotateX(180);
@@ -340,6 +360,7 @@ void ofApp::draw() {
     ofDrawRectangle(-15, 0, 30, BIT);
     ofPopStyle();
     ofPopMatrix();
+    
     
     
     ofPushMatrix();
@@ -555,12 +576,12 @@ float ofApp::getFreqRight(float y){
 
 
 //--------------------------------------------------------------
-void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
+void ofApp::audioOut (ofSoundBuffer & buffer){
     
     if (bPlaying) {
         
         
-        for (int i = 0; i < bufferSize; i+=2){
+        for (int i = 0; i < buffer.getNumFrames(); i+=2){
             
             waveRight = 0.0;
             waveLeft = 0.0;
@@ -603,16 +624,16 @@ void ofApp::audioRequested (float * output, int bufferSize, int nChannels){
             if (waveLeft<-1.0) waveLeft=-1.0;
             
             float _volume = 10.85;
-            output[i*nChannels    ] = waveRight * _volume;
-            output[i*nChannels + 1] = waveLeft * _volume;
-            
+            buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
+            buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
+
         }
         
         
     } else {
-        for (int i = 0; i < bufferSize; i++){
-            output[i*nChannels    ] = 0;
-            output[i*nChannels + 1] = 0;
+        for (int i = 0; i < buffer.getNumFrames(); i++){
+            buffer[i*buffer.getNumChannels()    ] = 0;
+            buffer[i*buffer.getNumChannels() + 1] = 0;
         }
     }
     
@@ -636,9 +657,11 @@ void ofApp::keyReleased(int key){
     if (key==' ') bPlaying = !bPlaying;
     
     if (bPlaying)  {
-        ofSoundStreamStart();
+//        ofSoundStreamStart();
+        soundStream.start();
     } else {
-        ofSoundStreamStop();
+//        ofSoundStreamStop();
+        soundStream.stop();
     }
     
     
