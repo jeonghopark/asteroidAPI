@@ -53,8 +53,8 @@ void ofApp::setup() {
 
     //    ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
     
-//    auto devices = soundStream.getMatchingDevices("default");
-    auto devices = soundStream.getDeviceList();
+    auto devices = soundStream.getMatchingDevices("default");
+//    auto devices = soundStream.getDeviceList();
     if (!devices.empty()) {
         settings.setOutDevice(devices[1]);
     }
