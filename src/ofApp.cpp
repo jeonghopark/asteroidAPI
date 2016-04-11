@@ -1,3 +1,4 @@
+// https://en.wikipedia.org/wiki/Ellipse#Polar_form_relative_to_focus
 // http://en.wikipedia.org/wiki/Apsis
 // http://en.wikipedia.org/wiki/Orbital_inclination
 // http://en.wikipedia.org/wiki/Semi-major_axis
@@ -22,12 +23,12 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-//#ifdef DEBUG
-//    
-//#else
+    //#ifdef DEBUG
+    //
+    //#else
     ofSetDataPathRoot("../Resources/data/");
-//#endif
-
+    //#endif
+    
     
     ofBackground(0);
     ofEnableAntiAliasing();
@@ -48,13 +49,13 @@ void ofApp::setup() {
     }
     
     soundStream.printDeviceList();
-
+    
     ofSoundStreamSettings settings;
-
+    
     //    ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
     
     auto devices = soundStream.getMatchingDevices("default");
-//    auto devices = soundStream.getDeviceList();
+    //    auto devices = soundStream.getDeviceList();
     if (!devices.empty()) {
         settings.setOutDevice(devices[1]);
     }
@@ -67,7 +68,7 @@ void ofApp::setup() {
     
     soundStream.setup(settings);
     
-//    ofSoundStreamStop();
+    //    ofSoundStreamStop();
     bPlaying = false;
     line = 2;
     
@@ -81,13 +82,24 @@ void ofApp::setup() {
     string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=500";
     
     // Now parse the JSON
-    bool parsingInternetSuccessful = json.open(url);
-    parsingInternetSuccessful = false;
-    if (!parsingInternetSuccessful) {
-        json.open("asteroid_500.json");
-    } else {
-        json.open(url);
-    }
+    //    bool parsingInternetSuccessful = json.open(url);
+    //    parsingInternetSuccessful = false;
+    //    if (!parsingInternetSuccessful) {
+    //        json.open("asteroid_500.json");
+    //    } else {
+    //        json.open(url);
+    //    }
+    
+    
+    ofFile _file("asteroid_500.json");
+    
+    
+    //    if(_file.exists()){
+    //        _file >> json;
+    //    }
+    
+    
+    
     
     threshold = 0.9;
     
@@ -106,7 +118,6 @@ void ofApp::setup() {
     
     ofNoFill();
     
-    orbits.resize( json.size() );
     
     ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
@@ -123,51 +134,76 @@ void ofApp::setup() {
     }
     
     
-    for(int i=0; i<json.size(); i++) {
+    if(_file.exists()){
+        _file >> json;
+        
+        orbits.resize( json.size() );
+        //    for(int i=0; i<json.size(); i++) {
         
         orbit _orbitE;
         
-        double _a = json[i]["a"].asDouble();
-        double _ad = json[i]["ad"].asDouble();
-        double _e = json[i]["e"].asDouble();
-        double _q = json[i]["q"].asDouble();
-        double _i = json[i]["i"].asDouble();
-        double _om = json[i]["om"].asDouble();
-        
-        per_y.push_back( json[i]["per_y"].asDouble() );
-        
-        mesh.addVertex( ofVec3f( 0, 0, 0) );
-        
-        ofPolyline _orbitPath;
-        
-        ofMesh _mesh;
-        
-        for (int degree=0; degree<360; degree++) {
-            double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
-            
-            float _size = 100;
-            float _x1 = _r * cos(ofDegToRad(degree + _om)) * _size;
-            float _y1 = _r * sin(ofDegToRad(degree + _om)) * _size;
-            
-            _orbitPath.addVertex( _x1, _y1 );
-            _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
-            _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
+        for(auto & stroke: json){
+            if(!stroke.empty()){
+                
+                
+                double _a = stroke["a"];
+                double _ad = stroke["ad"];
+                double _e = stroke["e"];
+                double _q = stroke["q"];
+                double _i = stroke["i"];
+                double _om = stroke["om"];
+                
+                
+                //        double _a = json[i]["a"];
+                //        double _ad = json[i]["ad"];
+                //        double _e = json[i]["e"];
+                //        double _q = json[i]["q"];
+                //        double _i = json[i]["i"];
+                //        double _om = json[i]["om"];
+                
+                per_y.push_back( stroke["per_y"] );
+                
+                mesh.addVertex( ofVec3f( 0, 0, 0) );
+                
+                ofPolyline _orbitPath;
+                
+                ofMesh _mesh;
+                
+                for (int degree=0; degree<360; degree++) {
+                    double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
+                    
+                    float _size = 100;
+                    float _x1 = _r * cos(ofDegToRad(degree + _om)) * _size;
+                    float _y1 = _r * sin(ofDegToRad(degree + _om)) * _size;
+                    
+                    _orbitPath.addVertex( _x1, _y1 );
+                    _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
+                    _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
+                }
+                
+                
+                _orbitPath.setClosed(true);
+                
+                for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
+                    _mesh.addIndex(meshIndexA);
+                    _mesh.addIndex(meshIndexA+1);
+                }
+                
+                
+                _orbitE.path = _orbitPath;
+                _orbitE.inclination = _i;
+                _orbitE.omega = _om;
+                _orbitE.mesh = _mesh;
+                
+                
+                
+                int _counter = &stroke - &json[0];
+                orbits[_counter] = _orbitE;
+                
+                
+            }
         }
-        
-        
-        _orbitPath.setClosed(true);
-        
-        for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
-            _mesh.addIndex(meshIndexA);
-            _mesh.addIndex(meshIndexA+1);
-        }
-        
-        
-        _orbitE.path = _orbitPath;
-        _orbitE.inclination = _i;
-        _orbitE.omega = _om;
-        _orbitE.mesh = _mesh;
-        orbits[i] = _orbitE;
+        //    }
         
     }
     
@@ -402,7 +438,7 @@ void ofApp::textInformation(){
     ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
     ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
     ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
-
+    
 }
 
 
@@ -603,14 +639,14 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
                 
                 if (ampRight[n]>0.00001) {
                     phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
-
+                    
                     if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
-
+                    
                     //remainder = phases[n] - floor(phases[n]);
                     //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-
+                    
                     if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
-
+                    
                     waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
                 }
                 
@@ -626,7 +662,7 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
             float _volume = 10.85;
             buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
             buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
-
+            
         }
         
         
@@ -637,6 +673,13 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
         }
     }
     
+}
+
+
+
+//--------------------------------------------------------------
+void ofApp::exit(){
+    std::exit(0);
 }
 
 
@@ -657,10 +700,10 @@ void ofApp::keyReleased(int key){
     if (key==' ') bPlaying = !bPlaying;
     
     if (bPlaying)  {
-//        ofSoundStreamStart();
+        //        ofSoundStreamStart();
         soundStream.start();
     } else {
-//        ofSoundStreamStop();
+        //        ofSoundStreamStop();
         soundStream.stop();
     }
     
@@ -739,5 +782,3 @@ void ofApp::billboardEnd(){
     // stored modelview matrix
     glPopMatrix();
 }
-
-

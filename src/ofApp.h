@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxJSON.h"
+//#include "ofxJSON.h"
 #include "ofxGui.h"
 
 #define BUFFER_SIZE 8192
@@ -26,6 +26,7 @@ public:
     void setup();
     void update();
     void draw();
+    void exit();
 
     void keyPressed(int key);
     void keyReleased(int key);
@@ -37,6 +38,7 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
+
     
 //    void audioRequested(float * output, int bufferSize, int nChannels);
 
@@ -74,8 +76,11 @@ public:
     float getAmpLeft(float x, float y, ofPixels _p);
 
     
-    ofxJSONElement json;
-
+//    ofxJSONElement json;
+    
+    ofJson json;
+    ofJson stroke;
+    
     ofEasyCam cam;
     float timePlanet;
     bool fullscreen;
