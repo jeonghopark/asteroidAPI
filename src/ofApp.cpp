@@ -2,13 +2,7 @@
 // http://en.wikipedia.org/wiki/Apsis
 // http://en.wikipedia.org/wiki/Orbital_inclination
 // http://en.wikipedia.org/wiki/Semi-major_axis
-
 // http://mathworld.wolfram.com/SemilatusRectum.html
-
-// http://www.asterank.com/api
-
-
-
 // http://www.asterank.com/api
 
 
@@ -23,18 +17,16 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-    //#ifdef DEBUG
-    //
-    //#else
+#ifdef DEBUG
+    
+#else
     ofSetDataPathRoot("../Resources/data/");
-    //#endif
+#endif
     
     
     ofBackground(0);
     ofEnableAntiAliasing();
     //    ofEnableDepthTest();
-    
-    
     
     gui.setup();
     gui.add(onOffInternet.setup("Connect Internet", false));
@@ -145,14 +137,12 @@ void ofApp::setup() {
         for(auto & stroke: json){
             if(!stroke.empty()){
                 
-                
                 double _a = stroke["a"];
                 double _ad = stroke["ad"];
                 double _e = stroke["e"];
                 double _q = stroke["q"];
                 double _i = stroke["i"];
                 double _om = stroke["om"];
-                
                 
                 //        double _a = json[i]["a"];
                 //        double _ad = json[i]["ad"];
@@ -326,13 +316,10 @@ void ofApp::draw() {
     cam.begin();
     ofRotateX(180);
     
+
     ofPushMatrix();
     
-    
     drawSun();
-    
-    
-    
     
     ofPushStyle();
     ofSetColor(0, 0, 255, 255);
@@ -418,14 +405,16 @@ void ofApp::draw() {
     //    ofPopMatrix();
     
     ofSetColor(255);
-    ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
-    ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
-    ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
-    ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
+    stringstream ss;
+    ss << "FPS: " << ofToString(ofGetFrameRate(),1) << endl;
+    ss << "Space bar for Sound Play" << endl;
+    ss << "Mouse or Track Pad for 3D Viewing" << endl;
+    ss << "\"f\" - key for full screen" << endl;
+    ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
+
     
     //    gui.draw();
-    
-    
+        
 }
 
 
@@ -433,11 +422,6 @@ void ofApp::draw() {
 //--------------------------------------------------------------
 void ofApp::textInformation(){
     
-    ofSetColor(255);
-    ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, ofGetHeight()-20);
-    ofDrawBitmapString( "Space bar for Sound Play", 10, ofGetHeight()-40);
-    ofDrawBitmapString( "Mouse or Track Pad for 3D Viewing", 10, ofGetHeight()-60);
-    ofDrawBitmapString( "\"f\" - key for full screen", 10, ofGetHeight()-80);
     
 }
 

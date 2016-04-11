@@ -1,543 +1,1500 @@
-// !$*UTF8*$!
-{
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 46;
-	objects = {
+<?xml version="1.0"?>
+<plist version="1.0">
+	<dict>
+		<key>archiveVersion</key>
+		<string>1</string>
+		<key>classes</key>
+		<dict />
+		<key>objectVersion</key>
+		<string>46</string>
+		<key>objects</key>
+		<dict>
+			<key>CCDC6F9CCF925CC402160B85</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>684C4A6525DAC1BF8D7DFEEF</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>5CCFB2A36396A0511400C909</key>
+			<dict>
+				<key>fileRef</key>
+				<string>684C4A6525DAC1BF8D7DFEEF</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>684C4A6525DAC1BF8D7DFEEF</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>jsoncpp.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src/jsoncpp.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>8C0C738EAA20D82EA41BE976</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>json.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>58AD3BD71B781D9BC25763C8</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>BDC3EB0AEE46369A27A2E74A</string>
+					<string>8C0C738EAA20D82EA41BE976</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>json</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>D486FC87F063317BB47E9FAC</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>58AD3BD71B781D9BC25763C8</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>include</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>977A836DD2C489CCC5E330FF</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>D486FC87F063317BB47E9FAC</string>
+					<string>CCDC6F9CCF925CC402160B85</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>jsoncpp</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>F40E80CB2D443CBA9581DD03</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>977A836DD2C489CCC5E330FF</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>libs</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>BDC3EB0AEE46369A27A2E74A</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>json-forwards.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>816AD209BB96C6B23CCD47EF</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxJSONElement.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>9455F3F777137963C1194F60</key>
+			<dict>
+				<key>fileRef</key>
+				<string>081473F8EA3EB8A9C41C0FBE</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>081473F8EA3EB8A9C41C0FBE</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxJSONElement.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>292AF6148769654D0DF26018</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>0A11AF00667CE72348E900E3</string>
+					<string>081473F8EA3EB8A9C41C0FBE</string>
+					<string>816AD209BB96C6B23CCD47EF</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>2865DAEF86B1907A704CA70B</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>292AF6148769654D0DF26018</string>
+					<string>F40E80CB2D443CBA9581DD03</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxJSON</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>0A11AF00667CE72348E900E3</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxJSON.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxJSON/src/ofxJSON.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>7EA25DDCA1D54C3C8842C3D8</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxToggle.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxToggle.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>5DB0FD9C47C8AED393543077</key>
+			<dict>
+				<key>fileRef</key>
+				<string>2CB61A3F6E62286D73F419FA</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>2CB61A3F6E62286D73F419FA</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxToggle.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxToggle.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E02A8EBF0C4EDC22A5BE4011</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxSliderGroup.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxSliderGroup.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>883A19B4FB8259967B85B9FF</key>
+			<dict>
+				<key>fileRef</key>
+				<string>D8CE42EAFA1B5022BB6FFC4B</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>D8CE42EAFA1B5022BB6FFC4B</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxSliderGroup.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxSliderGroup.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>97332472E61EC4DA03FB7532</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxSlider.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxSlider.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>72F586B1E35F0C5BCDB2003D</key>
+			<dict>
+				<key>fileRef</key>
+				<string>6B0340B37FFF274102BE3CCC</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>6B0340B37FFF274102BE3CCC</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxSlider.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxSlider.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>C7C85D012956D84B9210CE5A</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxPanel.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxPanel.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>5DE87C0399C3D16E809524E4</key>
+			<dict>
+				<key>fileRef</key>
+				<string>3FE97224BEE70C8CAC2006DA</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>3FE97224BEE70C8CAC2006DA</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxPanel.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxPanel.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>F41A373B07B06D6E50036BA4</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxLabel.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxLabel.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>13DBDF3E91D15454CDCE3F81</key>
+			<dict>
+				<key>fileRef</key>
+				<string>807DA2130DDB7679341206D8</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>807DA2130DDB7679341206D8</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxLabel.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxLabel.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>FBAF68694A694072BD8D4217</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxGuiGroup.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxGuiGroup.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>EB0E84BEAD177E6CB08DB4EF</key>
+			<dict>
+				<key>fileRef</key>
+				<string>6C98999A0E2181C67387FF65</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>6C98999A0E2181C67387FF65</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxGuiGroup.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxGuiGroup.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>C0B01119435D4672DF3FF84B</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxGui.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxGui.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>2C36B84F1D7547C03CD01C28</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxButton.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxButton.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>BDED0ECDB2BE0FD939C38AEB</key>
+			<dict>
+				<key>fileRef</key>
+				<string>7C3ED944D179B4C151BDD311</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>7C3ED944D179B4C151BDD311</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxButton.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxButton.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E35C9532577449CCB61F814A</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBaseGui.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxBaseGui.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>A763ED608B35AE3310251DEE</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>978FC5AD324430DE5A0A5D92</string>
+					<string>E35C9532577449CCB61F814A</string>
+					<string>7C3ED944D179B4C151BDD311</string>
+					<string>2C36B84F1D7547C03CD01C28</string>
+					<string>C0B01119435D4672DF3FF84B</string>
+					<string>6C98999A0E2181C67387FF65</string>
+					<string>FBAF68694A694072BD8D4217</string>
+					<string>807DA2130DDB7679341206D8</string>
+					<string>F41A373B07B06D6E50036BA4</string>
+					<string>3FE97224BEE70C8CAC2006DA</string>
+					<string>C7C85D012956D84B9210CE5A</string>
+					<string>6B0340B37FFF274102BE3CCC</string>
+					<string>97332472E61EC4DA03FB7532</string>
+					<string>D8CE42EAFA1B5022BB6FFC4B</string>
+					<string>E02A8EBF0C4EDC22A5BE4011</string>
+					<string>2CB61A3F6E62286D73F419FA</string>
+					<string>7EA25DDCA1D54C3C8842C3D8</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>480A780D8D0308AE4A368801</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>A763ED608B35AE3310251DEE</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>ofxGui</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>90A67B674EF9B104D82A5143</key>
+			<dict>
+				<key>fileRef</key>
+				<string>978FC5AD324430DE5A0A5D92</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>978FC5AD324430DE5A0A5D92</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxBaseGui.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxBaseGui.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>6948EE371B920CB800B5AC1A</key>
+			<dict>
+				<key>children</key>
+				<array />
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>local_addons</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>8466F1851C04CA0E00918B1C</key>
+			<dict>
+				<key>buildActionMask</key>
+				<string>12</string>
+				<key>files</key>
+				<array />
+				<key>inputPaths</key>
+				<array />
+				<key>isa</key>
+				<string>PBXShellScriptBuildPhase</string>
+				<key>outputPaths</key>
+				<array />
+				<key>runOnlyForDeploymentPostprocessing</key>
+				<string>0</string>
+				<key>shellPath</key>
+				<string>/bin/sh</string>
+				<key>shellScript</key>
+				<string>echo "$GCC_PREPROCESSOR_DEFINITIONS";
+APPSTORE=`expr "$GCC_PREPROCESSOR_DEFINITIONS" : ".*APPSTORE=\([0-9]*\)"`
+if [ -z "$APPSTORE" ] ; then
+echo "Note: Not copying bin/data to App Package or doing App Code signing. Use AppStore target for AppStore distribution";
+else
+# Copy bin/data into App/Resources
+rsync -avz --exclude='.DS_Store' "${SRCROOT}/bin/data/" "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/data/"
 
-/* Begin PBXBuildFile section */
-		5CCFB2A36396A0511400C909 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 684C4A6525DAC1BF8D7DFEEF /* jsoncpp.cpp */; };
-		9455F3F777137963C1194F60 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 081473F8EA3EB8A9C41C0FBE /* ofxJSONElement.cpp */; };
-		A81375EF1BEA0CA6001A92CF /* ofxBaseGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375DE1BEA0CA5001A92CF /* ofxBaseGui.cpp */; };
-		A81375F01BEA0CA6001A92CF /* ofxButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E01BEA0CA5001A92CF /* ofxButton.cpp */; };
-		A81375F11BEA0CA6001A92CF /* ofxGuiGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E31BEA0CA5001A92CF /* ofxGuiGroup.cpp */; };
-		A81375F21BEA0CA6001A92CF /* ofxLabel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E51BEA0CA6001A92CF /* ofxLabel.cpp */; };
-		A81375F31BEA0CA6001A92CF /* ofxPanel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E71BEA0CA6001A92CF /* ofxPanel.cpp */; };
-		A81375F41BEA0CA6001A92CF /* ofxSlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375E91BEA0CA6001A92CF /* ofxSlider.cpp */; };
-		A81375F51BEA0CA6001A92CF /* ofxSliderGroup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375EB1BEA0CA6001A92CF /* ofxSliderGroup.cpp */; };
-		A81375F61BEA0CA6001A92CF /* ofxToggle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A81375ED1BEA0CA6001A92CF /* ofxToggle.cpp */; };
-		E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E4328148138ABC890047C5CB /* openFrameworksDebug.a */; };
-		E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1D0A3A1BDC003C02F2 /* main.cpp */; };
-		E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */; };
-/* End PBXBuildFile section */
+# ---- Code Sign App Package ----
+ 
+# WARNING: You may have to run Clean in Xcode after changing CODE_SIGN_IDENTITY!
 
-/* Begin PBXContainerItemProxy section */
-		E4328147138ABC890047C5CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E4B27C1510CBEB8E00536013;
-			remoteInfo = openFrameworks;
-		};
-		E4EEB9AB138B136A00A80321 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = E4B27C1410CBEB8E00536013;
-			remoteInfo = openFrameworks;
-		};
-/* End PBXContainerItemProxy section */
+# Verify that $CODE_SIGN_IDENTITY is set
+if [ -z "${CODE_SIGN_IDENTITY}" ] ; then
+echo "CODE_SIGN_IDENTITY needs to be set for framework code-signing"
+exit 0
+fi
 
-/* Begin PBXCopyFilesBuildPhase section */
-		E4C2427710CC5ABF004149E2 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
+if [ -z "${CODE_SIGN_ENTITLEMENTS}" ] ; then
+echo "CODE_SIGN_ENTITLEMENTS needs to be set for framework code-signing!"
 
-/* Begin PBXFileReference section */
-		081473F8EA3EB8A9C41C0FBE /* ofxJSONElement.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxJSONElement.cpp; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.cpp; sourceTree = SOURCE_ROOT; };
-		0A11AF00667CE72348E900E3 /* ofxJSON.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSON.h; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSON.h; sourceTree = SOURCE_ROOT; };
-		684C4A6525DAC1BF8D7DFEEF /* jsoncpp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = jsoncpp.cpp; path = ../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src/jsoncpp.cpp; sourceTree = SOURCE_ROOT; };
-		816AD209BB96C6B23CCD47EF /* ofxJSONElement.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSONElement.h; path = ../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.h; sourceTree = SOURCE_ROOT; };
-		8C0C738EAA20D82EA41BE976 /* json.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = json.h; path = ../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json.h; sourceTree = SOURCE_ROOT; };
-		A81375DE1BEA0CA5001A92CF /* ofxBaseGui.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxBaseGui.cpp; sourceTree = "<group>"; };
-		A81375DF1BEA0CA5001A92CF /* ofxBaseGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxBaseGui.h; sourceTree = "<group>"; };
-		A81375E01BEA0CA5001A92CF /* ofxButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxButton.cpp; sourceTree = "<group>"; };
-		A81375E11BEA0CA5001A92CF /* ofxButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxButton.h; sourceTree = "<group>"; };
-		A81375E21BEA0CA5001A92CF /* ofxGui.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGui.h; sourceTree = "<group>"; };
-		A81375E31BEA0CA5001A92CF /* ofxGuiGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxGuiGroup.cpp; sourceTree = "<group>"; };
-		A81375E41BEA0CA6001A92CF /* ofxGuiGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxGuiGroup.h; sourceTree = "<group>"; };
-		A81375E51BEA0CA6001A92CF /* ofxLabel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxLabel.cpp; sourceTree = "<group>"; };
-		A81375E61BEA0CA6001A92CF /* ofxLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxLabel.h; sourceTree = "<group>"; };
-		A81375E71BEA0CA6001A92CF /* ofxPanel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxPanel.cpp; sourceTree = "<group>"; };
-		A81375E81BEA0CA6001A92CF /* ofxPanel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxPanel.h; sourceTree = "<group>"; };
-		A81375E91BEA0CA6001A92CF /* ofxSlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSlider.cpp; sourceTree = "<group>"; };
-		A81375EA1BEA0CA6001A92CF /* ofxSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSlider.h; sourceTree = "<group>"; };
-		A81375EB1BEA0CA6001A92CF /* ofxSliderGroup.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSliderGroup.cpp; sourceTree = "<group>"; };
-		A81375EC1BEA0CA6001A92CF /* ofxSliderGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSliderGroup.h; sourceTree = "<group>"; };
-		A81375ED1BEA0CA6001A92CF /* ofxToggle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxToggle.cpp; sourceTree = "<group>"; };
-		A81375EE1BEA0CA6001A92CF /* ofxToggle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxToggle.h; sourceTree = "<group>"; };
-		BDC3EB0AEE46369A27A2E74A /* json-forwards.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = "json-forwards.h"; path = "../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h"; sourceTree = SOURCE_ROOT; };
-		E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = openFrameworksLib.xcodeproj; path = ../../../../openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj; sourceTree = SOURCE_ROOT; };
-		E4B69B5B0A3A1756003C02F2 /* AsteroidSonicDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidSonicDebug.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4B69E1D0A3A1BDC003C02F2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = src/main.cpp; sourceTree = SOURCE_ROOT; };
-		E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofApp.cpp; path = src/ofApp.cpp; sourceTree = SOURCE_ROOT; };
-		E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.c.h; name = ofApp.h; path = src/ofApp.h; sourceTree = SOURCE_ROOT; };
-		E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = text.plist.xml; path = "openFrameworks-Info.plist"; sourceTree = "<group>"; };
-		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
-		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
-/* End PBXFileReference section */
+if [ "${CONFIGURATION}" = "Release" ] ; then
+exit 1
+else
+# Code-signing is optional for non-release builds.
+exit 0
+fi
+fi
 
-/* Begin PBXFrameworksBuildPhase section */
-		E4B69B590A3A1756003C02F2 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4328149138ABC9F0047C5CB /* openFrameworksDebug.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
+ITEMS=""
 
-/* Begin PBXGroup section */
-		2865DAEF86B1907A704CA70B /* ofxJSON */ = {
-			isa = PBXGroup;
-			children = (
-				292AF6148769654D0DF26018 /* src */,
-				F40E80CB2D443CBA9581DD03 /* libs */,
-			);
-			name = ofxJSON;
-			sourceTree = "<group>";
-		};
-		292AF6148769654D0DF26018 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				0A11AF00667CE72348E900E3 /* ofxJSON.h */,
-				081473F8EA3EB8A9C41C0FBE /* ofxJSONElement.cpp */,
-				816AD209BB96C6B23CCD47EF /* ofxJSONElement.h */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		58AD3BD71B781D9BC25763C8 /* json */ = {
-			isa = PBXGroup;
-			children = (
-				BDC3EB0AEE46369A27A2E74A /* json-forwards.h */,
-				8C0C738EAA20D82EA41BE976 /* json.h */,
-			);
-			name = json;
-			sourceTree = "<group>";
-		};
-		6948EE371B920CB800B5AC1A /* local_addons */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = local_addons;
-			sourceTree = "<group>";
-		};
-		977A836DD2C489CCC5E330FF /* jsoncpp */ = {
-			isa = PBXGroup;
-			children = (
-				D486FC87F063317BB47E9FAC /* include */,
-				CCDC6F9CCF925CC402160B85 /* src */,
-			);
-			name = jsoncpp;
-			sourceTree = "<group>";
-		};
-		A81375DC1BEA0CA5001A92CF /* ofxGui */ = {
-			isa = PBXGroup;
-			children = (
-				A81375DD1BEA0CA5001A92CF /* src */,
-			);
-			name = ofxGui;
-			path = ../../../../openFrameworks/addons/ofxGui;
-			sourceTree = "<group>";
-		};
-		A81375DD1BEA0CA5001A92CF /* src */ = {
-			isa = PBXGroup;
-			children = (
-				A81375DE1BEA0CA5001A92CF /* ofxBaseGui.cpp */,
-				A81375DF1BEA0CA5001A92CF /* ofxBaseGui.h */,
-				A81375E01BEA0CA5001A92CF /* ofxButton.cpp */,
-				A81375E11BEA0CA5001A92CF /* ofxButton.h */,
-				A81375E21BEA0CA5001A92CF /* ofxGui.h */,
-				A81375E31BEA0CA5001A92CF /* ofxGuiGroup.cpp */,
-				A81375E41BEA0CA6001A92CF /* ofxGuiGroup.h */,
-				A81375E51BEA0CA6001A92CF /* ofxLabel.cpp */,
-				A81375E61BEA0CA6001A92CF /* ofxLabel.h */,
-				A81375E71BEA0CA6001A92CF /* ofxPanel.cpp */,
-				A81375E81BEA0CA6001A92CF /* ofxPanel.h */,
-				A81375E91BEA0CA6001A92CF /* ofxSlider.cpp */,
-				A81375EA1BEA0CA6001A92CF /* ofxSlider.h */,
-				A81375EB1BEA0CA6001A92CF /* ofxSliderGroup.cpp */,
-				A81375EC1BEA0CA6001A92CF /* ofxSliderGroup.h */,
-				A81375ED1BEA0CA6001A92CF /* ofxToggle.cpp */,
-				A81375EE1BEA0CA6001A92CF /* ofxToggle.h */,
-			);
-			path = src;
-			sourceTree = "<group>";
-		};
-		BB4B014C10F69532006C3DED /* addons */ = {
-			isa = PBXGroup;
-			children = (
-				A81375DC1BEA0CA5001A92CF /* ofxGui */,
-				2865DAEF86B1907A704CA70B /* ofxJSON */,
-			);
-			name = addons;
-			sourceTree = "<group>";
-		};
-		CCDC6F9CCF925CC402160B85 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				684C4A6525DAC1BF8D7DFEEF /* jsoncpp.cpp */,
-			);
-			name = src;
-			sourceTree = "<group>";
-		};
-		D486FC87F063317BB47E9FAC /* include */ = {
-			isa = PBXGroup;
-			children = (
-				58AD3BD71B781D9BC25763C8 /* json */,
-			);
-			name = include;
-			sourceTree = "<group>";
-		};
-		E4328144138ABC890047C5CB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E4328148138ABC890047C5CB /* openFrameworksDebug.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		E4B69B4A0A3A1720003C02F2 = {
-			isa = PBXGroup;
-			children = (
-				E4B6FCAD0C3E899E008CF71C /* openFrameworks-Info.plist */,
-				E4EB6923138AFD0F00A09F29 /* Project.xcconfig */,
-				E4B69E1C0A3A1BDC003C02F2 /* src */,
-				E4EEC9E9138DF44700A80321 /* openFrameworks */,
-				BB4B014C10F69532006C3DED /* addons */,
-				6948EE371B920CB800B5AC1A /* local_addons */,
-				E4B69B5B0A3A1756003C02F2 /* AsteroidSonicDebug.app */,
-			);
-			sourceTree = "<group>";
-		};
-		E4B69E1C0A3A1BDC003C02F2 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				E4B69E1D0A3A1BDC003C02F2 /* main.cpp */,
-				E4B69E1E0A3A1BDC003C02F2 /* ofApp.cpp */,
-				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
-			);
-			path = src;
-			sourceTree = SOURCE_ROOT;
-		};
-		E4EEC9E9138DF44700A80321 /* openFrameworks */ = {
-			isa = PBXGroup;
-			children = (
-				E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */,
-				E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */,
-			);
-			name = openFrameworks;
-			sourceTree = "<group>";
-		};
-		F40E80CB2D443CBA9581DD03 /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				977A836DD2C489CCC5E330FF /* jsoncpp */,
-			);
-			name = libs;
-			sourceTree = "<group>";
-		};
-/* End PBXGroup section */
+FRAMEWORKS_DIR="${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}"
+echo "$FRAMEWORKS_DIR"
+if [ -d "$FRAMEWORKS_DIR" ] ; then
+FRAMEWORKS=$(find "${FRAMEWORKS_DIR}" -depth -type d -name "*.framework" -or -name "*.dylib" -or -name "*.bundle" | sed -e "s/\(.*framework\)/\1\/Versions\/A\//")
+RESULT=$?
+if [[ $RESULT != 0 ]] ; then
+exit 1
+fi
 
-/* Begin PBXNativeTarget section */
-		E4B69B5A0A3A1756003C02F2 /* AsteroidSonic */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "AsteroidSonic" */;
-			buildPhases = (
-				E4B69B580A3A1756003C02F2 /* Sources */,
-				E4B69B590A3A1756003C02F2 /* Frameworks */,
-				E4B6FFFD0C3F9AB9008CF71C /* ShellScript */,
-				E4C2427710CC5ABF004149E2 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E4EEB9AC138B136A00A80321 /* PBXTargetDependency */,
-			);
-			name = AsteroidSonic;
-			productName = myOFApp;
-			productReference = E4B69B5B0A3A1756003C02F2 /* AsteroidSonicDebug.app */;
-			productType = "com.apple.product-type.application";
-		};
-/* End PBXNativeTarget section */
+ITEMS="${FRAMEWORKS}"
+fi
 
-/* Begin PBXProject section */
-		E4B69B4C0A3A1720003C02F2 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastUpgradeCheck = 0600;
-			};
-			buildConfigurationList = E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "AsteroidSonic" */;
-			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				English,
-				Japanese,
-				French,
-				German,
-			);
-			mainGroup = E4B69B4A0A3A1720003C02F2;
-			productRefGroup = E4B69B4A0A3A1720003C02F2;
-			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = E4328144138ABC890047C5CB /* Products */;
-					ProjectRef = E4328143138ABC890047C5CB /* openFrameworksLib.xcodeproj */;
-				},
-			);
-			projectRoot = "";
-			targets = (
-				E4B69B5A0A3A1756003C02F2 /* AsteroidSonic */,
-			);
-		};
-/* End PBXProject section */
+LOGINITEMS_DIR="${TARGET_BUILD_DIR}/${CONTENTS_FOLDER_PATH}/Library/LoginItems/"
+if [ -d "$LOGINITEMS_DIR" ] ; then
+LOGINITEMS=$(find "${LOGINITEMS_DIR}" -depth -type d -name "*.app")
+RESULT=$?
+if [[ $RESULT != 0 ]] ; then
+exit 1
+fi
 
-/* Begin PBXReferenceProxy section */
-		E4328148138ABC890047C5CB /* openFrameworksDebug.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = openFrameworksDebug.a;
-			remoteRef = E4328147138ABC890047C5CB /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
+ITEMS="${ITEMS}"$'\n'"${LOGINITEMS}"
+fi
 
-/* Begin PBXShellScriptBuildPhase section */
-		E4B6FFFD0C3F9AB9008CF71C /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "rsync -aved ../../../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/\"; install_name_tool -change ./libfmodex.dylib @executable_path/libfmodex.dylib \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME\";\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\nrsync -aved \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\nrsync -aved ../../../../openFrameworks/libs/glut/lib/osx/GLUT.framework \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/\"\n\nmkdir -p \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/data/\";\ncp -r bin/data \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources\";\ncp -f \"$ICON_FILE\" \"$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/\"\n\n";
-		};
-/* End PBXShellScriptBuildPhase section */
+# Prefer the expanded name, if available.
+CODE_SIGN_IDENTITY_FOR_ITEMS="${EXPANDED_CODE_SIGN_IDENTITY_NAME}"
+if [ "${CODE_SIGN_IDENTITY_FOR_ITEMS}" = "" ] ; then
+# Fall back to old behavior.
+CODE_SIGN_IDENTITY_FOR_ITEMS="${CODE_SIGN_IDENTITY}"
+fi
 
-/* Begin PBXSourcesBuildPhase section */
-		E4B69B580A3A1756003C02F2 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
-				A81375F51BEA0CA6001A92CF /* ofxSliderGroup.cpp in Sources */,
-				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
-				A81375F21BEA0CA6001A92CF /* ofxLabel.cpp in Sources */,
-				A81375F61BEA0CA6001A92CF /* ofxToggle.cpp in Sources */,
-				A81375F41BEA0CA6001A92CF /* ofxSlider.cpp in Sources */,
-				A81375F01BEA0CA6001A92CF /* ofxButton.cpp in Sources */,
-				A81375F31BEA0CA6001A92CF /* ofxPanel.cpp in Sources */,
-				A81375F11BEA0CA6001A92CF /* ofxGuiGroup.cpp in Sources */,
-				A81375EF1BEA0CA6001A92CF /* ofxBaseGui.cpp in Sources */,
-				9455F3F777137963C1194F60 /* ofxJSONElement.cpp in Sources */,
-				5CCFB2A36396A0511400C909 /* jsoncpp.cpp in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXSourcesBuildPhase section */
+echo "Identity:"
+echo "${CODE_SIGN_IDENTITY_FOR_ITEMS}"
 
-/* Begin PBXTargetDependency section */
-		E4EEB9AC138B136A00A80321 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = openFrameworks;
-			targetProxy = E4EEB9AB138B136A00A80321 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
+echo "Entitlements:"
+echo "${CODE_SIGN_ENTITLEMENTS}"
 
-/* Begin XCBuildConfiguration section */
-		E4B69B4E0A3A1720003C02F2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
-				COPY_PHASE_STRIP = NO;
-				DEAD_CODE_STRIPPING = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
-				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNUSED_VALUE = NO;
-				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(OF_CORE_HEADERS)",
-					src,
-					../../../../openFrameworks/addons/ofxAUPlugin/libs,
-					../../../../openFrameworks/addons/ofxAUPlugin/src,
-					../../../../openFrameworks/addons/ofxJSON/libs,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src,
-					../../../../openFrameworks/addons/ofxJSON/src,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CPLUSPLUSFLAGS = (
-					"-D__MACOSX_CORE__",
-					"-mtune=native",
-				);
-				SDKROOT = macosx;
-			};
-			name = Debug;
-		};
-		E4B69B4F0A3A1720003C02F2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
-			buildSettings = {
-				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/bin/";
-				COPY_PHASE_STRIP = YES;
-				DEAD_CODE_STRIPPING = YES;
-				GCC_AUTO_VECTORIZATION = YES;
-				GCC_ENABLE_SSE3_EXTENSIONS = YES;
-				GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS = YES;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
-				GCC_OPTIMIZATION_LEVEL = 3;
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_UNROLL_LOOPS = YES;
-				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
-				GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO = NO;
-				GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL = NO;
-				GCC_WARN_UNINITIALIZED_AUTOS = NO;
-				GCC_WARN_UNUSED_VALUE = NO;
-				GCC_WARN_UNUSED_VARIABLE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(OF_CORE_HEADERS)",
-					src,
-					../../../../openFrameworks/addons/ofxAUPlugin/libs,
-					../../../../openFrameworks/addons/ofxAUPlugin/src,
-					../../../../openFrameworks/addons/ofxJSON/libs,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src,
-					../../../../openFrameworks/addons/ofxJSON/src,
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CPLUSPLUSFLAGS = (
-					"-D__MACOSX_CORE__",
-					"-mtune=native",
-				);
-				SDKROOT = macosx;
-			};
-			name = Release;
-		};
-		E4B69B600A3A1757003C02F2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx\"";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = NONE;
-				HEADER_SEARCH_PATHS = (
-					"$(OF_CORE_HEADERS)",
-					src,
-					../../../../openFrameworks/addons/ofxAUPlugin/libs,
-					../../../../openFrameworks/addons/ofxAUPlugin/src,
-					../../../../openFrameworks/addons/ofxJSON/libs,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src,
-					../../../../openFrameworks/addons/ofxJSON/src,
-				);
-				ICON = "$(ICON_NAME_DEBUG)";
-				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
-				INFOPLIST_FILE = "openFrameworks-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_NAME = "$(TARGET_NAME)Debug";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		E4B69B610A3A1757003C02F2 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = E4EB6923138AFD0F00A09F29 /* Project.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)",
-				);
-				FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1 = "\"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx\"";
-				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
-				GCC_MODEL_TUNING = NONE;
-				HEADER_SEARCH_PATHS = (
-					"$(OF_CORE_HEADERS)",
-					src,
-					../../../../openFrameworks/addons/ofxAUPlugin/libs,
-					../../../../openFrameworks/addons/ofxAUPlugin/src,
-					../../../../openFrameworks/addons/ofxJSON/libs,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json,
-					../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src,
-					../../../../openFrameworks/addons/ofxJSON/src,
-				);
-				ICON = "$(ICON_NAME_RELEASE)";
-				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
-				INFOPLIST_FILE = "openFrameworks-Info.plist";
-				INSTALL_PATH = "$(HOME)/Applications";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-				baseConfigurationReference = E4EB6923138AFD0F00A09F29;
-			};
-			name = Release;
-		};
-/* End XCBuildConfiguration section */
+echo "Found:"
+echo "${ITEMS}"
 
-/* Begin XCConfigurationList section */
-		E4B69B4D0A3A1720003C02F2 /* Build configuration list for PBXProject "AsteroidSonic" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E4B69B4E0A3A1720003C02F2 /* Debug */,
-				E4B69B4F0A3A1720003C02F2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E4B69B5F0A3A1757003C02F2 /* Build configuration list for PBXNativeTarget "AsteroidSonic" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E4B69B600A3A1757003C02F2 /* Debug */,
-				E4B69B610A3A1757003C02F2 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-/* End XCConfigurationList section */
-	};
-	rootObject = E4B69B4C0A3A1720003C02F2 /* Project object */;
-}
+# Change the Internal Field Separator (IFS) so that spaces in paths will not cause problems below.
+SAVED_IFS=$IFS
+IFS=$(echo -en "\n\b")
+
+# Loop through all items.
+for ITEM in $ITEMS;
+do
+echo "Signing '${ITEM}'"
+codesign --force --verbose --sign "${CODE_SIGN_IDENTITY_FOR_ITEMS}" --entitlements "${CODE_SIGN_ENTITLEMENTS}" "${ITEM}"
+RESULT=$?
+if [[ $RESULT != 0 ]] ; then
+echo "Failed to sign '${ITEM}'."
+IFS=$SAVED_IFS
+exit 1
+fi
+done
+
+# Restore $IFS.
+IFS=$SAVED_IFS
+
+fi
+</string>
+			</dict>
+			<key>99FA3DBB1C7456C400CFA0EE</key>
+			<dict>
+				<key>baseConfigurationReference</key>
+				<string>E4EB6923138AFD0F00A09F29</string>
+				<key>buildSettings</key>
+				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../../openFrameworks/addons/ofxGui/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
+					</array>
+					<key>CONFIGURATION_BUILD_DIR</key>
+					<string>$(SRCROOT)/bin/</string>
+					<key>COPY_PHASE_STRIP</key>
+					<string>YES</string>
+					<key>DEAD_CODE_STRIPPING</key>
+					<string>YES</string>
+					<key>GCC_AUTO_VECTORIZATION</key>
+					<string>YES</string>
+					<key>GCC_ENABLE_SSE3_EXTENSIONS</key>
+					<string>YES</string>
+					<key>GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS</key>
+					<string>YES</string>
+					<key>GCC_INLINES_ARE_PRIVATE_EXTERN</key>
+					<string>NO</string>
+					<key>GCC_OPTIMIZATION_LEVEL</key>
+					<string>3</string>
+					<key>GCC_PREPROCESSOR_DEFINITIONS[arch=*]</key>
+					<string>DISTRIBUTION=1</string>
+					<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+					<string>NO</string>
+					<key>GCC_UNROLL_LOOPS</key>
+					<string>YES</string>
+					<key>GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS</key>
+					<string>YES</string>
+					<key>GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO</key>
+					<string>NO</string>
+					<key>GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNUSED_VALUE</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNUSED_VARIABLE</key>
+					<string>NO</string>
+					<key>MACOSX_DEPLOYMENT_TARGET</key>
+					<string>10.8</string>
+					<key>OTHER_CPLUSPLUSFLAGS</key>
+					<array>
+						<string>-D__MACOSX_CORE__</string>
+						<string>-mtune=native</string>
+					</array>
+					<key>SDKROOT</key>
+					<string>macosx</string>
+				</dict>
+				<key>isa</key>
+				<string>XCBuildConfiguration</string>
+				<key>name</key>
+				<string>AppStore</string>
+			</dict>
+			<key>99FA3DBC1C7456C400CFA0EE</key>
+			<dict>
+				<key>baseConfigurationReference</key>
+				<string>E4EB6923138AFD0F00A09F29</string>
+				<key>buildSettings</key>
+				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../../openFrameworks/addons/ofxGui/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
+					</array>
+					<key>COMBINE_HIDPI_IMAGES</key>
+					<string>YES</string>
+					<key>COPY_PHASE_STRIP</key>
+					<string>YES</string>
+					<key>FRAMEWORK_SEARCH_PATHS</key>
+					<array>
+						<string>$(inherited)</string>
+						<string>$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)</string>
+					</array>
+					<key>FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1</key>
+					<string>"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx"</string>
+					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
+					<string>YES</string>
+					<key>GCC_MODEL_TUNING</key>
+					<string>NONE</string>
+					<key>GCC_PREPROCESSOR_DEFINITIONS[arch=*]</key>
+					<string>APPSTORE=1</string>
+					<key>ICON</key>
+					<string>$(ICON_NAME_RELEASE)</string>
+					<key>ICON_FILE</key>
+					<string>$(ICON_FILE_PATH)$(ICON)</string>
+					<key>INFOPLIST_FILE</key>
+					<string>openFrameworks-Info.plist</string>
+					<key>INSTALL_PATH</key>
+					<string>/Applications</string>
+					<key>LIBRARY_SEARCH_PATHS</key>
+					<string>$(inherited)</string>
+					<key>PRODUCT_NAME</key>
+					<string>$(TARGET_NAME)</string>
+					<key>WRAPPER_EXTENSION</key>
+					<string>app</string>
+					<key>baseConfigurationReference</key>
+					<string>E4EB6923138AFD0F00A09F29</string>
+				</dict>
+				<key>isa</key>
+				<string>XCBuildConfiguration</string>
+				<key>name</key>
+				<string>AppStore</string>
+			</dict>
+			<key>BB4B014C10F69532006C3DED</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>480A780D8D0308AE4A368801</string>
+					<string>2865DAEF86B1907A704CA70B</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>addons</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>E4328143138ABC890047C5CB</key>
+			<dict>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>lastKnownFileType</key>
+				<string>wrapper.pb-project</string>
+				<key>name</key>
+				<string>openFrameworksLib.xcodeproj</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/libs/openFrameworksCompiled/project/osx/openFrameworksLib.xcodeproj</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E4328144138ABC890047C5CB</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>E4328148138ABC890047C5CB</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>Products</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>E4328147138ABC890047C5CB</key>
+			<dict>
+				<key>containerPortal</key>
+				<string>E4328143138ABC890047C5CB</string>
+				<key>isa</key>
+				<string>PBXContainerItemProxy</string>
+				<key>proxyType</key>
+				<string>2</string>
+				<key>remoteGlobalIDString</key>
+				<string>E4B27C1510CBEB8E00536013</string>
+				<key>remoteInfo</key>
+				<string>openFrameworks</string>
+			</dict>
+			<key>E4328148138ABC890047C5CB</key>
+			<dict>
+				<key>fileType</key>
+				<string>archive.ar</string>
+				<key>isa</key>
+				<string>PBXReferenceProxy</string>
+				<key>path</key>
+				<string>openFrameworksDebug.a</string>
+				<key>remoteRef</key>
+				<string>E4328147138ABC890047C5CB</string>
+				<key>sourceTree</key>
+				<string>BUILT_PRODUCTS_DIR</string>
+			</dict>
+			<key>E4328149138ABC9F0047C5CB</key>
+			<dict>
+				<key>fileRef</key>
+				<string>E4328148138ABC890047C5CB</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>E4B69B4A0A3A1720003C02F2</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>E4B6FCAD0C3E899E008CF71C</string>
+					<string>E4EB6923138AFD0F00A09F29</string>
+					<string>E4B69E1C0A3A1BDC003C02F2</string>
+					<string>E4EEC9E9138DF44700A80321</string>
+					<string>BB4B014C10F69532006C3DED</string>
+					<string>6948EE371B920CB800B5AC1A</string>
+					<string>E4B69B5B0A3A1756003C02F2</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>E4B69B4C0A3A1720003C02F2</key>
+			<dict>
+				<key>attributes</key>
+				<dict>
+					<key>LastUpgradeCheck</key>
+					<string>0600</string>
+				</dict>
+				<key>buildConfigurationList</key>
+				<string>E4B69B4D0A3A1720003C02F2</string>
+				<key>compatibilityVersion</key>
+				<string>Xcode 3.2</string>
+				<key>developmentRegion</key>
+				<string>English</string>
+				<key>hasScannedForEncodings</key>
+				<string>0</string>
+				<key>isa</key>
+				<string>PBXProject</string>
+				<key>knownRegions</key>
+				<array>
+					<string>English</string>
+					<string>Japanese</string>
+					<string>French</string>
+					<string>German</string>
+				</array>
+				<key>mainGroup</key>
+				<string>E4B69B4A0A3A1720003C02F2</string>
+				<key>productRefGroup</key>
+				<string>E4B69B4A0A3A1720003C02F2</string>
+				<key>projectDirPath</key>
+				<string />
+				<key>projectReferences</key>
+				<array>
+					<dict>
+						<key>ProductGroup</key>
+						<string>E4328144138ABC890047C5CB</string>
+						<key>ProjectRef</key>
+						<string>E4328143138ABC890047C5CB</string>
+					</dict>
+				</array>
+				<key>projectRoot</key>
+				<string />
+				<key>targets</key>
+				<array>
+					<string>E4B69B5A0A3A1756003C02F2</string>
+				</array>
+			</dict>
+			<key>E4B69B4D0A3A1720003C02F2</key>
+			<dict>
+				<key>buildConfigurations</key>
+				<array>
+					<string>E4B69B4E0A3A1720003C02F2</string>
+					<string>E4B69B4F0A3A1720003C02F2</string>
+					<string>99FA3DBB1C7456C400CFA0EE</string>
+				</array>
+				<key>defaultConfigurationIsVisible</key>
+				<string>0</string>
+				<key>defaultConfigurationName</key>
+				<string>Release</string>
+				<key>isa</key>
+				<string>XCConfigurationList</string>
+			</dict>
+			<key>E4B69B4E0A3A1720003C02F2</key>
+			<dict>
+				<key>baseConfigurationReference</key>
+				<string>E4EB6923138AFD0F00A09F29</string>
+				<key>buildSettings</key>
+				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../../openFrameworks/addons/ofxGui/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
+					</array>
+					<key>CONFIGURATION_BUILD_DIR</key>
+					<string>$(SRCROOT)/bin/</string>
+					<key>COPY_PHASE_STRIP</key>
+					<string>NO</string>
+					<key>DEAD_CODE_STRIPPING</key>
+					<string>YES</string>
+					<key>GCC_AUTO_VECTORIZATION</key>
+					<string>YES</string>
+					<key>GCC_ENABLE_SSE3_EXTENSIONS</key>
+					<string>YES</string>
+					<key>GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS</key>
+					<string>YES</string>
+					<key>GCC_INLINES_ARE_PRIVATE_EXTERN</key>
+					<string>NO</string>
+					<key>GCC_OPTIMIZATION_LEVEL</key>
+					<string>0</string>
+					<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+					<string>NO</string>
+					<key>GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS</key>
+					<string>YES</string>
+					<key>GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO</key>
+					<string>NO</string>
+					<key>GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNUSED_VALUE</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNUSED_VARIABLE</key>
+					<string>NO</string>
+					<key>MACOSX_DEPLOYMENT_TARGET</key>
+					<string>10.8</string>
+					<key>ONLY_ACTIVE_ARCH</key>
+					<string>YES</string>
+					<key>OTHER_CPLUSPLUSFLAGS</key>
+					<array>
+						<string>-D__MACOSX_CORE__</string>
+						<string>-mtune=native</string>
+					</array>
+					<key>SDKROOT</key>
+					<string>macosx</string>
+				</dict>
+				<key>isa</key>
+				<string>XCBuildConfiguration</string>
+				<key>name</key>
+				<string>Debug</string>
+			</dict>
+			<key>E4B69B4F0A3A1720003C02F2</key>
+			<dict>
+				<key>baseConfigurationReference</key>
+				<string>E4EB6923138AFD0F00A09F29</string>
+				<key>buildSettings</key>
+				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../../openFrameworks/addons/ofxGui/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
+					</array>
+					<key>CONFIGURATION_BUILD_DIR</key>
+					<string>$(SRCROOT)/bin/</string>
+					<key>COPY_PHASE_STRIP</key>
+					<string>YES</string>
+					<key>DEAD_CODE_STRIPPING</key>
+					<string>YES</string>
+					<key>GCC_AUTO_VECTORIZATION</key>
+					<string>YES</string>
+					<key>GCC_ENABLE_SSE3_EXTENSIONS</key>
+					<string>YES</string>
+					<key>GCC_ENABLE_SUPPLEMENTAL_SSE3_INSTRUCTIONS</key>
+					<string>YES</string>
+					<key>GCC_INLINES_ARE_PRIVATE_EXTERN</key>
+					<string>NO</string>
+					<key>GCC_OPTIMIZATION_LEVEL</key>
+					<string>3</string>
+					<key>GCC_SYMBOLS_PRIVATE_EXTERN</key>
+					<string>NO</string>
+					<key>GCC_UNROLL_LOOPS</key>
+					<string>YES</string>
+					<key>GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS</key>
+					<string>YES</string>
+					<key>GCC_WARN_ABOUT_INVALID_OFFSETOF_MACRO</key>
+					<string>NO</string>
+					<key>GCC_WARN_ALLOW_INCOMPLETE_PROTOCOL</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNINITIALIZED_AUTOS</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNUSED_VALUE</key>
+					<string>NO</string>
+					<key>GCC_WARN_UNUSED_VARIABLE</key>
+					<string>NO</string>
+					<key>MACOSX_DEPLOYMENT_TARGET</key>
+					<string>10.8</string>
+					<key>OTHER_CPLUSPLUSFLAGS</key>
+					<array>
+						<string>-D__MACOSX_CORE__</string>
+						<string>-mtune=native</string>
+					</array>
+					<key>SDKROOT</key>
+					<string>macosx</string>
+				</dict>
+				<key>isa</key>
+				<string>XCBuildConfiguration</string>
+				<key>name</key>
+				<string>Release</string>
+			</dict>
+			<key>E4B69B580A3A1756003C02F2</key>
+			<dict>
+				<key>buildActionMask</key>
+				<string>2147483647</string>
+				<key>files</key>
+				<array>
+					<string>E4B69E200A3A1BDC003C02F2</string>
+					<string>E4B69E210A3A1BDC003C02F2</string>
+					<string>90A67B674EF9B104D82A5143</string>
+					<string>BDED0ECDB2BE0FD939C38AEB</string>
+					<string>EB0E84BEAD177E6CB08DB4EF</string>
+					<string>13DBDF3E91D15454CDCE3F81</string>
+					<string>5DE87C0399C3D16E809524E4</string>
+					<string>72F586B1E35F0C5BCDB2003D</string>
+					<string>883A19B4FB8259967B85B9FF</string>
+					<string>5DB0FD9C47C8AED393543077</string>
+					<string>9455F3F777137963C1194F60</string>
+					<string>5CCFB2A36396A0511400C909</string>
+				</array>
+				<key>isa</key>
+				<string>PBXSourcesBuildPhase</string>
+				<key>runOnlyForDeploymentPostprocessing</key>
+				<string>0</string>
+			</dict>
+			<key>E4B69B590A3A1756003C02F2</key>
+			<dict>
+				<key>buildActionMask</key>
+				<string>2147483647</string>
+				<key>files</key>
+				<array>
+					<string>E4328149138ABC9F0047C5CB</string>
+				</array>
+				<key>isa</key>
+				<string>PBXFrameworksBuildPhase</string>
+				<key>runOnlyForDeploymentPostprocessing</key>
+				<string>0</string>
+			</dict>
+			<key>E4B69B5A0A3A1756003C02F2</key>
+			<dict>
+				<key>buildConfigurationList</key>
+				<string>E4B69B5F0A3A1757003C02F2</string>
+				<key>buildPhases</key>
+				<array>
+					<string>E4B69B580A3A1756003C02F2</string>
+					<string>E4B69B590A3A1756003C02F2</string>
+					<string>E4B6FFFD0C3F9AB9008CF71C</string>
+					<string>E4C2427710CC5ABF004149E2</string>
+					<string>8466F1851C04CA0E00918B1C</string>
+				</array>
+				<key>buildRules</key>
+				<array />
+				<key>dependencies</key>
+				<array>
+					<string>E4EEB9AC138B136A00A80321</string>
+				</array>
+				<key>isa</key>
+				<string>PBXNativeTarget</string>
+				<key>name</key>
+				<string>AsteroidSonic</string>
+				<key>productName</key>
+				<string>myOFApp</string>
+				<key>productReference</key>
+				<string>E4B69B5B0A3A1756003C02F2</string>
+				<key>productType</key>
+				<string>com.apple.product-type.application</string>
+			</dict>
+			<key>E4B69B5B0A3A1756003C02F2</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>wrapper.application</string>
+				<key>includeInIndex</key>
+				<string>0</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>path</key>
+				<string>AsteroidSonicDebug.app</string>
+				<key>sourceTree</key>
+				<string>BUILT_PRODUCTS_DIR</string>
+			</dict>
+			<key>E4B69B5F0A3A1757003C02F2</key>
+			<dict>
+				<key>buildConfigurations</key>
+				<array>
+					<string>E4B69B600A3A1757003C02F2</string>
+					<string>E4B69B610A3A1757003C02F2</string>
+					<string>99FA3DBC1C7456C400CFA0EE</string>
+				</array>
+				<key>defaultConfigurationIsVisible</key>
+				<string>0</string>
+				<key>defaultConfigurationName</key>
+				<string>Release</string>
+				<key>isa</key>
+				<string>XCConfigurationList</string>
+			</dict>
+			<key>E4B69B600A3A1757003C02F2</key>
+			<dict>
+				<key>baseConfigurationReference</key>
+				<string>E4EB6923138AFD0F00A09F29</string>
+				<key>buildSettings</key>
+				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../../openFrameworks/addons/ofxGui/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
+					</array>
+					<key>COMBINE_HIDPI_IMAGES</key>
+					<string>YES</string>
+					<key>COPY_PHASE_STRIP</key>
+					<string>NO</string>
+					<key>FRAMEWORK_SEARCH_PATHS</key>
+					<array>
+						<string>$(inherited)</string>
+						<string>$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)</string>
+					</array>
+					<key>FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1</key>
+					<string>"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx"</string>
+					<key>GCC_DYNAMIC_NO_PIC</key>
+					<string>NO</string>
+					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
+					<string>YES</string>
+					<key>GCC_MODEL_TUNING</key>
+					<string>NONE</string>
+					<key>ICON</key>
+					<string>$(ICON_NAME_DEBUG)</string>
+					<key>ICON_FILE</key>
+					<string>$(ICON_FILE_PATH)$(ICON)</string>
+					<key>INFOPLIST_FILE</key>
+					<string>openFrameworks-Info.plist</string>
+					<key>INSTALL_PATH</key>
+					<string>/Applications</string>
+					<key>LIBRARY_SEARCH_PATHS</key>
+					<string>$(inherited)</string>
+					<key>PRODUCT_NAME</key>
+					<string>$(TARGET_NAME)Debug</string>
+					<key>WRAPPER_EXTENSION</key>
+					<string>app</string>
+				</dict>
+				<key>isa</key>
+				<string>XCBuildConfiguration</string>
+				<key>name</key>
+				<string>Debug</string>
+			</dict>
+			<key>E4B69B610A3A1757003C02F2</key>
+			<dict>
+				<key>baseConfigurationReference</key>
+				<string>E4EB6923138AFD0F00A09F29</string>
+				<key>buildSettings</key>
+				<dict>
+					<key>HEADER_SEARCH_PATHS</key>
+					<array>
+						<string>$(OF_CORE_HEADERS)</string>
+						<string>src</string>
+						<string>../../../../openFrameworks/addons/ofxGui/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
+						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
+					</array>
+					<key>COMBINE_HIDPI_IMAGES</key>
+					<string>YES</string>
+					<key>COPY_PHASE_STRIP</key>
+					<string>YES</string>
+					<key>FRAMEWORK_SEARCH_PATHS</key>
+					<array>
+						<string>$(inherited)</string>
+						<string>$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)</string>
+					</array>
+					<key>FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1</key>
+					<string>"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx"</string>
+					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
+					<string>YES</string>
+					<key>GCC_MODEL_TUNING</key>
+					<string>NONE</string>
+					<key>ICON</key>
+					<string>$(ICON_NAME_RELEASE)</string>
+					<key>ICON_FILE</key>
+					<string>$(ICON_FILE_PATH)$(ICON)</string>
+					<key>INFOPLIST_FILE</key>
+					<string>openFrameworks-Info.plist</string>
+					<key>INSTALL_PATH</key>
+					<string>/Applications</string>
+					<key>LIBRARY_SEARCH_PATHS</key>
+					<string>$(inherited)</string>
+					<key>PRODUCT_NAME</key>
+					<string>$(TARGET_NAME)</string>
+					<key>WRAPPER_EXTENSION</key>
+					<string>app</string>
+					<key>baseConfigurationReference</key>
+					<string>E4EB6923138AFD0F00A09F29</string>
+				</dict>
+				<key>isa</key>
+				<string>XCBuildConfiguration</string>
+				<key>name</key>
+				<string>Release</string>
+			</dict>
+			<key>E4B69E1C0A3A1BDC003C02F2</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>E4B69E1D0A3A1BDC003C02F2</string>
+					<string>E4B69E1E0A3A1BDC003C02F2</string>
+					<string>E4B69E1F0A3A1BDC003C02F2</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>path</key>
+				<string>src</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E4B69E1D0A3A1BDC003C02F2</key>
+			<dict>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>lastKnownFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>name</key>
+				<string>main.cpp</string>
+				<key>path</key>
+				<string>src/main.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E4B69E1E0A3A1BDC003C02F2</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofApp.cpp</string>
+				<key>path</key>
+				<string>src/ofApp.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E4B69E1F0A3A1BDC003C02F2</key>
+			<dict>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>lastKnownFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>name</key>
+				<string>ofApp.h</string>
+				<key>path</key>
+				<string>src/ofApp.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E4B69E200A3A1BDC003C02F2</key>
+			<dict>
+				<key>fileRef</key>
+				<string>E4B69E1D0A3A1BDC003C02F2</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>E4B69E210A3A1BDC003C02F2</key>
+			<dict>
+				<key>fileRef</key>
+				<string>E4B69E1E0A3A1BDC003C02F2</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>E4B6FCAD0C3E899E008CF71C</key>
+			<dict>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>lastKnownFileType</key>
+				<string>text.plist.xml</string>
+				<key>path</key>
+				<string>openFrameworks-Info.plist</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>E4B6FFFD0C3F9AB9008CF71C</key>
+			<dict>
+				<key>buildActionMask</key>
+				<string>2147483647</string>
+				<key>files</key>
+				<array />
+				<key>inputPaths</key>
+				<array />
+				<key>isa</key>
+				<string>PBXShellScriptBuildPhase</string>
+				<key>outputPaths</key>
+				<array />
+				<key>runOnlyForDeploymentPostprocessing</key>
+				<string>0</string>
+				<key>shellPath</key>
+				<string>/bin/sh</string>
+				<key>shellScript</key>
+				<string>mkdir -p "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/"
+# Copy default icon file into App/Resources
+rsync -aved "$ICON_FILE" "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/"
+# Copy libfmod and change install directory for fmod to run
+rsync -aved ../../../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/";
+install_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME";
+
+echo "$GCC_PREPROCESSOR_DEFINITIONS";
+APPSTORE=`expr "$GCC_PREPROCESSOR_DEFINITIONS" : ".*APPSTORE=\([0-9]*\)"`
+if [ -z "${APPSTORE}" ] ; then
+echo "Copying GLUT framework";
+# Copy GLUT framework (must remove for AppStore submissions)
+rsync -aved ../../../../openFrameworks/libs/glut/lib/osx/GLUT.framework "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/"
+else
+echo "Not including GLUT";
+fi
+</string>
+			</dict>
+			<key>E4C2427710CC5ABF004149E2</key>
+			<dict>
+				<key>buildActionMask</key>
+				<string>2147483647</string>
+				<key>dstPath</key>
+				<string />
+				<key>dstSubfolderSpec</key>
+				<string>10</string>
+				<key>files</key>
+				<array />
+				<key>isa</key>
+				<string>PBXCopyFilesBuildPhase</string>
+				<key>runOnlyForDeploymentPostprocessing</key>
+				<string>0</string>
+			</dict>
+			<key>E4EB691F138AFCF100A09F29</key>
+			<dict>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>lastKnownFileType</key>
+				<string>text.xcconfig</string>
+				<key>name</key>
+				<string>CoreOF.xcconfig</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>E4EB6923138AFD0F00A09F29</key>
+			<dict>
+				<key>fileEncoding</key>
+				<string>4</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>lastKnownFileType</key>
+				<string>text.xcconfig</string>
+				<key>path</key>
+				<string>Project.xcconfig</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+			<key>E4EEB9AB138B136A00A80321</key>
+			<dict>
+				<key>containerPortal</key>
+				<string>E4328143138ABC890047C5CB</string>
+				<key>isa</key>
+				<string>PBXContainerItemProxy</string>
+				<key>proxyType</key>
+				<string>1</string>
+				<key>remoteGlobalIDString</key>
+				<string>E4B27C1410CBEB8E00536013</string>
+				<key>remoteInfo</key>
+				<string>openFrameworks</string>
+			</dict>
+			<key>E4EEB9AC138B136A00A80321</key>
+			<dict>
+				<key>isa</key>
+				<string>PBXTargetDependency</string>
+				<key>name</key>
+				<string>openFrameworks</string>
+				<key>targetProxy</key>
+				<string>E4EEB9AB138B136A00A80321</string>
+			</dict>
+			<key>E4EEC9E9138DF44700A80321</key>
+			<dict>
+				<key>children</key>
+				<array>
+					<string>E4EB691F138AFCF100A09F29</string>
+					<string>E4328143138ABC890047C5CB</string>
+				</array>
+				<key>isa</key>
+				<string>PBXGroup</string>
+				<key>name</key>
+				<string>openFrameworks</string>
+				<key>sourceTree</key>
+				<string>&lt;group&gt;</string>
+			</dict>
+		</dict>
+		<key>rootObject</key>
+		<string>E4B69B4C0A3A1720003C02F2</string>
+	</dict>
+</plist>

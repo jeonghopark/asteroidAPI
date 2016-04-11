@@ -1,2 +1,2 @@
-ofxAUPlugin
+ofxGui
 ofxJSON
