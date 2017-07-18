@@ -9,206 +9,6 @@
 		<string>46</string>
 		<key>objects</key>
 		<dict>
-			<key>CCDC6F9CCF925CC402160B85</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>684C4A6525DAC1BF8D7DFEEF</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>5CCFB2A36396A0511400C909</key>
-			<dict>
-				<key>fileRef</key>
-				<string>684C4A6525DAC1BF8D7DFEEF</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>684C4A6525DAC1BF8D7DFEEF</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>jsoncpp.cpp</string>
-				<key>path</key>
-				<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src/jsoncpp.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>8C0C738EAA20D82EA41BE976</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>json.h</string>
-				<key>path</key>
-				<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>58AD3BD71B781D9BC25763C8</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>BDC3EB0AEE46369A27A2E74A</string>
-					<string>8C0C738EAA20D82EA41BE976</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>json</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>D486FC87F063317BB47E9FAC</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>58AD3BD71B781D9BC25763C8</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>include</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>977A836DD2C489CCC5E330FF</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>D486FC87F063317BB47E9FAC</string>
-					<string>CCDC6F9CCF925CC402160B85</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>jsoncpp</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>F40E80CB2D443CBA9581DD03</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>977A836DD2C489CCC5E330FF</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>libs</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>BDC3EB0AEE46369A27A2E74A</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>json-forwards.h</string>
-				<key>path</key>
-				<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json/json-forwards.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>816AD209BB96C6B23CCD47EF</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxJSONElement.h</string>
-				<key>path</key>
-				<string>../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>9455F3F777137963C1194F60</key>
-			<dict>
-				<key>fileRef</key>
-				<string>081473F8EA3EB8A9C41C0FBE</string>
-				<key>isa</key>
-				<string>PBXBuildFile</string>
-			</dict>
-			<key>081473F8EA3EB8A9C41C0FBE</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.cpp.cpp</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxJSONElement.cpp</string>
-				<key>path</key>
-				<string>../../../../openFrameworks/addons/ofxJSON/src/ofxJSONElement.cpp</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
-			<key>292AF6148769654D0DF26018</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>0A11AF00667CE72348E900E3</string>
-					<string>081473F8EA3EB8A9C41C0FBE</string>
-					<string>816AD209BB96C6B23CCD47EF</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>src</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>2865DAEF86B1907A704CA70B</key>
-			<dict>
-				<key>children</key>
-				<array>
-					<string>292AF6148769654D0DF26018</string>
-					<string>F40E80CB2D443CBA9581DD03</string>
-				</array>
-				<key>isa</key>
-				<string>PBXGroup</string>
-				<key>name</key>
-				<string>ofxJSON</string>
-				<key>sourceTree</key>
-				<string>&lt;group&gt;</string>
-			</dict>
-			<key>0A11AF00667CE72348E900E3</key>
-			<dict>
-				<key>explicitFileType</key>
-				<string>sourcecode.c.h</string>
-				<key>fileEncoding</key>
-				<string>30</string>
-				<key>isa</key>
-				<string>PBXFileReference</string>
-				<key>name</key>
-				<string>ofxJSON.h</string>
-				<key>path</key>
-				<string>../../../../openFrameworks/addons/ofxJSON/src/ofxJSON.h</string>
-				<key>sourceTree</key>
-				<string>SOURCE_ROOT</string>
-			</dict>
 			<key>7EA25DDCA1D54C3C8842C3D8</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -394,6 +194,43 @@
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
+			<key>5B2C7D4CF2554353C5066E0E</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxInputField.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxInputField.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>3D838241B792EE1B6BEEF0BF</key>
+			<dict>
+				<key>fileRef</key>
+				<string>D59EE14F03FD47E2FC27DF19</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>D59EE14F03FD47E2FC27DF19</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxInputField.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxInputField.cpp</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
 			<key>FBAF68694A694072BD8D4217</key>
 			<dict>
 				<key>explicitFileType</key>
@@ -443,6 +280,43 @@
 				<string>ofxGui.h</string>
 				<key>path</key>
 				<string>../../../../openFrameworks/addons/ofxGui/src/ofxGui.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>B384D0846FEE9AB38EE19710</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.c.h</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxColorPicker.h</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxColorPicker.h</string>
+				<key>sourceTree</key>
+				<string>SOURCE_ROOT</string>
+			</dict>
+			<key>D8403D223E6256CB73567C79</key>
+			<dict>
+				<key>fileRef</key>
+				<string>66A6B3625397F7D85482D45F</string>
+				<key>isa</key>
+				<string>PBXBuildFile</string>
+			</dict>
+			<key>66A6B3625397F7D85482D45F</key>
+			<dict>
+				<key>explicitFileType</key>
+				<string>sourcecode.cpp.cpp</string>
+				<key>fileEncoding</key>
+				<string>30</string>
+				<key>isa</key>
+				<string>PBXFileReference</string>
+				<key>name</key>
+				<string>ofxColorPicker.cpp</string>
+				<key>path</key>
+				<string>../../../../openFrameworks/addons/ofxGui/src/ofxColorPicker.cpp</string>
 				<key>sourceTree</key>
 				<string>SOURCE_ROOT</string>
 			</dict>
@@ -506,9 +380,13 @@
 					<string>E35C9532577449CCB61F814A</string>
 					<string>7C3ED944D179B4C151BDD311</string>
 					<string>2C36B84F1D7547C03CD01C28</string>
+					<string>66A6B3625397F7D85482D45F</string>
+					<string>B384D0846FEE9AB38EE19710</string>
 					<string>C0B01119435D4672DF3FF84B</string>
 					<string>6C98999A0E2181C67387FF65</string>
 					<string>FBAF68694A694072BD8D4217</string>
+					<string>D59EE14F03FD47E2FC27DF19</string>
+					<string>5B2C7D4CF2554353C5066E0E</string>
 					<string>807DA2130DDB7679341206D8</string>
 					<string>F41A373B07B06D6E50036BA4</string>
 					<string>3FE97224BEE70C8CAC2006DA</string>
@@ -599,7 +477,7 @@ else
 rsync -avz --exclude='.DS_Store' "${SRCROOT}/bin/data/" "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/data/"
 
 # ---- Code Sign App Package ----
- 
+
 # WARNING: You may have to run Clean in Xcode after changing CODE_SIGN_IDENTITY!
 
 # Verify that $CODE_SIGN_IDENTITY is set
@@ -694,12 +572,6 @@ fi
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxGui/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
 					<string>$(SRCROOT)/bin/</string>
@@ -736,7 +608,7 @@ fi
 					<key>GCC_WARN_UNUSED_VARIABLE</key>
 					<string>NO</string>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
-					<string>10.8</string>
+					<string>10.9</string>
 					<key>OTHER_CPLUSPLUSFLAGS</key>
 					<array>
 						<string>-D__MACOSX_CORE__</string>
@@ -761,24 +633,13 @@ fi
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxGui/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
 					<string>YES</string>
 					<key>COPY_PHASE_STRIP</key>
 					<string>YES</string>
 					<key>FRAMEWORK_SEARCH_PATHS</key>
-					<array>
-						<string>$(inherited)</string>
-						<string>$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)</string>
-					</array>
-					<key>FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1</key>
-					<string>"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx"</string>
+					<string>$(inherited)</string>
 					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
 					<string>YES</string>
 					<key>GCC_MODEL_TUNING</key>
@@ -812,7 +673,6 @@ fi
 				<key>children</key>
 				<array>
 					<string>480A780D8D0308AE4A368801</string>
-					<string>2865DAEF86B1907A704CA70B</string>
 				</array>
 				<key>isa</key>
 				<string>PBXGroup</string>
@@ -969,12 +829,6 @@ fi
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxGui/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
 					<string>$(SRCROOT)/bin/</string>
@@ -1007,7 +861,7 @@ fi
 					<key>GCC_WARN_UNUSED_VARIABLE</key>
 					<string>NO</string>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
-					<string>10.8</string>
+					<string>10.9</string>
 					<key>ONLY_ACTIVE_ARCH</key>
 					<string>YES</string>
 					<key>OTHER_CPLUSPLUSFLAGS</key>
@@ -1034,12 +888,6 @@ fi
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxGui/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
 					</array>
 					<key>CONFIGURATION_BUILD_DIR</key>
 					<string>$(SRCROOT)/bin/</string>
@@ -1074,7 +922,7 @@ fi
 					<key>GCC_WARN_UNUSED_VARIABLE</key>
 					<string>NO</string>
 					<key>MACOSX_DEPLOYMENT_TARGET</key>
-					<string>10.8</string>
+					<string>10.9</string>
 					<key>OTHER_CPLUSPLUSFLAGS</key>
 					<array>
 						<string>-D__MACOSX_CORE__</string>
@@ -1098,14 +946,14 @@ fi
 					<string>E4B69E210A3A1BDC003C02F2</string>
 					<string>90A67B674EF9B104D82A5143</string>
 					<string>BDED0ECDB2BE0FD939C38AEB</string>
+					<string>D8403D223E6256CB73567C79</string>
 					<string>EB0E84BEAD177E6CB08DB4EF</string>
+					<string>3D838241B792EE1B6BEEF0BF</string>
 					<string>13DBDF3E91D15454CDCE3F81</string>
 					<string>5DE87C0399C3D16E809524E4</string>
 					<string>72F586B1E35F0C5BCDB2003D</string>
 					<string>883A19B4FB8259967B85B9FF</string>
 					<string>5DB0FD9C47C8AED393543077</string>
-					<string>9455F3F777137963C1194F60</string>
-					<string>5CCFB2A36396A0511400C909</string>
 				</array>
 				<key>isa</key>
 				<string>PBXSourcesBuildPhase</string>
@@ -1193,24 +1041,13 @@ fi
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxGui/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
 					<string>YES</string>
 					<key>COPY_PHASE_STRIP</key>
 					<string>NO</string>
 					<key>FRAMEWORK_SEARCH_PATHS</key>
-					<array>
-						<string>$(inherited)</string>
-						<string>$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)</string>
-					</array>
-					<key>FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1</key>
-					<string>"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx"</string>
+					<string>$(inherited)</string>
 					<key>GCC_DYNAMIC_NO_PIC</key>
 					<string>NO</string>
 					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
@@ -1248,24 +1085,13 @@ fi
 						<string>$(OF_CORE_HEADERS)</string>
 						<string>src</string>
 						<string>../../../../openFrameworks/addons/ofxGui/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/include/json</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/libs/jsoncpp/src</string>
-						<string>../../../../openFrameworks/addons/ofxJSON/src</string>
 					</array>
 					<key>COMBINE_HIDPI_IMAGES</key>
 					<string>YES</string>
 					<key>COPY_PHASE_STRIP</key>
 					<string>YES</string>
 					<key>FRAMEWORK_SEARCH_PATHS</key>
-					<array>
-						<string>$(inherited)</string>
-						<string>$(FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1)</string>
-					</array>
-					<key>FRAMEWORK_SEARCH_PATHS_QUOTED_FOR_TARGET_1</key>
-					<string>"$(SRCROOT)/../../../../openFrameworks/libs/glut/lib/osx"</string>
+					<string>$(inherited)</string>
 					<key>GCC_GENERATE_DEBUGGING_SYMBOLS</key>
 					<string>YES</string>
 					<key>GCC_MODEL_TUNING</key>
@@ -1310,7 +1136,7 @@ fi
 			<key>E4B69E1D0A3A1BDC003C02F2</key>
 			<dict>
 				<key>fileEncoding</key>
-				<string>30</string>
+				<string>4</string>
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>lastKnownFileType</key>
@@ -1327,7 +1153,7 @@ fi
 				<key>explicitFileType</key>
 				<string>sourcecode.cpp.cpp</string>
 				<key>fileEncoding</key>
-				<string>30</string>
+				<string>4</string>
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>name</key>
@@ -1340,7 +1166,7 @@ fi
 			<key>E4B69E1F0A3A1BDC003C02F2</key>
 			<dict>
 				<key>fileEncoding</key>
-				<string>30</string>
+				<string>4</string>
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>lastKnownFileType</key>
@@ -1369,7 +1195,7 @@ fi
 			<key>E4B6FCAD0C3E899E008CF71C</key>
 			<dict>
 				<key>fileEncoding</key>
-				<string>30</string>
+				<string>4</string>
 				<key>isa</key>
 				<string>PBXFileReference</string>
 				<key>lastKnownFileType</key>
@@ -1400,18 +1226,10 @@ fi
 # Copy default icon file into App/Resources
 rsync -aved "$ICON_FILE" "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Resources/"
 # Copy libfmod and change install directory for fmod to run
-rsync -aved ../../../../openFrameworks/libs/fmodex/lib/osx/libfmodex.dylib "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/";
+rsync -aved "$OF_PATH/libs/fmodex/lib/osx/libfmodex.dylib" "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/";
 install_name_tool -change @executable_path/libfmodex.dylib @executable_path/../Frameworks/libfmodex.dylib "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/MacOS/$PRODUCT_NAME";
 
 echo "$GCC_PREPROCESSOR_DEFINITIONS";
-APPSTORE=`expr "$GCC_PREPROCESSOR_DEFINITIONS" : ".*APPSTORE=\([0-9]*\)"`
-if [ -z "${APPSTORE}" ] ; then
-echo "Copying GLUT framework";
-# Copy GLUT framework (must remove for AppStore submissions)
-rsync -aved ../../../../openFrameworks/libs/glut/lib/osx/GLUT.framework "$TARGET_BUILD_DIR/$PRODUCT_NAME.app/Contents/Frameworks/"
-else
-echo "Not including GLUT";
-fi
 </string>
 			</dict>
 			<key>E4C2427710CC5ABF004149E2</key>

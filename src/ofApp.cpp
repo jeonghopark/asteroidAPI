@@ -14,14 +14,15 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 #include "ofApp.h"
 
 
+
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-#ifdef DEBUG
-    
-#else
-    ofSetDataPathRoot("../Resources/data/");
-#endif
+//#ifdef DEBUG
+//    
+//#else
+//    ofSetDataPathRoot("../Resources/data/");
+//#endif
     
     
     ofBackground(0);
@@ -663,7 +664,7 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
 
 //--------------------------------------------------------------
 void ofApp::exit(){
-    std::exit(0);
+//    std::exit(0);
 }
 
 

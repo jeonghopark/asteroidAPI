@@ -1,7 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-//#include "ofxJSON.h"
 #include "ofxGui.h"
 
 #define BUFFER_SIZE 8192
@@ -18,6 +17,8 @@ struct orbit{
     double omega;
     
 };
+
+
 
 class ofApp : public ofBaseApp {
 
