@@ -52,21 +52,29 @@ public:
     int	maxHertz;
     int	minHertz;
     
+    double sineBuffer[514];
     double sineBufferLeft[514];
     double sineBufferRight[514];
     float remainderLeft;
     float remainderRight;
     float waveLeft;
     float waveRight;
+    float amp[BIT];
     float ampLeft[BIT];
     float ampRight[BIT];
+    int hertzScale[BIT];
     int hertzScaleLeft[BIT];
     int hertzScaleRight[BIT];
+    float phases[BIT];
     float phasesLeft[BIT];
     float phasesRight[BIT];
 
     bool bPlaying;
     
+    float getPixel(int x, int y);
+    float getAmp(float x, float y);
+    float getFreq(float y);
+
     float getPixelLeft(int x, int y);
     float getAmpLeft(float x, float y);
     float getFreqLeft(float y);

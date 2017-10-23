@@ -37,6 +37,10 @@ void ofApp::setup() {
     sunName.setGlobalDpi(72);
     
     for (int i=0; i<514 ; i++) {
+        amp[i] = 0;
+        hertzScale[i] = 0;
+        phases[i] = 0;
+        sineBuffer[i] = sines[i];
         sineBufferLeft[i] = sines[i];
         sineBufferRight[i] = sines[i];
     }
@@ -280,23 +284,39 @@ void ofApp::update(){
             ////                    hertzScaleRight[n] = int(getFreqRight(n));
         }
         
-        for(int i=0; i<BIT; i++){
-            ampLeft[i] = 0;
-            ampRight[i] = 0;
-        }
+//        for(int i=0; i<BIT; i++){
+//            ampLeft[i] = 0;
+//            ampRight[i] = 0;
+//        }
         
+//        for(int n=0; n<_nYPos.size(); n++){
+//            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+//            if (_nYPos[n].size()>0) {
+//                int _index = _nYPos[n].at(0);
+//                float _valueY = ofMap(_index, 0, BIT, 0, 1);
+//                ampLeft[_index] = (ampLeft[_index] * line + _valueY) / (line + 1);
+//                ampRight[_index] = (ampRight[_index] * line + _valueY) / (line + 1);
+//                hertzScaleLeft[_index] = (int)getFreqLeft(_index);
+//                hertzScaleRight[_index] = (int)getFreqRight(_index);
+//            }
+//        }
+
+
+        
+        for(int i=0; i<BIT; i++){
+            amp[i] = 0;
+        }
+
         for(int n=0; n<_nYPos.size(); n++){
             int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
             if (_nYPos[n].size()>0) {
                 int _index = _nYPos[n].at(0);
                 float _valueY = ofMap(_index, 0, BIT, 0, 1);
-                ampLeft[_index] = (ampLeft[_index] * line + _valueY) / (line + 1);
-                ampRight[_index] = (ampRight[_index] * line + _valueY) / (line + 1);
-                hertzScaleLeft[_index] = (int)getFreqLeft(_index);
-                hertzScaleRight[_index] = (int)getFreqRight(_index);
+                amp[_index] = (amp[_index] * line + _valueY) / (line + 1);
+                hertzScale[_index] = (int)getFreq(_index);
             }
         }
-        
+
     }
     
     //    _nYPos.clear();
@@ -481,6 +501,74 @@ float ofApp::getAmpLeft(float x, float y, ofPixels _p){
 }
 
 
+
+//--------------------------------------------------------------
+float ofApp::getPixel(int x, int y){
+    
+    ofPixels _p;
+    astroidFBO.readToPixels(_p);
+    
+    ofColor _color = _p.getColor(x, y);
+    
+    float _r = _color.r;
+    float _g = _color.g;
+    float _b = _color.b;
+    
+    float _sum = 1.0 - (_r + _g + _b) / 255.0 / 3.0;
+    
+    return _sum;
+    
+}
+
+
+//--------------------------------------------------------------
+float ofApp::getAmp(float x, float y){
+    
+    float _amp = 0;
+    
+    ofPixels _p;
+    astroidFBO.readToPixels(_p);
+    
+    ofColor _color = _p.getColor(x, y);
+    
+    float _r = _color.r;
+    float _g = _color.g;
+    float _b = _color.b;
+    
+    _amp = 1.0 - (_r + _g + _b) / 255.0 / 3.0;
+    
+    if (_amp>threshold) {
+        _amp = 0;
+    }
+    
+    return _amp;
+    
+    
+}
+
+
+//--------------------------------------------------------------
+float ofApp::getFreq(float y){
+    float freq=0;
+    
+    float _maxHz = maxHertz;
+    float _minHz = minHertz;
+    float yToFreq = (y/BIT)*_maxHz;
+    
+    //TODO logarithmic scale
+    freq = 1-(log(yToFreq)-log(_minHz)) / (log(_maxHz)-log(_minHz));
+    freq *= _maxHz;
+    //    freq = 1-(yToFreq-_minHz) / (_maxHz-_minHz);
+    //    freq = (BIT-y+_minHz)/BIT*(_maxHz-_minHz);
+    
+    
+    return freq;
+    
+    
+}
+
+
+
 //--------------------------------------------------------------
 float ofApp::getPixelLeft(int x, int y){
     
@@ -601,55 +689,85 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
     
     if (bPlaying) {
         
+//        for (int i = 0; i < buffer.getNumFrames(); i+=2){
+//
+//            waveRight = 0.0;
+//            waveLeft = 0.0;
+//
+//            for(int n=0; n<BIT; n++){
+//
+//                if (ampLeft[n]>0.00001) {
+//                    phasesLeft[n] += 512./(44100.0/(hertzScaleLeft[n]));
+//
+//                    if ( phasesLeft[n] >= 511 ) phasesLeft[n] -= 512;
+//
+//                    //remainder = phases[n] - floor(phases[n]);
+//                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+//
+//                    if ( phasesLeft[n] < 0 ) phasesLeft[n] = 0;
+//
+//                    waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
+//                }
+//
+//                if (ampRight[n]>0.00001) {
+//                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
+//
+//                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
+//
+//                    //remainder = phases[n] - floor(phases[n]);
+//                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+//
+//                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
+//
+//                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
+//                }
+//
+//            }
+//
+//            float _volumeSpeed = 20.0;
+//            waveRight /= _volumeSpeed;
+//            waveLeft /= _volumeSpeed;
+//            if (waveRight > 1.0) waveRight=1.0;
+//            if (waveRight<-1.0) waveRight=-1.0;
+//            if (waveLeft>1.0) waveLeft=1.0;
+//            if (waveLeft<-1.0) waveLeft=-1.0;
+//
+//            float _volume = 1.0;
+//            buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
+//            buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
+//
+//        }
         
-        for (int i = 0; i < buffer.getNumFrames(); i+=2){
+        
+        //        float remainder;
+        
+        for (int i = 0; i < buffer.getNumFrames(); i++){
             
-            waveRight = 0.0;
-            waveLeft = 0.0;
+            float _wave = 0.0;
             
             for(int n=0; n<BIT; n++){
-                
-                if (ampLeft[n]>0.00001) {
-                    phasesLeft[n] += 512./(44100.0/(hertzScaleLeft[n]));
+                if (amp[n]>0.00001) {
+                    phases[n] += 512./(44100.0/(hertzScale[n]));
                     
-                    if ( phasesLeft[n] >= 511 ) phasesLeft[n] -= 512;
+                    if ( phases[n] >= 511 ) phases[n] -= 512;
+                    if ( phases[n] < 0 ) phases[n] = 0;
                     
-                    //remainder = phases[n] - floor(phases[n]);
-                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+                    //    remainder = phases[n] - floor(phases[n]);
+                    //    wave+=(float) ((1-remainder) * sinConst->sines[1+ (long) phases[n]] + remainder * sinConst->sines[2+(long) phases[n]])*amp[n];
                     
-                    if ( phasesLeft[n] < 0 ) phasesLeft[n] = 0;
-                    
-                    waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
+                    _wave += ( sineBuffer[1 + (long) phases[n]] ) * amp[n];
                 }
-                
-                if (ampRight[n]>0.00001) {
-                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
-                    
-                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
-                    
-                    //remainder = phases[n] - floor(phases[n]);
-                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-                    
-                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
-                    
-                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
-                }
-                
             }
             
-            waveRight /= 10.0;
-            waveLeft /= 10.0;
-            if (waveRight > 1.0) waveRight=1.0;
-            if (waveRight<-1.0) waveRight=-1.0;
-            if (waveLeft>1.0) waveLeft=1.0;
-            if (waveLeft<-1.0) waveLeft=-1.0;
+            _wave /= 10.0;
+            if(_wave > 1.0) _wave = 1.0;
+            if(_wave < -1.0) _wave = -1.0;
             
-            float _volume = 10.85;
-            buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
-            buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
+            float _volume = 1.0;
+            buffer[i * buffer.getNumChannels()] = _wave * _volume;
+            buffer[i * buffer.getNumChannels() + 1] = _wave * _volume;
             
         }
-        
         
     } else {
         for (int i = 0; i < buffer.getNumFrames(); i++){
