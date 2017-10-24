@@ -13,25 +13,20 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 
 #include "ofApp.h"
 
-
-
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-//#ifdef DEBUG
-//    
-//#else
-//    ofSetDataPathRoot("../Resources/data/");
-//#endif
-    
+    //#ifdef DEBUG
+    //
+    //#else
+    //    ofSetDataPathRoot("../Resources/data/");
+    //#endif
     
     ofBackground(0);
     ofEnableAntiAliasing();
-    //    ofEnableDepthTest();
     
     gui.setup();
     gui.add(onOffInternet.setup("Connect Internet", false));
-    
     
     sunName.load("NewMedia Fett.ttf", 20, true);
     sunName.setGlobalDpi(72);
@@ -45,29 +40,23 @@ void ofApp::setup() {
         sineBufferRight[i] = sines[i];
     }
     
+    
     soundStream.printDeviceList();
-    
     ofSoundStreamSettings settings;
-    
-    //    ofSoundStreamSetup( 2, 0, this, SAMPLE_RATE, INITIAL_BUFFER_SIZE, 4 );
-    
-    auto devices = soundStream.getMatchingDevices("default");
-    //    auto devices = soundStream.getDeviceList();
+    auto devices = soundStream.getDeviceList();
     if (!devices.empty()) {
         settings.setOutDevice(devices[1]);
     }
-    
     settings.setOutListener(this);
     settings.bufferSize = INITIAL_BUFFER_SIZE;
     settings.sampleRate = SAMPLE_RATE;
     settings.numInputChannels = 0;
     settings.numOutputChannels = 2;
-    
     soundStream.setup(settings);
     
     //    ofSoundStreamStop();
     bPlaying = false;
-    line = 2;
+    line = 2.0;
     
     
     maxHertz = 5000;
@@ -90,16 +79,11 @@ void ofApp::setup() {
     
     ofFile _file("asteroid_500.json");
     
-    
     //    if(_file.exists()){
     //        _file >> json;
     //    }
     
-    
-    
-    
     threshold = 0.9;
-    
     
     cam.setAutoDistance(false);
     cam.setDistance(400);
@@ -176,7 +160,6 @@ void ofApp::setup() {
                     _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
                 }
                 
-                
                 _orbitPath.setClosed(true);
                 
                 for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
@@ -184,13 +167,10 @@ void ofApp::setup() {
                     _mesh.addIndex(meshIndexA+1);
                 }
                 
-                
                 _orbitE.path = _orbitPath;
                 _orbitE.inclination = _i;
                 _orbitE.omega = _om;
                 _orbitE.mesh = _mesh;
-                
-                
                 
                 int _counter = &stroke - &json[0];
                 orbits[_counter] = _orbitE;
@@ -205,11 +185,6 @@ void ofApp::setup() {
     rotateZ = 0;
     
     _nYPos.resize(orbits.size());
-    
-    
-    one.setRadius(0.2);
-    two.setRadius(0.2);
-    
     
 }
 
@@ -226,87 +201,85 @@ void ofApp::update(){
     movingPathFactor = movingPathFactor + 0.225;
     
     
-    //        astroidFBO.begin();
-    //        ofPushMatrix();
-    //        ofTranslate(0, ofGetHeight());
-    //        ofClear(0,255);
-    //        if (orbits.size()>0) {
-    //            for(int i = 0; i<orbits.size(); i++) {
-    //                ofPushMatrix();
-    //                ofPushStyle();
-    //                ofSetColor(255);
-    //                ofRotateY( orbits[i].inclination );
-    //                //            ofRotateZ( orbits[i].omega );
-    //
-    //                float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
-    //                ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
-    //                mesh.setVertex(0, _path);
-    //
-    //                glPointSize(10);
-    //                mesh.draw();
-    //
-    //                ofPopStyle();
-    //                ofPopMatrix();
-    //
-    //            }
-    //        }
-    //        ofPopMatrix();
-    //        astroidFBO.end();
-    
-    
-    
+    astroidFBO.begin();
+    ofPushMatrix();
+    ofTranslate(0, ofGetHeight());
+    ofClear(0,255);
     if (orbits.size()>0) {
         for(int i = 0; i<orbits.size(); i++) {
-            vector<float> _f;
-            _f.clear();
-            float _chMovingPath = ((movingPathFactor * per_y[i]));
-            ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
-            if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
-                _f.push_back( BIT + _path.y );
-            }
-            _nYPos[i] = _f;
+            ofPushMatrix();
+            ofPushStyle();
+            ofSetColor(255);
+            ofRotateY( orbits[i].inclination );
+            //            ofRotateZ( orbits[i].omega );
+
+            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
+            mesh.setVertex(0, _path);
+
+            glPointSize(10);
+            mesh.draw();
+
+            ofPopStyle();
+            ofPopMatrix();
+
         }
+    }
+    ofPopMatrix();
+    astroidFBO.end();
+    
+    
+    
+    for(int i = 0; i<orbits.size(); i++) {
+        vector<float> _f;
+//            _f.clear();
+        float _chMovingPath = ((movingPathFactor * per_y[i]));
+        ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
+        if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
+            _f.push_back( BIT + _path.y );
+        }
+        _nYPos[i] = _f;
     }
     
     
     
-    //    ofPixels _p;
-    //    astroidFBO.readToPixels(_p);
+        ofPixels _p;
+        astroidFBO.readToPixels(_p);
     
     if ( bPlaying ) {
         for(int n=0; n<BIT; n++){
-            //                    int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            //                    ampLeft[n] = (ampLeft[n] * line + getAmpLeft(0, _yRatioLeft, _p)) / (line + 1);
-            //                    hertzScaleLeft[n] = (int)getFreqLeft(n);
-            //
-            ////                    int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            ////                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
-            ////                    hertzScaleRight[n] = int(getFreqRight(n));
+//            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+//            amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
+//            hertzScale[n] = (int)getFreq(n);
+            
+            //                    int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            //                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
+            //                    hertzScaleRight[n] = int(getFreqRight(n));
         }
         
-//        for(int i=0; i<BIT; i++){
-//            ampLeft[i] = 0;
-//            ampRight[i] = 0;
-//        }
+        //        for(int i=0; i<BIT; i++){
+        //            ampLeft[i] = 0;
+        //            ampRight[i] = 0;
+        //        }
         
-//        for(int n=0; n<_nYPos.size(); n++){
-//            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-//            if (_nYPos[n].size()>0) {
-//                int _index = _nYPos[n].at(0);
-//                float _valueY = ofMap(_index, 0, BIT, 0, 1);
-//                ampLeft[_index] = (ampLeft[_index] * line + _valueY) / (line + 1);
-//                ampRight[_index] = (ampRight[_index] * line + _valueY) / (line + 1);
-//                hertzScaleLeft[_index] = (int)getFreqLeft(_index);
-//                hertzScaleRight[_index] = (int)getFreqRight(_index);
-//            }
-//        }
-
-
+        //        for(int n=0; n<_nYPos.size(); n++){
+        //            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+        //            if (_nYPos[n].size()>0) {
+        //                int _index = _nYPos[n].at(0);
+        //                float _valueY = ofMap(_index, 0, BIT, 0, 1);
+        //                ampLeft[_index] = (ampLeft[_index] * line + _valueY) / (line + 1);
+        //                ampRight[_index] = (ampRight[_index] * line + _valueY) / (line + 1);
+        //                hertzScaleLeft[_index] = (int)getFreqLeft(_index);
+        //                hertzScaleRight[_index] = (int)getFreqRight(_index);
+        //            }
+        //        }
+        
+        
         
         for(int i=0; i<BIT; i++){
             amp[i] = 0;
         }
-
+        
         for(int n=0; n<_nYPos.size(); n++){
             int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
             if (_nYPos[n].size()>0) {
@@ -316,7 +289,7 @@ void ofApp::update(){
                 hertzScale[_index] = (int)getFreq(_index);
             }
         }
-
+        
     }
     
     //    _nYPos.clear();
@@ -337,7 +310,7 @@ void ofApp::draw() {
     cam.begin();
     ofRotateX(180);
     
-
+    
     ofPushMatrix();
     
     drawSun();
@@ -353,8 +326,8 @@ void ofApp::draw() {
             ofPushMatrix();
             
             ofRotateY( orbits[i].inclination );
-            //                        ofRotateZ( orbits[i].omega );
-            //            orbits[i].path.draw();
+            //          ofRotateZ( orbits[i].omega );
+            //          orbits[i].path.draw();
             orbits[i].mesh.draw();
             
             ofPopMatrix();
@@ -363,7 +336,7 @@ void ofApp::draw() {
             ofPushStyle();
             ofSetColor(255);
             ofRotateY( orbits[i].inclination );
-            //                        ofRotateZ( orbits[i].omega );
+            //          ofRotateZ( orbits[i].omega );
             float _chMovingPath = ((movingPathFactor * per_y[i]));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             
@@ -372,7 +345,7 @@ void ofApp::draw() {
             mesh.draw();
             
             
-            ofSetColor(255,120);
+            ofSetColor(0, 255, 0, 180);
             if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
                 float _x = _path.x;
                 float _y = _path.y;
@@ -418,12 +391,12 @@ void ofApp::draw() {
     cam.end();
     
     
-    //    ofPushMatrix();
-    //    ofPushStyle();
-    //    ofSetColor(255);
-    //    astroidFBO.draw(0,0);
-    //    ofPopStyle();
-    //    ofPopMatrix();
+//    ofPushMatrix();
+//    ofPushStyle();
+//    ofSetColor(255);
+//    astroidFBO.draw(0,0);
+//    ofPopStyle();
+//    ofPopMatrix();
     
     ofSetColor(255);
     stringstream ss;
@@ -432,10 +405,10 @@ void ofApp::draw() {
     ss << "Mouse or Track Pad for 3D Viewing" << endl;
     ss << "\"f\" - key for full screen" << endl;
     ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
-
+    
     
     //    gui.draw();
-        
+    
 }
 
 
@@ -459,12 +432,8 @@ void ofApp::drawSun(){
     ofSetColor(255,255,0);
     
     billboardBegin();
-    
     ofScale(0.1, 0.1);
-    //    sunName.drawString("SUN", 60, 0);
-    
     billboardEnd();
-    
     
     sun.draw();
     
@@ -689,54 +658,54 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
     
     if (bPlaying) {
         
-//        for (int i = 0; i < buffer.getNumFrames(); i+=2){
-//
-//            waveRight = 0.0;
-//            waveLeft = 0.0;
-//
-//            for(int n=0; n<BIT; n++){
-//
-//                if (ampLeft[n]>0.00001) {
-//                    phasesLeft[n] += 512./(44100.0/(hertzScaleLeft[n]));
-//
-//                    if ( phasesLeft[n] >= 511 ) phasesLeft[n] -= 512;
-//
-//                    //remainder = phases[n] - floor(phases[n]);
-//                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-//
-//                    if ( phasesLeft[n] < 0 ) phasesLeft[n] = 0;
-//
-//                    waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
-//                }
-//
-//                if (ampRight[n]>0.00001) {
-//                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
-//
-//                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
-//
-//                    //remainder = phases[n] - floor(phases[n]);
-//                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-//
-//                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
-//
-//                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
-//                }
-//
-//            }
-//
-//            float _volumeSpeed = 20.0;
-//            waveRight /= _volumeSpeed;
-//            waveLeft /= _volumeSpeed;
-//            if (waveRight > 1.0) waveRight=1.0;
-//            if (waveRight<-1.0) waveRight=-1.0;
-//            if (waveLeft>1.0) waveLeft=1.0;
-//            if (waveLeft<-1.0) waveLeft=-1.0;
-//
-//            float _volume = 1.0;
-//            buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
-//            buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
-//
-//        }
+        //        for (int i = 0; i < buffer.getNumFrames(); i+=2){
+        //
+        //            waveRight = 0.0;
+        //            waveLeft = 0.0;
+        //
+        //            for(int n=0; n<BIT; n++){
+        //
+        //                if (ampLeft[n]>0.00001) {
+        //                    phasesLeft[n] += 512./(44100.0/(hertzScaleLeft[n]));
+        //
+        //                    if ( phasesLeft[n] >= 511 ) phasesLeft[n] -= 512;
+        //
+        //                    //remainder = phases[n] - floor(phases[n]);
+        //                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+        //
+        //                    if ( phasesLeft[n] < 0 ) phasesLeft[n] = 0;
+        //
+        //                    waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
+        //                }
+        //
+        //                if (ampRight[n]>0.00001) {
+        //                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
+        //
+        //                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
+        //
+        //                    //remainder = phases[n] - floor(phases[n]);
+        //                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
+        //
+        //                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
+        //
+        //                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
+        //                }
+        //
+        //            }
+        //
+        //            float _volumeSpeed = 20.0;
+        //            waveRight /= _volumeSpeed;
+        //            waveLeft /= _volumeSpeed;
+        //            if (waveRight > 1.0) waveRight=1.0;
+        //            if (waveRight<-1.0) waveRight=-1.0;
+        //            if (waveLeft>1.0) waveLeft=1.0;
+        //            if (waveLeft<-1.0) waveLeft=-1.0;
+        //
+        //            float _volume = 1.0;
+        //            buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
+        //            buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
+        //
+        //        }
         
         
         //        float remainder;
@@ -782,7 +751,7 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
 
 //--------------------------------------------------------------
 void ofApp::exit(){
-//    std::exit(0);
+    //    std::exit(0);
 }
 
 
@@ -800,7 +769,9 @@ void ofApp::keyReleased(int key){
         ofSetFullscreen(fullscreen);
     }
     
-    if (key==' ') bPlaying = !bPlaying;
+    if (key==' ') {
+        bPlaying = !bPlaying;
+    }
     
     if (bPlaying)  {
         //        ofSoundStreamStart();

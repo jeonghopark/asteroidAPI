@@ -21,14 +21,14 @@ struct orbit{
 
 
 class ofApp : public ofBaseApp {
-
+    
 public:
-
+    
     void setup();
     void update();
     void draw();
     void exit();
-
+    
     void keyPressed(int key);
     void keyReleased(int key);
     void mouseMoved(int x, int y);
@@ -39,10 +39,10 @@ public:
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
     
-
     
-//    void audioRequested(float * output, int bufferSize, int nChannels);
-
+    
+    //    void audioRequested(float * output, int bufferSize, int nChannels);
+    
     void audioOut(ofSoundBuffer & buffer);
     ofSoundStream soundStream;
     
@@ -68,13 +68,13 @@ public:
     float phases[BIT];
     float phasesLeft[BIT];
     float phasesRight[BIT];
-
+    
     bool bPlaying;
     
     float getPixel(int x, int y);
     float getAmp(float x, float y);
     float getFreq(float y);
-
+    
     float getPixelLeft(int x, int y);
     float getAmpLeft(float x, float y);
     float getFreqLeft(float y);
@@ -83,9 +83,9 @@ public:
     float getFreqRight(float y);
     
     float getAmpLeft(float x, float y, ofPixels _p);
-
     
-//    ofxJSONElement json;
+    
+    //    ofxJSONElement json;
     
     ofJson json;
     ofJson stroke;
@@ -97,7 +97,7 @@ public:
     ofSpherePrimitive sun;
     
     vector<orbit> orbits;
-
+    
     float rotateZ;
     
     float movingPathFactor;
@@ -117,18 +117,15 @@ public:
     // from TextFacingCameraSample sourcecode
     void billboardBegin();
     void billboardEnd();
-
+    
     vector< vector<float> > _nYPos;
-
+    
     
     
     ofxPanel gui;
     ofxToggle onOffInternet;
     
     void textInformation();
-    
-    ofSpherePrimitive one, two;
-    
     
     
 };
