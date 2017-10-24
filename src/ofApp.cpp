@@ -97,10 +97,6 @@ void ofApp::setup() {
     
     sun.set(2, 10);
     
-    ofNoFill();
-    
-    
-    ofMesh _mesh;
     mesh.setMode(OF_PRIMITIVE_POINTS);
     
     float _eEarth = 0.01671123;
@@ -119,66 +115,30 @@ void ofApp::setup() {
         _file >> json;
         
         orbits.resize( json.size() );
-        //    for(int i=0; i<json.size(); i++) {
-        
         orbit _orbitE;
         
         for(auto & stroke: json){
-            if(!stroke.empty()){
-                
-                double _a = stroke["a"];
-                double _ad = stroke["ad"];
-                double _e = stroke["e"];
-                double _q = stroke["q"];
-                double _i = stroke["i"];
-                double _om = stroke["om"];
-                
-                //        double _a = json[i]["a"];
-                //        double _ad = json[i]["ad"];
-                //        double _e = json[i]["e"];
-                //        double _q = json[i]["q"];
-                //        double _i = json[i]["i"];
-                //        double _om = json[i]["om"];
-                
-                per_y.push_back( stroke["per_y"] );
-                
-                mesh.addVertex( ofVec3f( 0, 0, 0) );
-                
-                ofPolyline _orbitPath;
-                
-                ofMesh _mesh;
-                
-                for (int degree=0; degree<360; degree++) {
-                    double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(degree)));
-                    
-                    float _size = 100;
-                    float _x1 = _r * cos(ofDegToRad(degree + _om)) * _size;
-                    float _y1 = _r * sin(ofDegToRad(degree + _om)) * _size;
-                    
-                    _orbitPath.addVertex( _x1, _y1 );
-                    _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
-                    _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
-                }
-                
-                _orbitPath.setClosed(true);
-                
-                for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
-                    _mesh.addIndex(meshIndexA);
-                    _mesh.addIndex(meshIndexA+1);
-                }
-                
-                _orbitE.path = _orbitPath;
-                _orbitE.inclination = _i;
-                _orbitE.omega = _om;
-                _orbitE.mesh = _mesh;
-                
-                int _counter = &stroke - &json[0];
-                orbits[_counter] = _orbitE;
-                
-                
-            }
+            
+            double _a = stroke["a"];
+            double _ad = stroke["ad"];
+            double _e = stroke["e"];
+            double _q = stroke["q"];
+            double _i = stroke["i"];
+            double _om = stroke["om"];
+            
+            per_y.push_back( stroke["per_y"] );
+            
+            mesh.addVertex( ofVec3f( 0, 0, 0) );
+            
+            _orbitE.path = circlePath(stroke);
+            _orbitE.inclination = _i;
+            _orbitE.omega = _om;
+            _orbitE.mesh = circleMesh(stroke);
+            
+            int _counter = &stroke - &json[0];
+            orbits[_counter] = _orbitE;
+            
         }
-        //    }
         
     }
     
@@ -189,50 +149,82 @@ void ofApp::setup() {
 }
 
 
+//--------------------------------------------------------------
+ofMesh ofApp::circleMesh(ofJson _j){
+
+    double _a = _j["a"];
+    double _ad = _j["ad"];
+    double _e = _j["e"];
+    double _q = _j["q"];
+    double _i = _j["i"];
+    double _om = _j["om"];
+    
+    ofMesh _mesh;
+
+    for (int _deg=0; _deg<360; _deg++) {
+        double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(_deg)));
+        float _size = 100;
+        float _x1 = _r * cos(ofDegToRad(_deg + _om)) * _size;
+        float _y1 = _r * sin(ofDegToRad(_deg + _om)) * _size;
+        _mesh.setMode(OF_PRIMITIVE_LINE_LOOP);
+        _mesh.addVertex( ofVec3f( _x1, _y1, 0) );
+    }
+    
+    for (int meshIndexA=0; meshIndexA<360-1; meshIndexA++) {
+        _mesh.addIndex(meshIndexA);
+        _mesh.addIndex(meshIndexA+1);
+    }
+
+    return _mesh;
+
+}
+
+
+
+//--------------------------------------------------------------
+ofPolyline ofApp::circlePath(ofJson _j){
+    
+    double _a = _j["a"];
+    double _ad = _j["ad"];
+    double _e = _j["e"];
+    double _q = _j["q"];
+    double _i = _j["i"];
+    double _om = _j["om"];
+    
+    ofPolyline _orbitPath;
+    
+    for (int _deg=0; _deg<360; _deg++) {
+        double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(_deg)));
+        float _size = 100;
+        float _x1 = _r * cos(ofDegToRad(_deg + _om)) * _size;
+        float _y1 = _r * sin(ofDegToRad(_deg + _om)) * _size;
+        _orbitPath.addVertex( _x1, _y1 );
+    }
+
+    _orbitPath.setClosed(true);
+    
+    return _orbitPath;
+    
+}
+
+
 
 
 //--------------------------------------------------------------
 void ofApp::update(){
     
     timePlanet = timePlanet + 1;
-    
     rotateZ = rotateZ + 0.25;
-    
     movingPathFactor = movingPathFactor + 0.225;
     
-    
-//    astroidFBO.begin();
-//    ofPushMatrix();
-//    ofTranslate(0, ofGetHeight());
-//    ofClear(0,255);
-//    if (orbits.size()>0) {
-//        for(int i = 0; i<orbits.size(); i++) {
-//            ofPushMatrix();
-//            ofPushStyle();
-//            ofSetColor(255);
-//            ofRotateY( orbits[i].inclination );
-//            //            ofRotateZ( orbits[i].omega );
-//
-//            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
-//            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
-//            mesh.setVertex(0, _path);
-//
-//            glPointSize(10);
-//            mesh.draw();
-//
-//            ofPopStyle();
-//            ofPopMatrix();
-//
-//        }
-//    }
-//    ofPopMatrix();
-//    astroidFBO.end();
-    
-    
+
+    //    astroidFBOBuff();
+    //    ofPixels _p;
+    //    astroidFBO.readToPixels(_p);
+
     
     for(int i = 0; i<orbits.size(); i++) {
         vector<float> _f;
-//            _f.clear();
         float _chMovingPath = ((movingPathFactor * per_y[i]));
         ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
         if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
@@ -242,15 +234,11 @@ void ofApp::update(){
     }
     
     
-    
-//    ofPixels _p;
-//    astroidFBO.readToPixels(_p);
-    
     if ( bPlaying ) {
         for(int n=0; n<BIT; n++){
-//            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-//            amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
-//            hertzScale[n] = (int)getFreq(n);
+            //            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            //            amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
+            //            hertzScale[n] = (int)getFreq(n);
             
             //                    int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
             //                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
@@ -391,12 +379,12 @@ void ofApp::draw() {
     cam.end();
     
     
-//    ofPushMatrix();
-//    ofPushStyle();
-//    ofSetColor(255);
-//    astroidFBO.draw(0,0);
-//    ofPopStyle();
-//    ofPopMatrix();
+    //    ofPushMatrix();
+    //    ofPushStyle();
+    //    ofSetColor(255);
+    //    astroidFBO.draw(0,0);
+    //    ofPopStyle();
+    //    ofPopMatrix();
     
     ofSetColor(255);
     stringstream ss;
@@ -412,10 +400,43 @@ void ofApp::draw() {
 }
 
 
+//--------------------------------------------------------------
+void ofApp::astroidFBOBuff(){
+    
+    astroidFBO.begin();
+    ofPushMatrix();
+    ofTranslate(0, ofGetHeight());
+    ofClear(0,255);
+    if (orbits.size()>0) {
+        for(int i = 0; i<orbits.size(); i++) {
+            ofPushMatrix();
+            ofPushStyle();
+            ofSetColor(255);
+            ofRotateY( orbits[i].inclination );
+            //            ofRotateZ( orbits[i].omega );
+            
+            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
+            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
+            mesh.setVertex(0, _path);
+            
+            glPointSize(10);
+            mesh.draw();
+            
+            ofPopStyle();
+            ofPopMatrix();
+            
+        }
+    }
+    ofPopMatrix();
+    astroidFBO.end();
+    
+}
+
+
+
 
 //--------------------------------------------------------------
 void ofApp::textInformation(){
-    
     
 }
 

@@ -10,12 +10,10 @@
 
 
 struct orbit{
-    
     ofPolyline path;
     ofMesh mesh;
     double inclination;
     double omega;
-    
 };
 
 
@@ -107,6 +105,7 @@ public:
     vector<float> per_y;
     
     ofFbo astroidFBO;
+    void astroidFBOBuff();
     float threshold;
     
     orbit earthOrbit;
@@ -126,6 +125,9 @@ public:
     ofxToggle onOffInternet;
     
     void textInformation();
+
+    ofMesh circleMesh(ofJson _j);
+    ofPolyline circlePath(ofJson _j);
     
     
 };
