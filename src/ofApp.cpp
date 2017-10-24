@@ -56,7 +56,7 @@ void ofApp::setup() {
     
     //    ofSoundStreamStop();
     bPlaying = false;
-    line = 2.0;
+    line = 0.1;
     
     
     maxHertz = 5000;
@@ -201,32 +201,32 @@ void ofApp::update(){
     movingPathFactor = movingPathFactor + 0.225;
     
     
-    astroidFBO.begin();
-    ofPushMatrix();
-    ofTranslate(0, ofGetHeight());
-    ofClear(0,255);
-    if (orbits.size()>0) {
-        for(int i = 0; i<orbits.size(); i++) {
-            ofPushMatrix();
-            ofPushStyle();
-            ofSetColor(255);
-            ofRotateY( orbits[i].inclination );
-            //            ofRotateZ( orbits[i].omega );
-
-            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
-            mesh.setVertex(0, _path);
-
-            glPointSize(10);
-            mesh.draw();
-
-            ofPopStyle();
-            ofPopMatrix();
-
-        }
-    }
-    ofPopMatrix();
-    astroidFBO.end();
+//    astroidFBO.begin();
+//    ofPushMatrix();
+//    ofTranslate(0, ofGetHeight());
+//    ofClear(0,255);
+//    if (orbits.size()>0) {
+//        for(int i = 0; i<orbits.size(); i++) {
+//            ofPushMatrix();
+//            ofPushStyle();
+//            ofSetColor(255);
+//            ofRotateY( orbits[i].inclination );
+//            //            ofRotateZ( orbits[i].omega );
+//
+//            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
+//            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
+//            mesh.setVertex(0, _path);
+//
+//            glPointSize(10);
+//            mesh.draw();
+//
+//            ofPopStyle();
+//            ofPopMatrix();
+//
+//        }
+//    }
+//    ofPopMatrix();
+//    astroidFBO.end();
     
     
     
@@ -243,8 +243,8 @@ void ofApp::update(){
     
     
     
-        ofPixels _p;
-        astroidFBO.readToPixels(_p);
+//    ofPixels _p;
+//    astroidFBO.readToPixels(_p);
     
     if ( bPlaying ) {
         for(int n=0; n<BIT; n++){
@@ -277,7 +277,7 @@ void ofApp::update(){
         
         
         for(int i=0; i<BIT; i++){
-            amp[i] = 0;
+            amp[i] *= 0.95;
         }
         
         for(int n=0; n<_nYPos.size(); n++){
