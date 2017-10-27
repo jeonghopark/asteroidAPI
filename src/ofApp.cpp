@@ -16,11 +16,11 @@ float sines[514]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-    //#ifdef DEBUG
-    //
-    //#else
-    //    ofSetDataPathRoot("../Resources/data/");
-    //#endif
+#ifdef DEBUG
+    
+#else
+    ofSetDataPathRoot("../Resources/data/");
+#endif
     
     ofBackground(0);
     ofEnableAntiAliasing();
@@ -85,6 +85,7 @@ void ofApp::setup() {
     
     threshold = 0.9;
     
+    // m : translation key
     cam.setAutoDistance(false);
     cam.setDistance(400);
     
@@ -133,7 +134,7 @@ void ofApp::setup() {
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
             _orbitE.omega = _om;
-            _orbitE.mesh = circleMesh(stroke);
+            _orbitE.mVbo = circleMesh(stroke);
             
             int _counter = &stroke - &json[0];
             orbits[_counter] = _orbitE;
@@ -151,7 +152,7 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 ofMesh ofApp::circleMesh(ofJson _j){
-
+    
     double _a = _j["a"];
     double _ad = _j["ad"];
     double _e = _j["e"];
@@ -160,7 +161,7 @@ ofMesh ofApp::circleMesh(ofJson _j){
     double _om = _j["om"];
     
     ofMesh _mesh;
-
+    
     for (int _deg=0; _deg<360; _deg++) {
         double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(_deg)));
         float _size = 100;
@@ -174,9 +175,9 @@ ofMesh ofApp::circleMesh(ofJson _j){
         _mesh.addIndex(meshIndexA);
         _mesh.addIndex(meshIndexA+1);
     }
-
+    
     return _mesh;
-
+    
 }
 
 
@@ -200,7 +201,7 @@ ofPolyline ofApp::circlePath(ofJson _j){
         float _y1 = _r * sin(ofDegToRad(_deg + _om)) * _size;
         _orbitPath.addVertex( _x1, _y1 );
     }
-
+    
     _orbitPath.setClosed(true);
     
     return _orbitPath;
@@ -217,11 +218,11 @@ void ofApp::update(){
     rotateZ = rotateZ + 0.25;
     movingPathFactor = movingPathFactor + 0.225;
     
-
+    
     //    astroidFBOBuff();
     //    ofPixels _p;
     //    astroidFBO.readToPixels(_p);
-
+    
     
     for(int i = 0; i<orbits.size(); i++) {
         vector<float> _f;
@@ -316,7 +317,7 @@ void ofApp::draw() {
             ofRotateY( orbits[i].inclination );
             //          ofRotateZ( orbits[i].omega );
             //          orbits[i].path.draw();
-            orbits[i].mesh.draw();
+            orbits[i].mVbo.draw();
             
             ofPopMatrix();
             
@@ -386,13 +387,13 @@ void ofApp::draw() {
     //    ofPopStyle();
     //    ofPopMatrix();
     
-    ofSetColor(255);
-    stringstream ss;
-    ss << "FPS: " << ofToString(ofGetFrameRate(),1) << endl;
-    ss << "Space bar for Sound Play" << endl;
-    ss << "Mouse or Track Pad for 3D Viewing" << endl;
-    ss << "\"f\" - key for full screen" << endl;
-    ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
+        ofSetColor(255);
+        stringstream ss;
+        ss << "FPS: " << ofToString(ofGetFrameRate(),1) << endl;
+    //    ss << "Space bar for Sound Play" << endl;
+    //    ss << "Mouse or Track Pad for 3D Viewing" << endl;
+    //    ss << "\"f\" - key for full screen" << endl;
+        ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
     
     
     //    gui.draw();

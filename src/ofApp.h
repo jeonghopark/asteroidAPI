@@ -12,6 +12,7 @@
 struct orbit{
     ofPolyline path;
     ofMesh mesh;
+    ofVboMesh mVbo;
     double inclination;
     double omega;
 };
