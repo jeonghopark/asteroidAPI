@@ -146,8 +146,18 @@ void ofApp::setup() {
     rotateZ = 0;
     
     _nYPos.resize(orbits.size());
+    _lineDraw.resize(orbits.size());
+
+    longLine.resize(orbits.size());
+    longLinePoint.resize(orbits.size());
     
+    for (int i=0; i<orbits.size(); i++) {
+        longLinePoint[i].resize(360);
+    }
 }
+
+
+
 
 
 //--------------------------------------------------------------
@@ -266,7 +276,7 @@ void ofApp::update(){
         
         
         for(int i=0; i<BIT; i++){
-            amp[i] *= 0.95;
+            amp[i] *= 0.91;
         }
         
         for(int n=0; n<_nYPos.size(); n++){
@@ -297,7 +307,7 @@ void ofApp::draw() {
     
     
     cam.begin();
-    ofRotateX(180);
+    ofRotateXDeg(180);
     
     
     ofPushMatrix();
@@ -305,49 +315,77 @@ void ofApp::draw() {
     drawSun();
     
     ofPushStyle();
-    ofSetColor(0, 0, 255, 255);
+    ofSetColor(255, 120);
     earthOrbit.path.draw();
     ofPopStyle();
     
     if (orbits.size()>0) {
         ofSetColor(255, 15);
+        
+        
+        
+        
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
-            ofRotateY( orbits[i].inclination );
+            ofRotateYDeg( orbits[i].inclination );
             //          ofRotateZ( orbits[i].omega );
-            //          orbits[i].path.draw();
+//                      orbits[i].path.draw();
             orbits[i].mVbo.draw();
             
             ofPopMatrix();
             
             ofPushMatrix();
             ofPushStyle();
-            ofSetColor(255);
-            ofRotateY( orbits[i].inclination );
+
+            ofRotateYDeg( orbits[i].inclination );
             //          ofRotateZ( orbits[i].omega );
             float _chMovingPath = ((movingPathFactor * per_y[i]));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             
             mesh.setVertex(0, _path);
             glPointSize(1);
-            mesh.draw();
             
             
-            ofSetColor(0, 255, 0, 180);
-            if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
-                float _x = _path.x;
-                float _y = _path.y;
+            
+//            ofSetColor(255, 0, 0, 50);
+////            longLinePoint[i].push_back(_path);
+//            if( (int)(_chMovingPath + orbits[i].omega) % 360 == 0) {
+////                longLinePoint[i].erase(longLinePoint[i].begin());
+//            }
+//            longLine[i].addVertex(_path);
+//            longLine[i].draw();
+
                 
-                ofDrawLine(_x, _y, -15, _x, _y, 15);
+            
+            if((int)(_chMovingPath + orbits[i].omega) % 360 >= 270 && (int)(_chMovingPath + orbits[i].omega) % 360 < 275) {
+                //                float _x = _path.x;
+                //                float _y = _path.y;
+                //                ofDrawLine(_x, _y, -15, _x, _y, 15);
+                ofSetColor(255, 255, 255, 80);
+                glPointSize(2);
+                _lineDraw[i].addVertex(_path.x, _path.y, _path.z);
+                _lineDraw[i].draw();
+                
+                ofSetColor(255, 255, 255, 255);
+            } else {
+                ofSetColor(255, 255, 255, 255);
+                glPointSize(1);
+                
+                _lineDraw[i].clear();
             }
             
             
+            mesh.draw();
+
             ofPopStyle();
             ofPopMatrix();
             
         }
         
+        
+        
+
     }
     
     ofPopMatrix();
@@ -356,8 +394,8 @@ void ofApp::draw() {
     
     ofPushMatrix();
     ofPushStyle();
-    ofRotateX(180);
-    ofRotateY(90);
+    ofRotateXDeg(180);
+    ofRotateYDeg(90);
     ofNoFill();
     ofSetColor(255, 120);
     ofDrawRectangle(-15, 0, 30, BIT);
@@ -389,10 +427,10 @@ void ofApp::draw() {
     
         ofSetColor(255);
         stringstream ss;
-        ss << "FPS: " << ofToString(ofGetFrameRate(),1) << endl;
-    //    ss << "Space bar for Sound Play" << endl;
-    //    ss << "Mouse or Track Pad for 3D Viewing" << endl;
-    //    ss << "\"f\" - key for full screen" << endl;
+//        ss << "FPS: " << ofToString(ofGetFrameRate(),1) << endl;
+//        ss << "Space bar for Sound Play" << endl;
+//        ss << "Mouse or Track Pad for 3D Viewing" << endl;
+//        ss << "\"f\" - key for full screen" << endl;
         ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
     
     
@@ -413,7 +451,7 @@ void ofApp::astroidFBOBuff(){
             ofPushMatrix();
             ofPushStyle();
             ofSetColor(255);
-            ofRotateY( orbits[i].inclination );
+            ofRotateYDeg( orbits[i].inclination );
             //            ofRotateZ( orbits[i].omega );
             
             float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
@@ -451,7 +489,7 @@ void ofApp::drawSun(){
     
     ofPushStyle();
     
-    ofSetColor(255,255,0);
+    ofSetColor(255, 140);
     
     billboardBegin();
     ofScale(0.1, 0.1);

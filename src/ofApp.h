@@ -130,5 +130,12 @@ public:
     ofMesh circleMesh(ofJson _j);
     ofPolyline circlePath(ofJson _j);
     
+    vector<ofPolyline> _lineDraw;
+    vector<ofPolyline> longLine;
+    
+    vector< vector<ofPoint> > longLinePoint;
     
 };
+
+
+
