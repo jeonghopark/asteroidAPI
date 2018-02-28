@@ -3,7 +3,7 @@
 #include "ofMain.h"
 #include "ofxGui.h"
 
-#define BUFFER_SIZE 8192
+#define BUFFER_SIZE 4086
 #define SAMPLE_RATE 44100
 #define INITIAL_BUFFER_SIZE 512
 #define BIT 512
@@ -15,6 +15,8 @@ struct orbit{
     ofVboMesh mVbo;
     double inclination;
     double omega;
+    
+    float per_y;
 };
 
 
@@ -26,7 +28,6 @@ public:
     void setup();
     void update();
     void draw();
-    void exit();
     
     void keyPressed(int key);
     void keyReleased(int key);

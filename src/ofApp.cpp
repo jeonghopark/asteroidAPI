@@ -16,12 +16,13 @@ float sines[512]={0,0.012268,0.024536,0.036804,0.049042,0.06131,0.073547,0.08578
 //--------------------------------------------------------------
 void ofApp::setup() {
     
-#ifdef DEBUG
+// #ifdef DEBUG
     
-#else
-    ofSetDataPathRoot("../Resources/data/");
-#endif
-    
+// #else
+//     // ofSetDataPathRoot("../Resources/data/");
+// #endif
+//     // ofSetDataPathRoot("../Resources/data/");
+
     ofBackground(0);
     ofEnableAntiAliasing();
     
@@ -41,9 +42,9 @@ void ofApp::setup() {
     }
     
     
-    soundStream.printDeviceList();
+    //    soundStream.printDeviceList();
     ofSoundStreamSettings settings;
-    auto devices = soundStream.getDeviceList();
+    auto devices = soundStream.getMatchingDevices("default");
     if (!devices.empty()) {
         settings.setOutDevice(devices[1]);
     }
@@ -54,29 +55,27 @@ void ofApp::setup() {
     settings.numOutputChannels = 2;
     soundStream.setup(settings);
     
-    //    ofSoundStreamStop();
     bPlaying = false;
-    line = 2.0;
+    line = 0.1;
     
     
     maxHertz = 8000;
     minHertz = 150;
     
-    astroidFBO.allocate(30, BIT*2, GL_RGB);
+    astroidFBO.allocate(30, BIT, GL_RGB);
     
     // http://www.asterank.com/api
-    string url = "http://www.asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=500";
+    string url = "http://asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=1";
     
     // Now parse the JSON
-//    bool parsingInternetSuccessful = json(url);
-//    parsingInternetSuccessful = false;
-//    if (!parsingInternetSuccessful) {
-//        json.open("asteroid_500.json");
-//    } else {
-//        json.open(url);
-//    }
+    //    bool parsingInternetSuccessful = json(url);
+    //    parsingInternetSuccessful = false;
+    //    if (!parsingInternetSuccessful) {
+    //        json.open("asteroid_500.json");
+    //    } else {
+    //        json.open(url);
+    //    }
     
-    json = ofLoadJson(url);
     
     threshold = 0.9;
     
@@ -107,9 +106,10 @@ void ofApp::setup() {
     
     
     ofFile _file("asteroid_500.json");
+    
+    int _counter = 0;
     if(_file.exists()){
         _file >> json;
-        
         orbits.resize( json.size() );
         orbit _orbitE;
         
@@ -123,21 +123,22 @@ void ofApp::setup() {
             double _om = stroke["om"];
             
             per_y.push_back( stroke["per_y"] );
-            
+
             mesh.addVertex( ofVec3f( 0, 0, 0) );
             
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
             _orbitE.omega = _om;
             _orbitE.mVbo = circleMesh(stroke);
+            _orbitE.per_y = stroke["per_y"];
             
-            int _counter = &stroke - &json[0];
+            //            int _counter = &stroke - &json[0];
             orbits[_counter] = _orbitE;
-            
+            _counter++;
+
         }
         
     } else {
-        orbits.resize( json.size() );
         orbit _orbitE;
         
         for(auto & stroke: json){
@@ -150,19 +151,21 @@ void ofApp::setup() {
             double _om = stroke["om"];
             
             per_y.push_back( stroke["per_y"] );
-            
+
             mesh.addVertex( ofVec3f( 0, 0, 0) );
             
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
             _orbitE.omega = _om;
             _orbitE.mVbo = circleMesh(stroke);
+            _orbitE.per_y = stroke["per_y"];
             
-            int _counter = &stroke - &json[0];
+            //            int _counter = &stroke - &json[0];
             orbits[_counter] = _orbitE;
+            _counter++;
             
         }
-
+        
     }
     
     rotateZ = 0;
@@ -251,11 +254,20 @@ void ofApp::update(){
     movingPathFactor = movingPathFactor + 0.225;
     
     
-    //        astroidFBOBuff();
+            astroidFBOBuff();
     //    ofPixels _p;
     //    astroidFBO.readToPixels(_p);
     
     
+    for(int i = 0; i<orbits.size(); i++) {
+        vector<float> _f;
+        float _chMovingPath = ((movingPathFactor * per_y[i]));
+        ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
+        if((int)(_chMovingPath + orbits[i].omega) % 360==270) {
+            _f.push_back( BIT + _path.y );
+        }
+        _nYPos[i] = _f;
+    }
     
     
     if ( bPlaying ) {
@@ -272,45 +284,28 @@ void ofApp::update(){
             //                    hertzScaleRight[n] = int(getFreqRight(n));
         }
         
-        //        for(int i=0; i<BIT; i++){
-        //            ampLeft[i] = 0;
-        //            ampRight[i] = 0;
-        //        }
-        
-        //        for(int n=0; n<_nYPos.size(); n++){
-        //            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-        //            if (_nYPos[n].size()>0) {
-        //                int _index = _nYPos[n].at(0);
-        //                float _valueY = ofMap(_index, 0, BIT, 0, 1);
-        //                ampLeft[_index] = (ampLeft[_index] * line + _valueY) / (line + 1);
-        //                ampRight[_index] = (ampRight[_index] * line + _valueY) / (line + 1);
-        //                hertzScaleLeft[_index] = (int)getFreqLeft(_index);
-        //                hertzScaleRight[_index] = (int)getFreqRight(_index);
-        //            }
-        //        }
         
         
         
-        for(int i=0; i<orbits.size(); i++){
-            amp[i] *= 0.9;
+        for(int i=0; i<BIT; i++){
+            amp[i] *= 0.91;
         }
         
-        for(int n=0; n<orbits.size(); n++){
-            
-            float _chMovingPath = ((movingPathFactor * per_y[n]));
-            ofVec3f _path = orbits[n].path.getPointAtIndexInterpolated(_chMovingPath);
-            if((int)(_chMovingPath + orbits[n].omega) % 360==270) {
-                float _index = ofMap(_path.y, 0, -300, 0, BIT-1);
-                amp[n] = (amp[n] + 0.1) * line / (line + 1);
-                hertzScale[n] = (int)getFreq(_index);
+        for(int n=0; n<_nYPos.size(); n++){
+            int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            if (_nYPos[n].size()>0) {
+                int _index = _nYPos[n].at(0);
+                float _valueY = ofMap(_index, 0, BIT, 0, 1);
+                amp[_index] = (amp[_index] * line + _valueY) / (line + 1);
+                hertzScale[_index] = (int)getFreq(_index);
             }
         }
         
-        
+
     }
     
-    
-    
+//    _nYPos.clear();
+
 }
 
 
@@ -339,9 +334,6 @@ void ofApp::draw() {
     if (orbits.size()>0) {
         ofSetColor(255, 15);
         
-        
-        
-        
         for(int i = 0; i<orbits.size(); i++) {
             ofPushMatrix();
             
@@ -357,12 +349,11 @@ void ofApp::draw() {
             
             ofRotateYDeg( orbits[i].inclination );
             //          ofRotateZ( orbits[i].omega );
-            float _chMovingPath = ((movingPathFactor * per_y[i]));
+            float _chMovingPath = ((movingPathFactor * orbits[i].per_y));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             
             mesh.setVertex(0, _path);
             glPointSize(1);
-            
             
             
             //            ofSetColor(255, 0, 0, 50);
@@ -372,7 +363,6 @@ void ofApp::draw() {
             //            }
             //            longLine[i].addVertex(_path);
             //            longLine[i].draw();
-            
             
             
             if((int)(_chMovingPath + orbits[i].omega) % 360 >= 270 && (int)(_chMovingPath + orbits[i].omega) % 360 < 275) {
@@ -399,10 +389,7 @@ void ofApp::draw() {
             ofPopMatrix();
             
         }
-        
-        
-        
-        
+
     }
     
     ofPopMatrix();
@@ -435,12 +422,13 @@ void ofApp::draw() {
     cam.end();
     
     
-    //        ofPushMatrix();
-    //        ofPushStyle();
-    //        ofSetColor(255);
-    //        astroidFBO.draw(0,0);
-    //        ofPopStyle();
-    //        ofPopMatrix();
+    ofPushMatrix();
+    ofPushStyle();
+    ofSetColor(255);
+    astroidFBO.draw(ofGetMouseX(), ofGetMouseY()-512);
+    ofPopStyle();
+    ofPopMatrix();
+
     
     ofSetColor(255);
     stringstream ss;
@@ -461,7 +449,7 @@ void ofApp::astroidFBOBuff(){
     
     astroidFBO.begin();
     ofPushMatrix();
-    ofTranslate(0, ofGetHeight());
+    ofTranslate(0, BIT + 0);
     ofClear(0,255);
     if (orbits.size()>0) {
         for(int i = 0; i<orbits.size(); i++) {
@@ -471,8 +459,8 @@ void ofApp::astroidFBOBuff(){
             ofRotateYDeg( orbits[i].inclination );
             //            ofRotateZ( orbits[i].omega );
             
-            float _chMovingPath = (int)((movingPathFactor+ orbits[i].omega) * per_y[i] ) % 360;
-            ofVec3f _path = orbits[i].path.getPointAtPercent(ofMap(_chMovingPath, 0, 360, 0, 1));
+            float _chMovingPath = (int)((movingPathFactor * per_y[i])) % 360;
+            ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             mesh.setVertex(0, _path);
             
             glPointSize(2);
@@ -570,10 +558,6 @@ float ofApp::getAmp(float x, float y){
     ofColor _color = _p.getColor(x, y);
     _amp = _color.getLightness() / 255.0;
     
-    //    if (_amp>threshold) {
-    //        _amp = 0;
-    //    }
-    
     return _amp;
     
     
@@ -611,6 +595,8 @@ float ofApp::getPixelLeft(int x, int y){
     
 }
 
+
+
 //--------------------------------------------------------------
 float ofApp::getPixelRight(int x, int y){
     
@@ -639,13 +625,8 @@ float ofApp::getAmpLeft(float x, float y){
     ofColor _color = _p.getColor(x, y);
     _amp = 1.0 - _color.getLightness() / 255.0;
     
-    //    if (_amp>threshold) {
-    //        _amp = 0;
-    //    }
-    
     return _amp;
-    
-    
+
 }
 
 
@@ -656,12 +637,7 @@ float ofApp::getAmpRight(float x, float y){
     
     _amp = getPixelRight(x, y);
     
-    //    if (_amp>threshold) {
-    //        _amp = 0;
-    //    }
-    
     return _amp;
-    
     
 }
 
@@ -675,7 +651,6 @@ float ofApp::getFreqLeft(float y){
     float _maxHz = maxHertz;
     float _minHz = minHertz;
     float yToFreq = ofMap(y, 0, BIT-1, _minHz, _maxHz);
-    
     
     //TODO logarithmic scale
     freq = 1-(log(yToFreq)-log(_minHz)) / (log(_maxHz)-log(_minHz));
@@ -696,13 +671,9 @@ float ofApp::getFreqRight(float y){
     
     float freq=0;
     
-    //    if(height>0){
-    //    y-=9;
-    
     float _maxHz = maxHertz;
     float _minHz = minHertz;
     float yToFreq = ofMap(y, 0, BIT-1, _minHz, _maxHz);
-    
     
     //TODO logarithmic scale
     freq = 1-(log(yToFreq)-log(_minHz)) / (log(_maxHz)-log(_minHz));
@@ -710,7 +681,7 @@ float ofApp::getFreqRight(float y){
     freq += _minHz;
     //freq = 1-(yToFreq-minHz) / (maxHz-minHz);
     //freq= (spectrumHeight-y+minHz)/spectrumHeight*(maxHz-minHz);
-    //    }
+    //
     
     
     return freq;
@@ -725,58 +696,7 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
     
     if (bPlaying) {
         
-        //        for (int i = 0; i < buffer.getNumFrames(); i+=2){
-        //
-        //            waveRight = 0.0;
-        //            waveLeft = 0.0;
-        //
-        //            for(int n=0; n<BIT; n++){
-        //
-        //                if (ampLeft[n]>0.00001) {
-        //                    phasesLeft[n] += 512./(44100.0/(hertzScaleLeft[n]));
-        //
-        //                    if ( phasesLeft[n] >= 511 ) phasesLeft[n] -= 512;
-        //
-        //                    //remainder = phases[n] - floor(phases[n]);
-        //                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-        //
-        //                    if ( phasesLeft[n] < 0 ) phasesLeft[n] = 0;
-        //
-        //                    waveLeft+=(sineBufferLeft[1 + (long)phasesLeft[n]])*ampLeft[n];
-        //                }
-        //
-        //                if (ampRight[n]>0.00001) {
-        //                    phasesRight[n] += 512./(44100.0/(hertzScaleRight[n]));
-        //
-        //                    if ( phasesRight[n] >= 511 ) phasesRight[n] -= 512;
-        //
-        //                    //remainder = phases[n] - floor(phases[n]);
-        //                    //wave+=(float) ((1-remainder) * sineBuffer[1+ (long) phases[n]] + remainder * sineBuffer[2+(long) phases[n]])*amp[n];
-        //
-        //                    if ( phasesRight[n] < 0 ) phasesRight[n] = 0;
-        //
-        //                    waveRight+=(sineBufferRight[1 + (long)phasesRight[n]])*ampRight[n];
-        //                }
-        //
-        //            }
-        //
-        //            float _volumeSpeed = 20.0;
-        //            waveRight /= _volumeSpeed;
-        //            waveLeft /= _volumeSpeed;
-        //            if (waveRight > 1.0) waveRight=1.0;
-        //            if (waveRight<-1.0) waveRight=-1.0;
-        //            if (waveLeft>1.0) waveLeft=1.0;
-        //            if (waveLeft<-1.0) waveLeft=-1.0;
-        //
-        //            float _volume = 1.0;
-        //            buffer[i*buffer.getNumChannels()    ] = waveRight * _volume;
-        //            buffer[i*buffer.getNumChannels() + 1] = waveLeft * _volume;
-        //
-        //        }
-        
-        //        float remainder;
-        
-        for (int i = 0; i < buffer.getNumFrames(); i+=2){
+        for (int i = 0; i < buffer.getNumFrames(); i++){
             
             float _wave = 0.0;
             
@@ -789,17 +709,14 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
             }
             
             _wave *= 0.9;
-            //            if(_wave > 1.0) _wave = 1.0;
-            //            if(_wave < -1.0) _wave = -1.0;
-            
             float _volume = 0.85;
-            buffer[i * buffer.getNumChannels()] = _wave * _volume;
-            buffer[i * buffer.getNumChannels() + 1] = _wave * _volume;
+            buffer[i*buffer.getNumChannels()] = _wave * _volume;
+            buffer[i*buffer.getNumChannels() + 1] = _wave * _volume;
             
         }
         
     } else {
-        for (int i = 0; i < buffer.getNumFrames(); i+=2){
+        for (int i = 0; i < buffer.getNumFrames(); i++){
             buffer[i*buffer.getNumChannels()    ] = 0;
             buffer[i*buffer.getNumChannels() + 1] = 0;
         }
@@ -807,12 +724,6 @@ void ofApp::audioOut (ofSoundBuffer & buffer){
     
 }
 
-
-
-//--------------------------------------------------------------
-void ofApp::exit(){
-    //    std::exit(0);
-}
 
 
 
@@ -834,10 +745,8 @@ void ofApp::keyReleased(int key){
     }
     
     if (bPlaying)  {
-        //        ofSoundStreamStart();
         soundStream.start();
     } else {
-        //        ofSoundStreamStop();
         soundStream.stop();
     }
     
