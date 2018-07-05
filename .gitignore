@@ -12,3 +12,4 @@ project.xcworkspace
 *.json
 
 *.zip
+obj
