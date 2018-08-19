@@ -1,0 +1,880 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"wer",
+				"wernerMonth12"
+			],
+			[
+				"jeni",
+				"jenniferYear"
+			],
+			[
+				"ye",
+				"yearText"
+			],
+			[
+				"draw",
+				"drawAktivitaet"
+			],
+			[
+				"dar",
+				"drawAktivitaet"
+			],
+			[
+				"da",
+				"dateNumber"
+			],
+			[
+				"dra",
+				"drawTextInfo"
+			],
+			[
+				"st",
+				"strokeWeight"
+			],
+			[
+				"col",
+				"colorSet"
+			],
+			[
+				"marg",
+				"margin-left\tproperty"
+			],
+			[
+				"mar",
+				"margin-top\tproperty"
+			],
+			[
+				"_su",
+				"_colorSubCircle"
+			],
+			[
+				"su",
+				"subCircles"
+			],
+			[
+				"els",
+				"ellipse"
+			],
+			[
+				"pro",
+				"prototype"
+			],
+			[
+				"sa",
+				"satelliteCircle"
+			],
+			[
+				"wid",
+				"windowHeight"
+			],
+			[
+				"wi",
+				"windowWidth"
+			],
+			[
+				"fis",
+				"fishImages"
+			],
+			[
+				"font-s",
+				"font-size\tproperty"
+			],
+			[
+				"win",
+				"windowWidth"
+			],
+			[
+				"wind",
+				"windowHeight"
+			],
+			[
+				"mo",
+				"movingImg"
+			],
+			[
+				"push",
+				"pushMatrix"
+			],
+			[
+				"_in",
+				"_intStrip"
+			],
+			[
+				"marx",
+				"marxText"
+			],
+			[
+				"input",
+				"inputBrightness"
+			],
+			[
+				"_b",
+				"_imageBuff"
+			],
+			[
+				"pixe",
+				"pixelColor"
+			],
+			[
+				"fra",
+				"frameNum"
+			],
+			[
+				"rec",
+				"rectSize"
+			],
+			[
+				"camera",
+				"camera\tcamera"
+			],
+			[
+				"pix",
+				"pixelColors"
+			],
+			[
+				"p",
+				"pixelColor"
+			],
+			[
+				"_c",
+				"_cBuff"
+			],
+			[
+				"pixel",
+				"pixelsVector"
+			],
+			[
+				"rnadom",
+				"randomColor"
+			],
+			[
+				"key",
+				"keyboardColor"
+			],
+			[
+				"ave",
+				"aveluxColor"
+			],
+			[
+				"one",
+				"oneWindowColor"
+			],
+			[
+				"cpS",
+				"cpSub1"
+			],
+			[
+				"cp",
+				"cpSub5"
+			],
+			[
+				"contro",
+				"setupControlP5"
+			],
+			[
+				"x",
+				"xPos"
+			],
+			[
+				"basi",
+				"basicLineMoving"
+			],
+			[
+				"alp",
+				"alphabetFenster"
+			],
+			[
+				"al",
+				"alphaDisplay"
+			],
+			[
+				"mouse",
+				"mouse\tmousePressed"
+			],
+			[
+				"fade",
+				"fadeValue"
+			],
+			[
+				"fa",
+				"fadeValue"
+			],
+			[
+				"on",
+				"onoff"
+			],
+			[
+				"w",
+				"width"
+			],
+			[
+				"mid",
+				"midY"
+			],
+			[
+				"mou",
+				"mouseY"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"shap",
+				"shape"
+			],
+			[
+				"ste",
+				"_step"
+			],
+			[
+				"create",
+				"createVector"
+			],
+			[
+				"ra",
+				"radiusDt"
+			],
+			[
+				"radiu",
+				"radiusDt"
+			],
+			[
+				"tes",
+				"textS"
+			],
+			[
+				"fu",
+				"function"
+			],
+			[
+				"c",
+				"canvas\tTag"
+			],
+			[
+				"for",
+				"for\tfor (…) {…}"
+			],
+			[
+				"text",
+				"text-align"
+			],
+			[
+				"fo",
+				"for\tfor (…) {…}"
+			],
+			[
+				"u",
+				"u_time"
+			],
+			[
+				"rend",
+				"renderer"
+			]
+		]
+	},
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Makefile/Make.sublime-build",
+					""
+				],
+				[
+					"Packages/Makefile/Make.sublime-build",
+					"Clean"
+				]
+			],
+			[
+				"Packages/Makefile/Make.sublime-build",
+				""
+			]
+		],
+		[
+			[
+				[
+					"Packages/Processing/Build Systems/Processing.sublime-build",
+					""
+				],
+				[
+					"Packages/Processing/Build Systems/Processing.sublime-build",
+					"Re-run sketch"
+				],
+				[
+					"Packages/Processing/Build Systems/Processing.sublime-build",
+					"Run sketch (Processing 3 only)"
+				],
+				[
+					"Packages/Processing/Build Systems/Processing.sublime-build",
+					"Run sketch fullscreen"
+				],
+				[
+					"Packages/Processing/Build Systems/Processing.sublime-build",
+					"Export sketch as application"
+				],
+				[
+					"Packages/Processing/Build Systems/Processing.sublime-build",
+					"Kill running sketches"
+				],
+				[
+					"Packages/User/oF.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/Processing/Build Systems/Processing.sublime-build",
+				"Run sketch (Processing 3 only)"
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 160.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"star",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"sta",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"todo",
+				"TodoReview: Open Files"
+			],
+			[
+				"stop",
+				"SublimeServer: Stop SublimeServer"
+			],
+			[
+				"start",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"html",
+				"HTMLBeautify"
+			],
+			[
+				"htm",
+				"HTMLBeautify"
+			],
+			[
+				"kill",
+				"Build With: Processing - Kill running sketches"
+			],
+			[
+				"kil",
+				"Build With: Processing - Kill running sketches"
+			],
+			[
+				"ki",
+				"Build With: Processing - Kill running sketches"
+			],
+			[
+				"run",
+				"Build With: Processing - Run sketch (Processing 3 only)"
+			],
+			[
+				"reinden",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"reinde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"folder",
+				"File: New Folder Relative to Current View"
+			],
+			[
+				"bu",
+				"Build With: Processing - Run sketch (Processing 3 only)"
+			],
+			[
+				"bui",
+				"Build With: Processing - Run sketch (Processing 3 only)"
+			],
+			[
+				"buil",
+				"Build With: Processing - Run sketch (Processing 3 only)"
+			],
+			[
+				"renam",
+				"File: Rename"
+			],
+			[
+				"build",
+				"Build With: C++ Single File"
+			],
+			[
+				"marke",
+				"Marked"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"server",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"git comm",
+				"Git: Commit"
+			],
+			[
+				"git",
+				"Git: Add All"
+			],
+			[
+				"open in bro",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"open in ",
+				"Terminal: Open in project folder"
+			],
+			[
+				"open in",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"openo",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"open in v",
+				"File: Open In Browser - Testing Server"
+			],
+			[
+				"open",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"open in br",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"open run",
+				"File: Open In Browser - Production Server"
+			],
+			[
+				"bea",
+				"HTMLBeautify"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"beaut",
+				"HTMLBeautify"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"java",
+				"Javascript Beautify"
+			],
+			[
+				"remov",
+				"Package Control: Remove Package"
+			],
+			[
+				"ja",
+				"Javascript Beautify"
+			],
+			[
+				"serve",
+				"SublimeServer: Start SublimeServer"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"date ",
+				"InsertDate: Default"
+			],
+			[
+				"git push",
+				"Git: Push"
+			],
+			[
+				"git co",
+				"Git: Commit"
+			],
+			[
+				"git add",
+				"Git: Add All"
+			],
+			[
+				"insert",
+				"InsertDate: Default"
+			],
+			[
+				"insert date",
+				"InsertDate: Default"
+			],
+			[
+				"git a",
+				"Git: Add All"
+			],
+			[
+				"insert dat",
+				"InsertDate: Default"
+			],
+			[
+				"insertdate de",
+				"InsertDate: Default"
+			],
+			[
+				"git c",
+				"Git: Commit"
+			],
+			[
+				"git coo",
+				"Git: Quick Commit (repo, only already added files)"
+			]
+		],
+		"width": 478.0
+	},
+	"console":
+	{
+		"height": 122.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/jeonghopark/Projects/AsteroidAPI/AsteroidSonicMac/AsteroidSonic/src/ofApp.cpp",
+		"/Users/jeonghopark/Projects/AsteroidAPI/AsteroidSonicMac/AsteroidSonic/Makefile",
+		"/Users/jeonghopark/Projects/AsteroidAPI/AsteroidSonicMac/AsteroidSonic/config.make",
+		"/Users/jeonghopark/Processing/libraries/voce/library.properties",
+		"/Users/jeonghopark/Processing/libraries/minim/library.properties",
+		"/Users/jeonghopark/Projects/Illuminale_2018/js/index.html",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Annika/running_data/satelliteCircle_version/index.html",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Annika/running_data/satelliteCircle_version/script.js",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Jenniffer/fish_data/fish_v2_webgl/script_submenu.js",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Jenniffer/fish_data/fish_v2_webgl/test_f.csv",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Jenniffer/fish_data/fish_v1/script.js",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Jenniffer/fish_data/fish_v2_webgl/script.js",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Jenniffer/fish_data/index.html",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Annika/running_data/index.html",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Dian/muell_data/muell_v1/script.js",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Dian/muell_data/index.html",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/quantifiedSelf_SS2018/CNAME",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/quantifiedSelf_SS2018/index.html",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Dian/muell_data/CNAME",
+		"/Users/jeonghopark/Projects/QuantifiedSelf_SS2018/Annika/running_data/first_setting/script.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/allOff.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/_grid24x8_clouds.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/webSite/preview/progressive.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/webSite/FullPageBackgroundImage/progressive.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5_karlmarx/all_5x5_karlmarx.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5_karlmarx_flow/Fenster.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/libraries/opc_mouse_control.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/_strip64_flames.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/basicSetting/basicSetting.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5_karlmarx_flow/all_5x5_karlmarx_flow.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5/all_5x5.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5/Fenster.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5_karlmarx_flow/Typo.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5/Typo.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/all_5x5_karlmarx/Typo.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/model/Fenster.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/model/model.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/processing/strip64_flames/strip64_flames.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/bin/config.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/p5js_sketches/strip22_flames_onePixel.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/bin/config_model.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/p5js_sketches/strip22_rectAudio.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/strip22_audioFFT.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/p5js_sketches/strip22_audioFFT.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/bin/config_7891.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/strip22_flames.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/Zitat.txt",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/pixelartPlay/pixelartPlay.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_lumeus_5x5/pixelartCapture/pixelartCapture.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/pixelartCapture/data/test_1",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/pixelartCapture/data/test.csv",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/pixelartPlay/data/test.csv",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/pixelartCapture/pixelartCapture.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/all_5x5/Fenster.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/all_5x5/all_5x5.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/pixelartCapture/data/new.csv",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/all_5x5/Typo.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/alphabet.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/alphabet.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/libraries/opc_alphabet.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing_avelux_5x5/basicSetting/basicSetting.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing/pixelartCapture/pixelartCapture.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing/basicSetting/basicSetting.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing/all_5x5/all_5x5.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing/alphabet_5x5/alphabet_5x5.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/gl_server_avelux_5x5.c",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/bin/gl_server_avelux_5x5",
+		"/Users/jeonghopark/Projects/LED_Fassade/Bestellung Datum.md",
+		"/Users/jeonghopark/Projects/LED_Fassade/TechnicNote.md",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/libraries/opc.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5_multi1.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/mouse_control.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/multi_3x3.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/mouse_control.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing/mapper2d/mapper2d.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/processing/grid24x8z_clouds/grid24x8z_clouds.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/Processing/capture2opc/capture2opc.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/server/src/fcserver.cpp",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/nyan_cat.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/opc.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/rgb_test_pattern.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/sailor_moon.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/speed_test.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/spatial_stripes.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/example.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/opc_server.c",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/gl_server.c",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5_multi5.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5_multi4.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5_multi3.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5_multi2.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace_avelux_5x5_multi.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/Makefile",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/opc.h",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/p5js_sketches/strip64_flames.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/p5js/p5js_sketches/strip64_flames_Multi.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/fadecandy-master/examples/processing/alphabet_5x5/alphabet_5x5.pde",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/dummy_server.c",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/dummy_client.c",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/cli.h",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/layouts/freespace.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/types.h",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/opc-simulator-master/server.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/opc-simulator-master/test.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/opc-simulator-master/ui.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/opc-simulator-master/package.json",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/websocket-opc-master/server.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/websockify-master/websockify.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/websockify-master/websockify/websocket.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/fireImage.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/flames_Multi.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/flames_Multi.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/_grid8x8_dot.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/libraries/opc.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/grid8x8_dot.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/strip64_flames.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/src/cJSON.c",
+		"/Users/jeonghopark/Projects/LED_Fassade/opc/openpixelcontrol-master/python/raver_plaid.py",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/readme.md",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/multi_3x3.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/multi_3x3_oneWindow.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/p5js_sketches/multi_3x3_oneWindow.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/libraries/opc_multi_3x3_oneWindow.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/libraries/opc_flames_Multi.js",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/audioFFT.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/onePixel.html",
+		"/Users/jeonghopark/Projects/LED_Fassade/p5js_fadecandy/rectAudio.html"
+	],
+	"find":
+	{
+		"height": 27.0
+	},
+	"find_in_files":
+	{
+		"height": 132.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 43.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.astyle_error_message":
+	{
+		"height": 0.0
+	},
+	"output.exec":
+	{
+		"height": 103.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.git":
+	{
+		"height": 100.0
+	},
+	"output.sftp":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"replace":
+	{
+		"height": 50.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/Projects/Illuminale/Illuminale.sublime-workspace"
+			],
+			[
+				"je",
+				"~/jeonghopark.github.io/jeonghopark.github.io.sublime-project"
+			],
+			[
+				"j",
+				"~/jeonghopark.github.io/jeonghopark.github.io.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 357.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 395.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 282.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+		"max_columns": 2
+	}
+}
