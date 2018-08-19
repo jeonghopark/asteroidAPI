@@ -91,24 +91,22 @@ public:
     ofJson stroke;
     
     ofEasyCam cam;
-    float timePlanet;
     bool fullscreen;
     
     ofSpherePrimitive sun;
     
     vector<Orbit> orbits;
     vector<Orbit> setupOrbits(string _s);
-    
-    float rotateZ;
-    
+        
     float movingPathFactor;
+    float movingPathFactorV();
     
     ofMesh mesh;
     
     vector<float> per_y;
     
     ofFbo astroidFBO;
-    void astroidFBOBuff();
+    void astroidFBOBuff(float _f);
     float threshold;
     
     Orbit earthOrbit;
@@ -119,10 +117,7 @@ public:
     
     // from TextFacingCameraSample sourcecode
     void billboardBegin();
-    void billboardEnd();
-    
-    vector< vector<float> > _nYPos;
-    
+    void billboardEnd();    
     
     
     ofxPanel gui;
@@ -133,7 +128,7 @@ public:
     ofMesh circleMesh(ofJson _j);
     ofPolyline circlePath(ofJson _j);
     
-    vector<ofPolyline> _lineDraw;
+    vector<ofPolyline> drawTrackingLine;
     vector<ofPolyline> longLine;
     
     vector< vector<ofPoint> > longLinePoint;

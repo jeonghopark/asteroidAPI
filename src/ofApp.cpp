@@ -96,10 +96,7 @@ void ofApp::setup() {
 
     orbits = setupOrbits("asteroid_500.json");
 
-    rotateZ = 0;
-
-    _nYPos.resize(orbits.size());
-    _lineDraw.resize(orbits.size());
+    drawTrackingLine.resize(orbits.size());
 
     longLine.resize(orbits.size());
     longLinePoint.resize(orbits.size());
@@ -265,23 +262,37 @@ ofPolyline ofApp::circlePath(ofJson _j) {
 
 
 
+//--------------------------------------------------------------
+float ofApp::movingPathFactorV(){
+    
+    static float _f = 0;
+    _f += 0.225;
+
+    return _f;
+
+}
+
 
 //--------------------------------------------------------------
 void ofApp::update() {
 
-    timePlanet = timePlanet + 1;
-    rotateZ = rotateZ + 0.25;
+    cout << movingPathFactorV() << endl;
+
     movingPathFactor = movingPathFactor + 0.225;
 
 
-    astroidFBOBuff();
     //    ofPixels _p;
     //    astroidFBO.readToPixels(_p);
 
+    vector< vector<float> > _nYPos;
+    _nYPos.resize(orbits.size());
+
+    float _movingF = movingPathFactorV();
+    // astroidFBOBuff(_movingF);
 
     for (int i = 0; i < orbits.size(); i++) {
         vector<float> _f;
-        float _chMovingPath = ((movingPathFactor * per_y[i]));
+        float _chMovingPath = ((_movingF * per_y[i]));
         ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
         if ((int)(_chMovingPath + orbits[i].omega) % 360 == 270) {
             _f.push_back( BIT + _path.y );
@@ -291,21 +302,14 @@ void ofApp::update() {
 
 
     if ( bPlaying ) {
-        for (int i = 0; i < orbits.size(); i++) {
-        }
-
-        for (int n = 0; n < BIT; n++) {
-            //                        int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, BIT*2);
-            //                        amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
-            //                        hertzScale[n] = (int)getFreq(n);
-
-            //                    int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            //                    ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
-            //                    hertzScaleRight[n] = int(getFreqRight(n));
-        }
-
-
-
+        // for (int n = 0; n < BIT; n++) {
+            // int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, BIT*2);
+            // amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
+            // hertzScale[n] = (int)getFreq(n);
+            // int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+            // ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
+            // hertzScaleRight[n] = int(getFreqRight(n));
+        // }
 
         for (int i = 0; i < BIT; i++) {
             amp[i] *= 0.91;
@@ -314,15 +318,13 @@ void ofApp::update() {
         for (int n = 0; n < _nYPos.size(); n++) {
             // int _yRatioLeft = (int)ofMap(n, 0, BIT - 1, 0, ofGetHeight());
             if (_nYPos[n].size() > 0) {
-                int _index = _nYPos[n].at(0);
+                int _index = _nYPos[n][0];
                 float _valueY = ofMap(_index, 0, BIT, 0, 1);
                 amp[_index] = (amp[_index] * line + _valueY) / (line + 1);
                 hertzScale[_index] = (int)getFreq(_index);
             }
         }
     }
-
-//    _nYPos.clear();
 
 }
 
@@ -389,13 +391,13 @@ void ofApp::draw() {
                 //                ofDrawLine(_x, _y, -15, _x, _y, 15);
                 ofSetColor(255, 255, 255, 80);
                 glPointSize(2);
-                _lineDraw[i].addVertex(_path.x, _path.y, _path.z);
-                _lineDraw[i].draw();
+                drawTrackingLine[i].addVertex(_path.x, _path.y, _path.z);
+                drawTrackingLine[i].draw();
             } else {
                 ofSetColor(255, 255, 255, 255);
                 glPointSize(1);
 
-                _lineDraw[i].clear();
+                drawTrackingLine[i].clear();
             }
 
 
@@ -461,7 +463,7 @@ void ofApp::draw() {
 
 
 //--------------------------------------------------------------
-void ofApp::astroidFBOBuff() {
+void ofApp::astroidFBOBuff(float _f) {
 
     astroidFBO.begin();
     ofPushMatrix();
@@ -475,7 +477,7 @@ void ofApp::astroidFBOBuff() {
             ofRotateYDeg( orbits[i].inclination );
             //            ofRotateZ( orbits[i].omega );
 
-            float _chMovingPath = (int)((movingPathFactor * per_y[i])) % 360;
+            float _chMovingPath = (int)((_f * per_y[i])) % 360;
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             mesh.setVertex(0, _path);
 
@@ -563,6 +565,7 @@ float ofApp::getPixel(int x, int y) {
 }
 
 
+
 //--------------------------------------------------------------
 float ofApp::getAmp(float x, float y) {
 
@@ -576,8 +579,8 @@ float ofApp::getAmp(float x, float y) {
 
     return _amp;
 
-
 }
+
 
 
 //--------------------------------------------------------------
@@ -701,7 +704,6 @@ float ofApp::getFreqRight(float y) {
 
     return freq;
 
-
 }
 
 
@@ -747,6 +749,8 @@ void ofApp::keyPressed(int key) {
 
 }
 
+
+
 //--------------------------------------------------------------
 void ofApp::keyReleased(int key) {
 
@@ -767,6 +771,8 @@ void ofApp::keyReleased(int key) {
 
 
 }
+
+
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y) {
