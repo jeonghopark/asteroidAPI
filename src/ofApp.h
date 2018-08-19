@@ -9,7 +9,7 @@
 #define BIT 512
 
 
-struct orbit{
+struct Orbit{
     ofPolyline path;
     ofMesh mesh;
     ofVboMesh mVbo;
@@ -96,7 +96,8 @@ public:
     
     ofSpherePrimitive sun;
     
-    vector<orbit> orbits;
+    vector<Orbit> orbits;
+    vector<Orbit> setupOrbits(string _s);
     
     float rotateZ;
     
@@ -110,7 +111,8 @@ public:
     void astroidFBOBuff();
     float threshold;
     
-    orbit earthOrbit;
+    Orbit earthOrbit;
+    Orbit setupEarthOrbit();
     
     void drawSun();
     ofTrueTypeFont sunName;

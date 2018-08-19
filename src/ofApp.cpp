@@ -79,7 +79,6 @@ void ofApp::setup() {
 
     threshold = 0.9;
 
-    // m : translation key
     cam.setAutoDistance(false);
     cam.setDistance(400);
 
@@ -93,80 +92,9 @@ void ofApp::setup() {
 
     mesh.setMode(OF_PRIMITIVE_POINTS);
 
-    float _eEarth = 0.01671123;
-    for (int i = 0; i <= 360; i++) {
-        double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
+    earthOrbit = setupEarthOrbit();
 
-        float _size = 100;
-        float _x1 = _r * cos(ofDegToRad(i)) * _size;
-        float _y1 = _r * sin(ofDegToRad(i)) * _size;
-
-        earthOrbit.path.addVertex( _x1, _y1 );
-    }
-
-
-    ofFile _file("asteroid_500.json");
-
-    int _counter = 0;
-    if (_file.exists()) {
-        _file >> json;
-        orbits.resize( json.size() );
-        orbit _orbitE;
-
-        for (auto & stroke : json) {
-
-            double _a = stroke["a"];
-            double _ad = stroke["ad"];
-            double _e = stroke["e"];
-            double _q = stroke["q"];
-            double _i = stroke["i"];
-            double _om = stroke["om"];
-
-            per_y.push_back( stroke["per_y"] );
-
-            mesh.addVertex( ofVec3f( 0, 0, 0) );
-
-            _orbitE.path = circlePath(stroke);
-            _orbitE.inclination = _i;
-            _orbitE.omega = _om;
-            _orbitE.mVbo = circleMesh(stroke);
-            _orbitE.per_y = stroke["per_y"];
-
-            //            int _counter = &stroke - &json[0];
-            orbits[_counter] = _orbitE;
-            _counter++;
-
-        }
-
-    } else {
-        orbit _orbitE;
-
-        for (auto & stroke : json) {
-
-            double _a = stroke["a"];
-            double _ad = stroke["ad"];
-            double _e = stroke["e"];
-            double _q = stroke["q"];
-            double _i = stroke["i"];
-            double _om = stroke["om"];
-
-            per_y.push_back( stroke["per_y"] );
-
-            mesh.addVertex( ofVec3f( 0, 0, 0) );
-
-            _orbitE.path = circlePath(stroke);
-            _orbitE.inclination = _i;
-            _orbitE.omega = _om;
-            _orbitE.mVbo = circleMesh(stroke);
-            _orbitE.per_y = stroke["per_y"];
-
-            //            int _counter = &stroke - &json[0];
-            orbits[_counter] = _orbitE;
-            _counter++;
-
-        }
-
-    }
+    orbits = setupOrbits("asteroid_500.json");
 
     rotateZ = 0;
 
@@ -179,10 +107,102 @@ void ofApp::setup() {
     for (int i = 0; i < orbits.size(); i++) {
         longLinePoint[i].resize(360);
     }
+    
 }
 
 
 
+//--------------------------------------------------------------
+vector<Orbit> ofApp::setupOrbits(string _s) {
+
+    vector<Orbit> _oV;
+
+    ofFile _file(_s);
+
+    int _counter = 0;
+    if (_file.exists()) {
+        _file >> json;
+        _oV.resize( json.size() );
+        Orbit _orbitE;
+
+        for (auto & stroke : json) {
+
+            double _a = stroke["a"];
+            double _ad = stroke["ad"];
+            double _e = stroke["e"];
+            double _q = stroke["q"];
+            double _i = stroke["i"];
+            double _om = stroke["om"];
+
+            per_y.push_back( stroke["per_y"] );
+
+            mesh.addVertex( ofVec3f( 0, 0, 0) );
+
+            _orbitE.path = circlePath(stroke);
+            _orbitE.inclination = _i;
+            _orbitE.omega = _om;
+            _orbitE.mVbo = circleMesh(stroke);
+            _orbitE.per_y = stroke["per_y"];
+
+            //            int _counter = &stroke - &json[0];
+            _oV[_counter] = _orbitE;
+            _counter++;
+        }
+
+    } else {
+        Orbit _orbitE;
+
+        for (auto & stroke : json) {
+
+            double _a = stroke["a"];
+            double _ad = stroke["ad"];
+            double _e = stroke["e"];
+            double _q = stroke["q"];
+            double _i = stroke["i"];
+            double _om = stroke["om"];
+
+            per_y.push_back( stroke["per_y"] );
+
+            mesh.addVertex( ofVec3f( 0, 0, 0) );
+
+            _orbitE.path = circlePath(stroke);
+            _orbitE.inclination = _i;
+            _orbitE.omega = _om;
+            _orbitE.mVbo = circleMesh(stroke);
+            _orbitE.per_y = stroke["per_y"];
+
+            //            int _counter = &stroke - &json[0];
+            _oV[_counter] = _orbitE;
+            _counter++;
+
+        }
+    }
+
+    return _oV;
+
+}
+
+
+
+//--------------------------------------------------------------
+Orbit ofApp::setupEarthOrbit() {
+
+    Orbit _o;
+
+    float _eEarth = 0.01671123;
+    for (int i = 0; i <= 360; i++) {
+        double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
+
+        float _size = 100;
+        float _x1 = _r * cos(ofDegToRad(i)) * _size;
+        float _y1 = _r * sin(ofDegToRad(i)) * _size;
+
+        _o.path.addVertex( _x1, _y1 );
+    }
+
+    return _o;
+
+}
 
 
 //--------------------------------------------------------------
