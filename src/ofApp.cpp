@@ -107,7 +107,7 @@ void ofApp::setup() {
     for (int i = 0; i < orbits.size(); i++) {
         longLinePoint[i].resize(360);
     }
-    
+
 }
 
 
@@ -127,10 +127,10 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
 
         for (auto & stroke : json) {
 
-            double _a = stroke["a"];
-            double _ad = stroke["ad"];
-            double _e = stroke["e"];
-            double _q = stroke["q"];
+            // double _a = stroke["a"];
+            // double _ad = stroke["ad"];
+            // double _e = stroke["e"];
+            // double _q = stroke["q"];
             double _i = stroke["i"];
             double _om = stroke["om"];
 
@@ -154,10 +154,10 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
 
         for (auto & stroke : json) {
 
-            double _a = stroke["a"];
-            double _ad = stroke["ad"];
-            double _e = stroke["e"];
-            double _q = stroke["q"];
+            // double _a = stroke["a"];
+            // double _ad = stroke["ad"];
+            // double _e = stroke["e"];
+            // double _q = stroke["q"];
             double _i = stroke["i"];
             double _om = stroke["om"];
 
@@ -208,11 +208,11 @@ Orbit ofApp::setupEarthOrbit() {
 //--------------------------------------------------------------
 ofMesh ofApp::circleMesh(ofJson _j) {
 
-    double _a = _j["a"];
+    // double _a = _j["a"];
     double _ad = _j["ad"];
     double _e = _j["e"];
-    double _q = _j["q"];
-    double _i = _j["i"];
+    // double _q = _j["q"];
+    // double _i = _j["i"];
     double _om = _j["om"];
 
     ofMesh _mesh;
@@ -240,11 +240,11 @@ ofMesh ofApp::circleMesh(ofJson _j) {
 //--------------------------------------------------------------
 ofPolyline ofApp::circlePath(ofJson _j) {
 
-    double _a = _j["a"];
+    // double _a = _j["a"];
     double _ad = _j["ad"];
     double _e = _j["e"];
-    double _q = _j["q"];
-    double _i = _j["i"];
+    // double _q = _j["q"];
+    // double _i = _j["i"];
     double _om = _j["om"];
 
     ofPolyline _orbitPath;
@@ -312,7 +312,7 @@ void ofApp::update() {
         }
 
         for (int n = 0; n < _nYPos.size(); n++) {
-            int _yRatioLeft = (int)ofMap(n, 0, BIT - 1, 0, ofGetHeight());
+            // int _yRatioLeft = (int)ofMap(n, 0, BIT - 1, 0, ofGetHeight());
             if (_nYPos[n].size() > 0) {
                 int _index = _nYPos[n].at(0);
                 float _valueY = ofMap(_index, 0, BIT, 0, 1);
@@ -391,8 +391,6 @@ void ofApp::draw() {
                 glPointSize(2);
                 _lineDraw[i].addVertex(_path.x, _path.y, _path.z);
                 _lineDraw[i].draw();
-
-                ofSetColor(255, 255, 255, 255);
             } else {
                 ofSetColor(255, 255, 255, 255);
                 glPointSize(1);
@@ -428,7 +426,6 @@ void ofApp::draw() {
     ofPopMatrix();
 
 
-
     ofPushMatrix();
     ofPushStyle();
     ofSetColor(255, 40);
@@ -437,15 +434,16 @@ void ofApp::draw() {
     ofPopStyle();
     ofPopMatrix();
 
+
     cam.end();
 
 
-    ofPushMatrix();
-    ofPushStyle();
-    ofSetColor(255);
-    astroidFBO.draw(ofGetMouseX(), ofGetMouseY() - 512);
-    ofPopStyle();
-    ofPopMatrix();
+    // ofPushMatrix();
+    // ofPushStyle();
+    // ofSetColor(255);
+    // astroidFBO.draw(ofGetMouseX(), ofGetMouseY() - 512);
+    // ofPopStyle();
+    // ofPopMatrix();
 
 
     ofSetColor(255);
@@ -608,8 +606,7 @@ float ofApp::getFreq(float y) {
 //--------------------------------------------------------------
 float ofApp::getPixelLeft(int x, int y) {
 
-
-    //    return _sum;
+    return 0;
 
 }
 
