@@ -16,12 +16,12 @@ float sines[512] = {0, 0.012268, 0.024536, 0.036804, 0.049042, 0.06131, 0.073547
 //--------------------------------------------------------------
 void ofApp::setup() {
 
-// #ifdef DEBUG
+#ifdef DEBUG
 
-// #else
-//     // ofSetDataPathRoot("../Resources/data/");
-// #endif
-//     // ofSetDataPathRoot("../Resources/data/");
+#else
+    ofSetDataPathRoot("../Resources/data/");
+#endif
+
 
     ofBackground(0);
     ofEnableAntiAliasing();
