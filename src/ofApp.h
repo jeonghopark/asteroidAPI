@@ -85,10 +85,7 @@ public:
     float getAmpLeft(float x, float y, ofPixels _p);
     
     
-    //    ofxJSONElement json;
-    
     ofJson json;
-    ofJson stroke;
     
     ofEasyCam cam;
     bool fullscreen;

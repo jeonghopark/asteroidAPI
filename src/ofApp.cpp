@@ -127,8 +127,6 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
             _orbitE.omega = _om;
             _orbitE.mVbo = circleMesh(stroke);
             _orbitE.per_y = stroke["per_y"];
-
-            //            int _counter = &stroke - &json[0];
             _oV[_counter] = _orbitE;
             _counter++;
         }
@@ -150,8 +148,6 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
             _orbitE.omega = _om;
             _orbitE.mVbo = circleMesh(stroke);
             _orbitE.per_y = stroke["per_y"];
-
-            //            int _counter = &stroke - &json[0];
             _oV[_counter] = _orbitE;
             _counter++;
 
@@ -279,9 +275,7 @@ float ofApp::movingPathFactorF() {
 //--------------------------------------------------------------
 void ofApp::update() {
 
-
     // movingPathFactor = movingPathFactor + 0.225;
-
 
     //    ofPixels _p;
     //    astroidFBO.readToPixels(_p);
