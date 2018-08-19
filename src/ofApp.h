@@ -130,12 +130,9 @@ public:
     ofPolyline circlePath(ofJson _j);
     
     vector<ofPolyline> drawTrackingLine;
-    vector<ofPolyline> longLine;
 
     void drawTriggerLine();
-    
-    vector< vector<ofPoint> > longLinePoint;
-    
+        
 };
 
 

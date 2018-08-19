@@ -96,13 +96,6 @@ void ofApp::setup() {
 
     drawTrackingLine.resize(orbits.size());
 
-    longLine.resize(orbits.size());
-    longLinePoint.resize(orbits.size());
-
-    for (int i = 0; i < orbits.size(); i++) {
-        longLinePoint[i].resize(360);
-    }
-
 }
 
 
@@ -257,8 +250,8 @@ ofPolyline ofApp::circlePath(ofJson _j) {
 
 
 //--------------------------------------------------------------
-float ofApp::movingPathFactorUpdate(){
-    
+float ofApp::movingPathFactorUpdate() {
+
     static float _f = 0;
     _f += 0.225;
 
@@ -267,15 +260,15 @@ float ofApp::movingPathFactorUpdate(){
 }
 
 //--------------------------------------------------------------
-float ofApp::movingPathFactorV(){
-    
+float ofApp::movingPathFactorV() {
+
     return movingPathFactorUpdate();
 
 }
 
 
 //--------------------------------------------------------------
-float ofApp::movingPathFactorF(){
+float ofApp::movingPathFactorF() {
     static int _n = 0;
     _n ++;
     static float _f = 0;
@@ -319,12 +312,12 @@ void ofApp::update() {
 
     if ( bPlaying ) {
         // for (int n = 0; n < BIT; n++) {
-            // int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, BIT*2);
-            // amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
-            // hertzScale[n] = (int)getFreq(n);
-            // int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-            // ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
-            // hertzScaleRight[n] = int(getFreqRight(n));
+        // int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, BIT*2);
+        // amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
+        // hertzScale[n] = (int)getFreq(n);
+        // int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
+        // ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
+        // hertzScaleRight[n] = int(getFreqRight(n));
         // }
 
         for (int i = 0; i < BIT; i++) {
@@ -349,7 +342,7 @@ void ofApp::update() {
 
 //--------------------------------------------------------------
 void ofApp::drawTriggerLine() {
-   
+
 }
 
 
@@ -364,82 +357,55 @@ void ofApp::draw() {
     ofRotateXDeg(180);
 
 
-    ofPushMatrix();
-
     drawSun();
+
 
     ofPushStyle();
     ofSetColor(255, 120);
     earthOrbit.path.draw();
     ofPopStyle();
 
-    if (orbits.size() > 0) {
+
+    float _movingF = movingPathFactorF();
+    ofMesh _p;
+    _p.setMode(OF_PRIMITIVE_POINTS);
+    _p.addVertex( ofVec3f(0, 0, 0) );
+
+    for (int i = 0; i < orbits.size(); i++) {
+
+        ofPushMatrix();
+        ofRotateYDeg( orbits[i].inclination );
+
+        ofPushStyle();
         ofSetColor(255, 15);
-
-        float _movingF = movingPathFactorF();
-
-        ofMesh _p;
-        _p.setMode(OF_PRIMITIVE_POINTS);
-
-        for (int i = 0; i < orbits.size(); i++) {
-            _p.addVertex( ofVec3f(0, 0, 0) );
-            ofPushMatrix();
-
-            ofRotateYDeg( orbits[i].inclination );
-            //          ofRotateZ( orbits[i].omega );
-            //                      orbits[i].path.draw();
-            orbits[i].mVbo.draw();
-
-            ofPopMatrix();
-
-            ofPushMatrix();
-            ofPushStyle();
-
-            ofRotateYDeg( orbits[i].inclination );
-            //          ofRotateZ( orbits[i].omega );
-            float _chMovingPath = ((_movingF * orbits[i].per_y));
-            ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
-
-            _p.setVertex(0, _path);
-            glPointSize(1);
-
-            ofSetColor(255, 255, 255, 255);
-            _p.draw();
-
-            //            ofSetColor(255, 0, 0, 50);
-            ////            longLinePoint[i].push_back(_path);
-            //            if( (int)(_chMovingPath + orbits[i].omega) % 360 == 0) {
-            ////                longLinePoint[i].erase(longLinePoint[i].begin());
-            //            }
-            //            longLine[i].addVertex(_path);
-            //            longLine[i].draw();
+        orbits[i].mVbo.draw();
+        ofPopStyle();
 
 
-            if ((int)(_chMovingPath + orbits[i].omega) % 360 >= 270 && (int)(_chMovingPath + orbits[i].omega) % 360 < 275) {
-                //                float _x = _path.x;
-                //                float _y = _path.y;
-                //                ofDrawLine(_x, _y, -15, _x, _y, 15);
-                ofSetColor(255, 255, 255, 80);
-                glPointSize(2);
-                drawTrackingLine[i].addVertex(_path.x, _path.y, _path.z);
-                drawTrackingLine[i].draw();
-            } else {
-                ofSetColor(255, 255, 255, 255);
-                glPointSize(1);
-
-                drawTrackingLine[i].clear();
-            }
+        ofPushStyle();
+        float _chMovingPath = ((_movingF * orbits[i].per_y));
+        ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
+        _p.setVertex(0, _path);
+        ofSetColor(255, 255, 255, 255);
+        glPointSize(1);
+        _p.draw();
+        ofPopStyle();
 
 
-            ofPopStyle();
-            ofPopMatrix();
-
+        ofPushStyle();
+        if ((int)(_chMovingPath + orbits[i].omega) % 360 >= 270 && (int)(_chMovingPath + orbits[i].omega) % 360 < 275) {
+            ofSetColor(255, 255, 255, 80);
+            glPointSize(2);
+            drawTrackingLine[i].addVertex(_path.x, _path.y, _path.z);
+            drawTrackingLine[i].draw();
+        } else {
+            drawTrackingLine[i].clear();
         }
+        ofPopStyle();
+
+        ofPopMatrix();
 
     }
-
-    ofPopMatrix();
-
 
 
     ofPushMatrix();
