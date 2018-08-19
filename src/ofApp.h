@@ -99,9 +99,10 @@ public:
     vector<Orbit> setupOrbits(string _s);
         
     float movingPathFactor;
+    float movingPathFactorUpdate();
     float movingPathFactorV();
-    
-    ofMesh mesh;
+    float movingPathFactorF();
+
     
     vector<float> per_y;
     
@@ -130,6 +131,8 @@ public:
     
     vector<ofPolyline> drawTrackingLine;
     vector<ofPolyline> longLine;
+
+    void drawTriggerLine();
     
     vector< vector<ofPoint> > longLinePoint;
     

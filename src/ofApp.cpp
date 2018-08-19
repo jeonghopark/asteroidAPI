@@ -90,8 +90,6 @@ void ofApp::setup() {
 
     sun.set(2, 10);
 
-    mesh.setMode(OF_PRIMITIVE_POINTS);
-
     earthOrbit = setupEarthOrbit();
 
     orbits = setupOrbits("asteroid_500.json");
@@ -133,8 +131,6 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
 
             per_y.push_back( stroke["per_y"] );
 
-            mesh.addVertex( ofVec3f( 0, 0, 0) );
-
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
             _orbitE.omega = _om;
@@ -159,8 +155,6 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
             double _om = stroke["om"];
 
             per_y.push_back( stroke["per_y"] );
-
-            mesh.addVertex( ofVec3f( 0, 0, 0) );
 
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
@@ -263,7 +257,7 @@ ofPolyline ofApp::circlePath(ofJson _j) {
 
 
 //--------------------------------------------------------------
-float ofApp::movingPathFactorV(){
+float ofApp::movingPathFactorUpdate(){
     
     static float _f = 0;
     _f += 0.225;
@@ -272,13 +266,32 @@ float ofApp::movingPathFactorV(){
 
 }
 
+//--------------------------------------------------------------
+float ofApp::movingPathFactorV(){
+    
+    return movingPathFactorUpdate();
+
+}
+
+
+//--------------------------------------------------------------
+float ofApp::movingPathFactorF(){
+    static int _n = 0;
+    _n ++;
+    static float _f = 0;
+    _f += 0.225;
+
+    return  _f;
+
+}
+
+
 
 //--------------------------------------------------------------
 void ofApp::update() {
 
-    cout << movingPathFactorV() << endl;
 
-    movingPathFactor = movingPathFactor + 0.225;
+    // movingPathFactor = movingPathFactor + 0.225;
 
 
     //    ofPixels _p;
@@ -287,7 +300,10 @@ void ofApp::update() {
     vector< vector<float> > _nYPos;
     _nYPos.resize(orbits.size());
 
-    float _movingF = movingPathFactorV();
+
+
+    float _movingF = movingPathFactorF();
+
     // astroidFBOBuff(_movingF);
 
     for (int i = 0; i < orbits.size(); i++) {
@@ -331,6 +347,12 @@ void ofApp::update() {
 
 
 
+//--------------------------------------------------------------
+void ofApp::drawTriggerLine() {
+   
+}
+
+
 
 //--------------------------------------------------------------
 void ofApp::draw() {
@@ -354,7 +376,13 @@ void ofApp::draw() {
     if (orbits.size() > 0) {
         ofSetColor(255, 15);
 
+        float _movingF = movingPathFactorF();
+
+        ofMesh _p;
+        _p.setMode(OF_PRIMITIVE_POINTS);
+
         for (int i = 0; i < orbits.size(); i++) {
+            _p.addVertex( ofVec3f(0, 0, 0) );
             ofPushMatrix();
 
             ofRotateYDeg( orbits[i].inclination );
@@ -369,12 +397,14 @@ void ofApp::draw() {
 
             ofRotateYDeg( orbits[i].inclination );
             //          ofRotateZ( orbits[i].omega );
-            float _chMovingPath = ((movingPathFactor * orbits[i].per_y));
+            float _chMovingPath = ((_movingF * orbits[i].per_y));
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
 
-            mesh.setVertex(0, _path);
+            _p.setVertex(0, _path);
             glPointSize(1);
 
+            ofSetColor(255, 255, 255, 255);
+            _p.draw();
 
             //            ofSetColor(255, 0, 0, 50);
             ////            longLinePoint[i].push_back(_path);
@@ -400,8 +430,6 @@ void ofApp::draw() {
                 drawTrackingLine[i].clear();
             }
 
-
-            mesh.draw();
 
             ofPopStyle();
             ofPopMatrix();
@@ -470,7 +498,12 @@ void ofApp::astroidFBOBuff(float _f) {
     ofTranslate(0, BIT + 0);
     ofClear(0, 255);
     if (orbits.size() > 0) {
+
+        ofMesh _p;
+        _p.setMode(OF_PRIMITIVE_POINTS);
+
         for (int i = 0; i < orbits.size(); i++) {
+            _p.addVertex( ofVec3f(0, 0, 0) );
             ofPushMatrix();
             ofPushStyle();
             ofSetColor(255);
@@ -479,10 +512,10 @@ void ofApp::astroidFBOBuff(float _f) {
 
             float _chMovingPath = (int)((_f * per_y[i])) % 360;
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
-            mesh.setVertex(0, _path);
+            _p.setVertex(0, _path);
 
             glPointSize(2);
-            mesh.draw();
+            _p.draw();
 
             ofPopStyle();
             ofPopMatrix();
