@@ -122,8 +122,6 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
             double _i = stroke["i"];
             double _om = stroke["om"];
 
-            per_y.push_back( stroke["per_y"] );
-
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
             _orbitE.omega = _om;
@@ -146,8 +144,6 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
             // double _q = stroke["q"];
             double _i = stroke["i"];
             double _om = stroke["om"];
-
-            per_y.push_back( stroke["per_y"] );
 
             _orbitE.path = circlePath(stroke);
             _orbitE.inclination = _i;
@@ -290,18 +286,17 @@ void ofApp::update() {
     //    ofPixels _p;
     //    astroidFBO.readToPixels(_p);
 
+    // astroidFBOBuff(movingPathFactorF());
+
+
     vector< vector<float> > _nYPos;
     _nYPos.resize(orbits.size());
 
-
-
     float _movingF = movingPathFactorF();
-
-    // astroidFBOBuff(_movingF);
 
     for (int i = 0; i < orbits.size(); i++) {
         vector<float> _f;
-        float _chMovingPath = ((_movingF * per_y[i]));
+        float _chMovingPath = ((_movingF * orbits[i].per_y));
         ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
         if ((int)(_chMovingPath + orbits[i].omega) % 360 == 270) {
             _f.push_back( BIT + _path.y );
@@ -311,21 +306,11 @@ void ofApp::update() {
 
 
     if ( bPlaying ) {
-        // for (int n = 0; n < BIT; n++) {
-        // int _yRatioLeft = (int)ofMap(n, 0, BIT-1, 0, BIT*2);
-        // amp[n] = (amp[n] * line + getAmp(0, _yRatioLeft)) / (line + 1);
-        // hertzScale[n] = (int)getFreq(n);
-        // int _yRatioRight = (int)ofMap(n, 0, BIT-1, 0, ofGetHeight());
-        // ampRight[n] = (ampRight[n]*line + getAmpRight(moviePlay.getWidth()*0.75, _yRatioRight))/(line+1);
-        // hertzScaleRight[n] = int(getFreqRight(n));
-        // }
-
         for (int i = 0; i < BIT; i++) {
             amp[i] *= 0.91;
         }
 
         for (int n = 0; n < _nYPos.size(); n++) {
-            // int _yRatioLeft = (int)ofMap(n, 0, BIT - 1, 0, ofGetHeight());
             if (_nYPos[n].size() > 0) {
                 int _index = _nYPos[n][0];
                 float _valueY = ofMap(_index, 0, BIT, 0, 1);
@@ -476,7 +461,7 @@ void ofApp::astroidFBOBuff(float _f) {
             ofRotateYDeg( orbits[i].inclination );
             //            ofRotateZ( orbits[i].omega );
 
-            float _chMovingPath = (int)((_f * per_y[i])) % 360;
+            float _chMovingPath = (int)((_f * orbits[i].per_y)) % 360;
             ofVec3f _path = orbits[i].path.getPointAtIndexInterpolated(_chMovingPath);
             _p.setVertex(0, _path);
 

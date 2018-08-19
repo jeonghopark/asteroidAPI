@@ -104,8 +104,6 @@ public:
     float movingPathFactorF();
 
     
-    vector<float> per_y;
-    
     ofFbo astroidFBO;
     void astroidFBOBuff(float _f);
     float threshold;
