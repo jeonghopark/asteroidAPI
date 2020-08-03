@@ -12,9 +12,10 @@
 struct Orbit{
     ofPolyline path;
     ofMesh mesh;
-    ofVboMesh mVbo;
+    ofMesh mVbo;
     double inclination;
     double omega;
+    double a;
     float per_y;
     float movingF;
 };
@@ -121,7 +122,7 @@ public:
     
     void textInformation();
 
-    ofVboMesh circleMesh(ofJson _j);
+    ofMesh circleMesh(ofJson _j);
     ofPolyline circlePath(ofJson _j);
     
     vector<ofPolyline> drawTrackingLine;
@@ -129,7 +130,7 @@ public:
     void drawTriggerLine();
 
     ofMesh asteroidPoint;
-        
+            
 };
 
 
