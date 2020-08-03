@@ -83,12 +83,12 @@ void ofApp::setup() {
 
     earthOrbit = setupEarthOrbit();
 
-    orbits = setupOrbits("asteroid_500.json");
+    orbits = setupOrbits("results_comets.csv");
     drawTrackingLine.resize(orbits.size());
     asteroidPoint.setMode(OF_PRIMITIVE_POINTS);
     
-    for (int i = 0; i < orbits[0].path.size(); i++) {
-        asteroidPoint.addVertex( ofVec3f(0, 0, 0) );
+    for (int i = 0; i < orbits.size(); i++) {
+        asteroidPoint.addVertex(ofVec3f(0, 0, 0));
     }
 
 
@@ -101,32 +101,84 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
 
     vector<Orbit> _oV;
 
-    ofFile _file(_s);
-    ofJson json;
-    
-    int _counter = 0;
-    _file >> json;
-    _oV.resize( json.size() );
-    
-    Orbit _orbitE;
-    for (auto & stroke : json) {
+    ofBuffer buffer = ofBufferFromFile(_s);
+    if(buffer.size()) {
+        int _index = 0;
+        Orbit _orbitE;
+        
+        for (ofBuffer::Line it = buffer.getLines().begin(), end = buffer.getLines().end(); it != end; ++it) {
+            string line = *it;
 
-        _orbitE.a = stroke["a"];
-        // double _ad = stroke["ad"];
-        // double _e = stroke["e"];
-        // double _q = stroke["q"];
-        double _i = stroke["i"];
-        double _om = stroke["om"];
+            Orbit _o;
+            if (_index > 0 && _index < 1000) {
+                vector<string> _l = ofSplitString(line, ",");
+                
+                //            KOI = _s[0];
+                //            label = _s[1];
+                //            period = ofToFloat(_s[10]);
+                //            radius = ofToFloat(_s[25]);
+                //            axis = ofToFloat(_s[28]);
+                //            temp = ofToFloat(_s[34]);
+                //            vFlag = ofToFloat(_s[7]);
+                //            stellarRadius = ofToFloat(_s[49]);
+                //            stellarTemp = ofToFloat(_s[43]);
+                
+                _orbitE.a = ofToFloat(_l[1]);
+                //        // double _ad = stroke["ad"];
+                //        // double _e = stroke["e"];
+                //        // double _q = stroke["q"];
+                //        double _i = stroke["i"];
+                //        double _om = stroke["om"];
+                //
+                //        _orbitE.inclination = _i;
+                //        _orbitE.omega = _om;
+                //        _oV[_counter] = _orbitE;
+                                
+                //        _counter++;
+                
+                _orbitE.per_y = ofToFloat(_l[8]);
+                
+                _orbitE.path = circlePath(_l);
+                _orbitE.mVbo = circleMesh(_l);
 
-        _orbitE.path = circlePath(stroke);
-        _orbitE.inclination = _i;
-        _orbitE.omega = _om;
-        _orbitE.mVbo = circleMesh(stroke);
-        _orbitE.per_y = stroke["per_y"];
-        _oV[_counter] = _orbitE;
-        _orbitE.movingF = 0;
-        _counter++;
+
+                _orbitE.movingF = ofRandom(circlePath(_l).getLengthAtIndex(circlePath(_l).size() - 1));
+
+                _oV.push_back(_orbitE);
+            }
+            
+            _index++;
+
+        }
     }
+
+
+//    ofFile _file(_s);
+//    ofJson json;
+//
+//    int _counter = 0;
+//    _file >> json;
+//    _oV.resize( json.size() );
+//
+//    Orbit _orbitE;
+//    for (auto & stroke : json) {
+//
+//        _orbitE.a = stroke["a"];
+//        // double _ad = stroke["ad"];
+//        // double _e = stroke["e"];
+//        // double _q = stroke["q"];
+//        double _i = stroke["i"];
+//        double _om = stroke["om"];
+//
+//        _orbitE.path = circlePath(stroke);
+//        _orbitE.inclination = _i;
+//        _orbitE.omega = _om;
+//        _orbitE.mVbo = circleMesh(stroke);
+//        _orbitE.per_y = stroke["per_y"];
+//        _oV[_counter] = _orbitE;
+//        _orbitE.movingF = 0;
+//        _counter++;
+//    }
 
     return _oV;
 
@@ -157,14 +209,14 @@ Orbit ofApp::setupEarthOrbit() {
 
 
 //--------------------------------------------------------------
-ofMesh ofApp::circleMesh(ofJson _j) {
+ofMesh ofApp::circleMesh(vector<string> _l) {
 
     // double _a = _j["a"];
-    double _ad = _j["ad"];
-    double _e = _j["e"];
+    double _ad = ofToFloat(_l[6]);
+    double _e = ofToFloat(_l[1]);
     // double _q = _j["q"];
     // double _i = _j["i"];
-    double _om = _j["om"];
+    double _om = ofToFloat(_l[4]);
 
     ofMesh _mesh;
     _mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
@@ -189,18 +241,19 @@ ofMesh ofApp::circleMesh(ofJson _j) {
 
 
 //--------------------------------------------------------------
-ofPolyline ofApp::circlePath(ofJson _j) {
+ofPolyline ofApp::circlePath(vector<string> _l) {
 
     // double _a = _j["a"];
-    double _ad = _j["ad"];
-    double _e = _j["e"];
+    double _ad = ofToFloat(_l[6]);
+    double _e = ofToFloat(_l[1]);
     // double _q = _j["q"];
     // double _i = _j["i"];
-    double _om = _j["om"];
+    double _om = ofToFloat(_l[4]);
+
 
     ofPolyline _orbitPath;
 
-    for (int _deg = 0; _deg < 360; _deg++) {
+    for (int _deg = 0; _deg < 361; _deg++) {
         double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(_deg)));
         float _size = 10;
         float _x1 = _r * cos(ofDegToRad(_deg + _om)) * _size;
@@ -260,7 +313,7 @@ void ofApp::update() {
     for (int i = 0; i < orbits.size(); i++) {
         float _fullLength = orbits[i].path.getLengthAtIndex(orbits[i].path.size() - 1);
         
-        orbits[i].movingF += 0.1 / orbits[i].per_y;
+        orbits[i].movingF += 2.1 / orbits[i].per_y;
         if (orbits[i].movingF > _fullLength) {
             orbits[i].movingF = 0.0;
         }
@@ -421,13 +474,13 @@ void ofApp::draw() {
     // ofPopMatrix();
 
 
-    ofSetColor(255);
-    stringstream ss;
-    ss << "FPS: " << ofToString(ofGetFrameRate(), 1) << endl;
-    //        ss << "Space bar for Sound Play" << endl;
-    //        ss << "Mouse or Track Pad for 3D Viewing" << endl;
-    //        ss << "\"f\" - key for full screen" << endl;
-    ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
+//    ofSetColor(255);
+//    stringstream ss;
+//    ss << "FPS: " << ofToString(ofGetFrameRate(), 1) << endl;
+//    //        ss << "Space bar for Sound Play" << endl;
+//    //        ss << "Mouse or Track Pad for 3D Viewing" << endl;
+//    //        ss << "\"f\" - key for full screen" << endl;
+//    ofDrawBitmapString(ss.str().c_str(), 20, ofGetHeight() - 80);
 
 
     //    gui.draw();

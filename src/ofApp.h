@@ -122,8 +122,8 @@ public:
     
     void textInformation();
 
-    ofMesh circleMesh(ofJson _j);
-    ofPolyline circlePath(ofJson _j);
+    ofMesh circleMesh(vector<string> _l);
+    ofPolyline circlePath(vector<string> _l);
     
     vector<ofPolyline> drawTrackingLine;
 
