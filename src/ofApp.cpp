@@ -257,7 +257,16 @@ void ofApp::update() {
 
     // astroidFBOBuff(movingPathFactorF());
 
-
+    for (int i = 0; i < orbits.size(); i++) {
+        float _fullLength = orbits[i].path.getLengthAtIndex(orbits[i].path.size() - 1);
+        
+        orbits[i].movingF += 0.1 / orbits[i].per_y;
+        if (orbits[i].movingF > _fullLength) {
+            orbits[i].movingF = 0.0;
+        }
+    }
+    
+    
 //    vector< vector<float> > _nYPos;
 //    _nYPos.resize(orbits.size());
 //
@@ -347,12 +356,13 @@ void ofApp::draw() {
         
 //        ofVec3f _path = orbits[i].path.getPointAtPercent(_movingF / 100.0);
         
-        float _fullLength = orbits[i].path.getLengthAtIndex(orbits[i].path.size() - 1);
-        
-        orbits[i].movingF += 0.1 / orbits[i].per_y;
-        if (orbits[i].movingF > _fullLength) {
-            orbits[i].movingF = 0.0;
-        }
+//        float _fullLength = orbits[i].path.getLengthAtIndex(orbits[i].path.size() - 1);
+//
+//        orbits[i].movingF += 0.1 / orbits[i].per_y;
+//        if (orbits[i].movingF > _fullLength) {
+//            orbits[i].movingF = 0.0;
+//        }
+
         ofVec3f _path = orbits[i].path.getPointAtLength(orbits[i].movingF);
         asteroidPoint.setVertex(i, _path);
 
