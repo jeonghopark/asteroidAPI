@@ -47,6 +47,8 @@ public:
     void audioOut(ofSoundBuffer & buffer);
     ofSoundStream soundStream;
     
+    void movingUpdate();
+    void audioTriggerUpdate();
     
     float line;
     
@@ -130,6 +132,9 @@ public:
     void drawTriggerLine();
 
     ofMesh asteroidPoint;
+    
+    
+    vector<glm::vec3> makeOrbitPath(vector<string> _l);
             
 };
 
