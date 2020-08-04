@@ -51,48 +51,34 @@ void ofApp::setup() {
     bPlaying = false;
     line = 0.1;
 
+    orbitBaseSize = 10;
 
     maxHertz = 8000;
     minHertz = 150;
 
     astroidFBO.allocate(30, BIT, GL_RGB);
 
-    // http://www.asterank.com/api
-//    string url = "http://asterank.com/api/asterank?query={\"e\":{\"$lt\":0.9},\"i\":{\"$lt\":2},\"a\":{\"$lt\":1.5}}&limit=1";
-
-    // Now parse the JSON
-    //    bool parsingInternetSuccessful = json(url);
-    //    parsingInternetSuccessful = false;
-    //    if (!parsingInternetSuccessful) {
-    //        json.open("asteroid_500.json");
-    //    } else {
-    //        json.open(url);
-    //    }
-
-
     threshold = 0.9;
 
     cam.setAutoDistance(false);
     cam.setDistance(50);
 
-    //    if (parsingSuccessful) {
-    //        ofLogNotice("ofApp::setup") << json.getRawString(true);
-    //    } else {
-    //        ofLogNotice("ofApp::setup") << "Failed to parse JSON.";
-    //    }
-
     sun.set(2, 10);
 
-    earthOrbit = setupEarthOrbit();
+    earthOrbit = setupPlanetOrbit(0.01671123, 1.0);
+    marsOrbit = setupPlanetOrbit(0.0934, 1.52371);
+    jupiterOrbit = setupPlanetOrbit(0.0484, 5.2029);
+    saturnOrbit = setupPlanetOrbit(0.0539, 9.537);
+    uranusOrbit = setupPlanetOrbit(0.04726, 19.189);
+    neptuneOrbit = setupPlanetOrbit(0.00859, 30.0699);
 
-    orbits = setupOrbits("results_comets.csv");
+    orbits = setupOrbits("results_comets_edit.csv");
     drawTrackingLine.resize(orbits.size());
     asteroidPoint.setMode(OF_PRIMITIVE_POINTS);
     
     for (int i = 0; i < orbits.size(); i++) {
         asteroidPoint.addVertex(ofVec3f(0, 0, 0));
     }
-
 
 }
 
@@ -112,75 +98,28 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
             string line = *it;
 
             Orbit _o;
-            if (_index > 0 && _index < 1000) {
+            if (_index > 0) {
                 vector<string> _l = ofSplitString(line, ",");
-                
-                //            KOI = _s[0];
-                //            label = _s[1];
-                //            period = ofToFloat(_s[10]);
-                //            radius = ofToFloat(_s[25]);
-                //            axis = ofToFloat(_s[28]);
-                //            temp = ofToFloat(_s[34]);
-                //            vFlag = ofToFloat(_s[7]);
-                //            stellarRadius = ofToFloat(_s[49]);
-                //            stellarTemp = ofToFloat(_s[43]);
-                
                 _orbitE.a = ofToFloat(_l[1]);
-                //        // double _ad = stroke["ad"];
-                //        // double _e = stroke["e"];
-                //        // double _q = stroke["q"];
-                //        double _i = stroke["i"];
-                //        double _om = stroke["om"];
-                //
                 _orbitE.inclination = ofToFloat(_l[3]);
-                //        _orbitE.omega = _om;
-                //        _oV[_counter] = _orbitE;
-                                
-                //        _counter++;
-                
                 _orbitE.per_y = ofToFloat(_l[8]);
                 
-                _orbitE.path = circlePath(_l);
-                _orbitE.mVbo = circleMesh(_l);
+                _orbitE.ad = ofToFloat(_l[6]);
+                _orbitE.e = ofToFloat(_l[1]);
+                _orbitE.om = ofToFloat(_l[4]);
+                
+                vector<glm::vec3> _v = makeOrbitPath(_orbitE.ad, _orbitE.e, _orbitE.om, _orbitE.inclination);
+                _orbitE.path = circlePath(_v);
+                _orbitE.mVbo = circleMesh(_v);
 
-
-                _orbitE.movingF = ofRandom(circlePath(_l).getLengthAtIndex(circlePath(_l).size() - 1));
+                _orbitE.movingF = ofRandom(circlePath(_v).getLengthAtIndex(circlePath(_v).size() - 1));
 
                 _oV.push_back(_orbitE);
             }
             
             _index++;
-
         }
     }
-
-
-//    ofFile _file(_s);
-//    ofJson json;
-//
-//    int _counter = 0;
-//    _file >> json;
-//    _oV.resize( json.size() );
-//
-//    Orbit _orbitE;
-//    for (auto & stroke : json) {
-//
-//        _orbitE.a = stroke["a"];
-//        // double _ad = stroke["ad"];
-//        // double _e = stroke["e"];
-//        // double _q = stroke["q"];
-//        double _i = stroke["i"];
-//        double _om = stroke["om"];
-//
-//        _orbitE.path = circlePath(stroke);
-//        _orbitE.inclination = _i;
-//        _orbitE.omega = _om;
-//        _orbitE.mVbo = circleMesh(stroke);
-//        _orbitE.per_y = stroke["per_y"];
-//        _oV[_counter] = _orbitE;
-//        _orbitE.movingF = 0;
-//        _counter++;
-//    }
 
     return _oV;
 
@@ -190,15 +129,14 @@ vector<Orbit> ofApp::setupOrbits(string _s) {
 
 
 //--------------------------------------------------------------
-Orbit ofApp::setupEarthOrbit() {
+Orbit ofApp::setupPlanetOrbit(float _e, float _ad) {
 
     Orbit _o;
 
-    float _eEarth = 0.01671123;
     for (int i = 0; i <= 360; i++) {
-        double _r = 1.0167 * (1 - (_eEarth * _eEarth)) / (1 + _eEarth * cos(ofDegToRad(i)));
+        double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(i)));
 
-        float _size = 10;
+        float _size = orbitBaseSize * 2;
         float _x1 = _r * cos(ofDegToRad(i)) * _size;
         float _y1 = _r * sin(ofDegToRad(i)) * _size;
 
@@ -212,30 +150,39 @@ Orbit ofApp::setupEarthOrbit() {
 
 
 //--------------------------------------------------------------
-vector<glm::vec3> ofApp::makeOrbitPath(vector<string> _l) {
- 
-    // double _a = _j["a"];
-    double _ad = ofToFloat(_l[6]);
-    double _e = ofToFloat(_l[1]);
-    // double _q = _j["q"];
-    // double _i = _j["i"];
-    double _om = ofToFloat(_l[4]);
-
-    
+vector<glm::vec3> ofApp::makeOrbitPath(float _ad, float _e, float _om, float _inclination) {
+             
     vector<glm::vec3> _v;
     
+//    _inclination = 0;
+    
+    float _height = 0;
     for (int _deg = 0; _deg < 361; _deg += 1) {
         double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(_deg)));
-        float _size = 10;
-        float _x1 = _r * cos(ofDegToRad(_deg + _om)) * _size;
-        float _y1 = _r * sin(ofDegToRad(_deg + _om)) * _size;
-        _v.push_back(glm::vec3(_x1, _y1, 0));
+        float _x = _r * cos(ofDegToRad(_deg + _om)) * cos(ofDegToRad(_inclination));
+        float _y = _r * sin(ofDegToRad(_deg + _om)) * cos(ofDegToRad(_inclination));
+        
+
+        float _z = 0;
+        if (_inclination < 90) {
+            _x = _r * cos(ofDegToRad(_deg + _om - 360)) * cos(ofDegToRad(_inclination - 180));
+            _y = _r * sin(ofDegToRad(_deg + _om - 360)) * cos(ofDegToRad(_inclination - 180));
+            if (_deg == 0) {
+                _height = _r * sin(ofDegToRad(_inclination - 180));
+            }
+            _z = _r * sin(ofDegToRad(_inclination - 180)) - _height * 2;
+        } else {
+            _x = _r * cos(ofDegToRad(_deg + _om)) * cos(ofDegToRad(_inclination));
+            _y = _r * sin(ofDegToRad(_deg + _om)) * cos(ofDegToRad(_inclination));
+            if (_deg == 0) {
+                _height = _r * sin(ofDegToRad(_inclination));
+            }
+            _z = _r * sin(ofDegToRad(_inclination)) - _height * 2;
+        }
+
+        float _size = orbitBaseSize;
+        _v.push_back(glm::vec3(_x, _y, _z) * _size);
     }
-    
-    //    for (int meshIndexA = 0; meshIndexA < 360 - 1; meshIndexA++) {
-    //        _mesh.addIndex(meshIndexA);
-    //        _mesh.addIndex(meshIndexA + 1);
-    //    }
     
     return _v;
     
@@ -245,11 +192,10 @@ vector<glm::vec3> ofApp::makeOrbitPath(vector<string> _l) {
 
 
 //--------------------------------------------------------------
-ofMesh ofApp::circleMesh(vector<string> _l) {
+ofMesh ofApp::circleMesh(vector<glm::vec3> _v) {
 
     ofMesh _mesh;
     _mesh.setMode(OF_PRIMITIVE_LINE_STRIP);
-    vector<glm::vec3> _v = makeOrbitPath(_l);
     _mesh.addVertices(_v);
 
     return _mesh;
@@ -259,11 +205,9 @@ ofMesh ofApp::circleMesh(vector<string> _l) {
 
 
 //--------------------------------------------------------------
-ofPolyline ofApp::circlePath(vector<string> _l) {
-
+ofPolyline ofApp::circlePath(vector<glm::vec3> _v) {
 
     ofPolyline _orbitPath;
-    vector<glm::vec3> _v = makeOrbitPath(_l);
     _orbitPath.addVertices(_v);
     _orbitPath.setClosed(true);
     
@@ -319,9 +263,16 @@ void ofApp::movingUpdate() {
     for (int i = 0; i < orbits.size(); i++) {
         float _fullLength = orbits[i].path.getLengthAtIndex(orbits[i].path.size() - 1);
         
-        orbits[i].movingF += 2.1 / orbits[i].per_y;
-        if (orbits[i].movingF > _fullLength) {
-            orbits[i].movingF = 0.0;
+        if (orbits[i].inclination < 90) {
+            orbits[i].movingF += 2.1 / orbits[i].per_y;
+            if (orbits[i].movingF > _fullLength) {
+                orbits[i].movingF = 0.0;
+            }
+        } else {
+            orbits[i].movingF -= 2.1 / orbits[i].per_y;
+            if (orbits[i].movingF < 0) {
+                orbits[i].movingF = _fullLength;
+            }
         }
 
         ofVec3f _path = orbits[i].path.getPointAtLength(orbits[i].movingF);
@@ -391,13 +342,37 @@ void ofApp::draw() {
     ofBackgroundGradient(ofColor(0, 0, 40), ofColor(0, 0, 0));
 
     cam.begin();
-    ofRotateXDeg(180);
 
 //    drawSun();
 
     ofPushStyle();
-    ofSetColor(255, 120);
-//    earthOrbit.path.draw();
+    ofSetColor(0, 255, 180, 220);
+    earthOrbit.path.draw();
+    ofPopStyle();
+
+    ofPushStyle();
+    ofSetColor(255, 120, 120, 220);
+    marsOrbit.path.draw();
+    ofPopStyle();
+
+    ofPushStyle();
+    ofSetColor(255, 240, 120, 220);
+    jupiterOrbit.path.draw();
+    ofPopStyle();
+
+    ofPushStyle();
+    ofSetColor(255, 240, 120, 220);
+    saturnOrbit.path.draw();
+    ofPopStyle();
+
+    ofPushStyle();
+    ofSetColor(255, 240, 220, 220);
+    uranusOrbit.path.draw();
+    ofPopStyle();
+    
+    ofPushStyle();
+    ofSetColor(140, 210, 250, 220);
+    neptuneOrbit.path.draw();
     ofPopStyle();
 
 
@@ -405,11 +380,11 @@ void ofApp::draw() {
     for (int i = 0; i < orbits.size(); i++) {
 
         ofPushMatrix();
-        ofTranslate(0, 0, -i);
+        ofTranslate(0, 0, 0);
 //        ofRotateYDeg(orbits[i].inclination);
 
         ofPushStyle();
-        ofSetColor(255, 55);
+        ofSetColor(255, 35);
         
         orbits[i].mVbo.draw();
 //        orbits[i].path.draw();

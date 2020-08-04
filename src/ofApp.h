@@ -18,6 +18,9 @@ struct Orbit{
     double a;
     float per_y;
     float movingF;
+    float ad;
+    float e;
+    float om;
 };
 
 
@@ -93,6 +96,8 @@ public:
     ofEasyCam cam;
     bool fullscreen;
     
+    float orbitBaseSize;
+    
     ofSpherePrimitive sun;
     
     vector<Orbit> orbits;
@@ -108,8 +113,14 @@ public:
     void astroidFBOBuff(float _f);
     float threshold;
     
+    Orbit setupPlanetOrbit(float _e, float _ad);
     Orbit earthOrbit;
-    Orbit setupEarthOrbit();
+    Orbit marsOrbit;
+    Orbit jupiterOrbit;
+    Orbit saturnOrbit;
+    Orbit uranusOrbit;
+    Orbit neptuneOrbit;
+
     
     void drawSun();
     ofTrueTypeFont sunName;
@@ -124,8 +135,8 @@ public:
     
     void textInformation();
 
-    ofMesh circleMesh(vector<string> _l);
-    ofPolyline circlePath(vector<string> _l);
+    ofMesh circleMesh(vector<glm::vec3> _v);
+    ofPolyline circlePath(vector<glm::vec3> _v);
     
     vector<ofPolyline> drawTrackingLine;
 
@@ -133,8 +144,7 @@ public:
 
     ofMesh asteroidPoint;
     
-    
-    vector<glm::vec3> makeOrbitPath(vector<string> _l);
+    vector<glm::vec3> makeOrbitPath(float _ad, float _e, float _om, float _inclination);
             
 };
 
