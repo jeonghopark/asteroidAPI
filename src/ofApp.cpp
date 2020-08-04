@@ -80,6 +80,33 @@ void ofApp::setup() {
         asteroidPoint.addVertex(ofVec3f(0, 0, 0));
     }
 
+    
+    billboards.getVertices().resize(orbits.size());
+    billboards.getColors().resize(orbits.size());
+    billboards.getNormals().resize(orbits.size(),glm::vec3(0, 0, 0));
+    
+    for (int i = 0; i < asteroidPoint.getNumVertices(); i++) {
+        glm::vec3 _v = asteroidPoint.getVertex(i);
+        billboardVels.push_back(_v);
+        billboards.addVertex(billboardVels[i]);
+        billboards.setNormal(i, glm::vec3(1, 0, 0));
+    }
+    
+    billboards.setUsage( GL_DYNAMIC_DRAW );
+    billboards.setMode(OF_PRIMITIVE_POINTS);
+    if(ofIsGLProgrammableRenderer()){
+        billboardShader.load("shadersGL3/Billboard");
+    }else{
+        billboardShader.load("shadersGL2/Billboard");
+    }
+    
+    ofDisableArbTex();
+    texture.load("dot_blur1px.png");
+    ofEnableAlphaBlending();
+
+    shader.load("shader");
+
+    
 }
 
 
@@ -133,7 +160,7 @@ Orbit ofApp::setupPlanetOrbit(float _e, float _ad) {
 
     Orbit _o;
 
-    for (int i = 0; i <= 360; i++) {
+    for (int i = 0; i <= 360; i+=1) {
         double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(i)));
 
         float _size = orbitBaseSize * 2;
@@ -157,7 +184,7 @@ vector<glm::vec3> ofApp::makeOrbitPath(float _ad, float _e, float _om, float _in
 //    _inclination = 0;
     
     float _height = 0;
-    for (int _deg = 0; _deg < 361; _deg += 1) {
+    for (int _deg = 0; _deg < 361; _deg += 2) {
         double _r = _ad * (1 - (_e * _e)) / (1 + _e * cos(ofDegToRad(_deg)));
         float _x = _r * cos(ofDegToRad(_deg + _om)) * cos(ofDegToRad(_inclination));
         float _y = _r * sin(ofDegToRad(_deg + _om)) * cos(ofDegToRad(_inclination));
@@ -253,6 +280,11 @@ void ofApp::update() {
 
     movingUpdate();
 
+    for (int i = 0; i < asteroidPoint.getNumVertices(); i++) {
+        billboards.setVertex(i, asteroidPoint.getVertex(i));
+    }
+
+    
 }
 
 
@@ -341,9 +373,14 @@ void ofApp::draw() {
 
     ofBackgroundGradient(ofColor(0, 0, 40), ofColor(0, 0, 0));
 
+    glEnable(GL_CULL_FACE); // Cull back facing polygons
+    glCullFace(GL_FRONT); // might be GL_FRONT instead
+
     cam.begin();
 
 //    drawSun();
+
+    
 
     ofPushStyle();
     ofSetColor(0, 255, 180, 220);
@@ -377,23 +414,70 @@ void ofApp::draw() {
 
 
 
-    for (int i = 0; i < orbits.size(); i++) {
+//    for (int i = 0; i < orbits.size(); i++) {
+//
+//        ofPushMatrix();
+//        ofTranslate(0, 0, 0);
+////        ofRotateYDeg(orbits[i].inclination);
+//
+//        ofPushStyle();
+//        ofSetColor(255, 35);
+//
+//        orbits[i].mVbo.draw();
+////        orbits[i].path.draw();
+//        ofPopStyle();
+//        ofPopMatrix();
+//
+//    }
 
-        ofPushMatrix();
-        ofTranslate(0, 0, 0);
-//        ofRotateYDeg(orbits[i].inclination);
+//    asteroidPoint.draw();
+    
+    
+    
+    glDepthMask(GL_FALSE);
 
-        ofPushStyle();
-        ofSetColor(255, 35);
-        
-        orbits[i].mVbo.draw();
-//        orbits[i].path.draw();
-        ofPopStyle();
-        ofPopMatrix();
+    billboardShader.begin();
+    billboardShader.setUniform1f("u_time", ofGetElapsedTimef());
 
-    }
+    ofEnablePointSprites(); // not needed for GL3/4
+    texture.getTexture().bind();
+    billboards.draw();
+    texture.getTexture().unbind();
+    ofDisablePointSprites(); // not needed for GL3/4
 
-    asteroidPoint.draw();
+    billboardShader.end();
+
+    glDepthMask(GL_TRUE);
+
+    
+    
+    
+    shader.begin();
+    shader.setUniform1f("u_time", ofGetElapsedTimef());
+
+    ofSetLineWidth(1);
+    ofPushMatrix();
+        for (int i = 0; i < orbits.size(); i++) {
+
+            ofPushMatrix();
+            ofTranslate(0, 0, 0);
+    //        ofRotateYDeg(orbits[i].inclination);
+
+            ofPushStyle();
+            ofSetColor(255, 35);
+
+            orbits[i].mVbo.draw();
+//            orbits[i].path.draw();
+            ofPopStyle();
+            ofPopMatrix();
+
+        }
+    ofPopMatrix();
+
+    shader.end();
+
+    
+    
     
     ofPushMatrix();
     ofPushStyle();

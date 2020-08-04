@@ -145,7 +145,17 @@ public:
     ofMesh asteroidPoint;
     
     vector<glm::vec3> makeOrbitPath(float _ad, float _e, float _om, float _inclination);
-            
+  
+    ofShader billboardShader;
+    ofImage texture;
+    
+    ofVboMesh billboards;
+    vector<glm::vec3> billboardVels;
+
+    
+    ofShader shader;
+
+    
 };
 
 
