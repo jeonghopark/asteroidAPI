@@ -21,7 +21,7 @@ void main() {
     vec4 pos = position;
 	vec2 dir = pos.xy - vec2(sin(u_time * 1.0) * 0.0, 0.0);
     
-    if (pos.x>300.0) {
+    if (pos.x > 300.0) {
     	dir = pos.xy - vec2(sin(u_time * 1.0) * 0.0, 0.0);	
     }
 

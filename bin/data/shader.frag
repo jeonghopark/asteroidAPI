@@ -224,7 +224,7 @@ void main() {
 
 
 
-    outputColor = vec4(1.0, 1.0, 1.0, 0.1);
+    outputColor = vec4(0.8, 1.0, 0.9, 0.2);
 
 }
 

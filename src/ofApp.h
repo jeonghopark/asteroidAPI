@@ -12,12 +12,14 @@
 struct Orbit{
     ofPolyline path;
     ofMesh mesh;
-    ofMesh mVbo;
+    ofVboMesh mVbo;
     double inclination;
     double omega;
     double a;
     float per_y;
     float movingF;
+    float movingFNext;
+    float movingFView;
     float ad;
     float e;
     float om;
@@ -155,6 +157,22 @@ public:
     
     ofShader shader;
 
+    
+    ofRectangle viewportEarth;
+    
+    
+    ofVbo allOrbitPathMesh;
+    
+    vector<ofVbo> allOrbitPathMeshMulti;
+    ofNode sunNode;
+    
+    float orbitSpeed;
+    
+    vector<ofVec3f> currentOrbitPos;
+    vector<ofVec3f> nextOrbitPos;
+    vector<ofVec3f> backOrbitPos;
+    vector<float> angelAtIndex;
+    int cometIndex;
     
 };
 

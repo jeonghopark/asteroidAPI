@@ -7,7 +7,7 @@
 int main( ){
     
     ofGLFWWindowSettings settings;
-    settings.setGLVersion(4, 1);
+    settings.setGLVersion(3, 2);
     settings.numSamples = 4;
     settings.doubleBuffering = true;
     settings.setSize(1280, 720);
