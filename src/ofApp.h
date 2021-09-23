@@ -26,6 +26,25 @@ struct Orbit{
 };
 
 
+struct PathPoint {
+    ofVec2f points;
+    string constellation;
+    string io;
+};
+
+struct StarPosition {
+    ofVec2f points;
+    string io;
+};
+
+
+struct Star {
+    ofVec3f starPoints;
+    float starBrightness;
+};
+
+
+
 
 class ofApp : public ofBaseApp {
     
@@ -173,6 +192,38 @@ public:
     vector<ofVec3f> backOrbitPos;
     vector<float> angelAtIndex;
     int cometIndex;
+    
+    
+    
+    // Constellation
+    float sizeConstellation;
+    float nextLetterTime;
+    int lineCount;
+    int letterCount;
+
+    vector<PathPoint> setPathPoints(string fileName);
+
+    vector<StarPosition> starPositions;
+    vector<StarPosition> setStarPositions(string fileName);
+
+    vector<ofMesh> meshBound;
+    vector<ofMesh> setMeshBound(vector<PathPoint> _p);
+
+    vector<ofMesh> meshStar;
+    ofMesh meshStars;
+    ofMesh setupMeshStar(vector<StarPosition> _s);
+    vector<ofMesh> setupMeshBoundZRandom(vector<ofMesh> _m);
+
+    vector<Star> setStars(string fileName);
+    ofMesh meshStarPoints;
+    ofMesh setupMeshStarPoints(vector<Star> _s);
+
+    float rotationFactor;
+
+    bool cursorOnOff;
+
+    int sgn(float v);
+    
     
 };
 

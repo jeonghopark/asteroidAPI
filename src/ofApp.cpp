@@ -73,7 +73,8 @@ void ofApp::setup() {
     uranusOrbit = setupPlanetOrbit(0.04726, 19.189);
     neptuneOrbit = setupPlanetOrbit(0.00859, 30.0699);
     
-    orbits = setupOrbits("results_comets_edit.csv");
+    orbits = setupOrbits("results_comets.csv");
+    cout << orbits.size() << endl;
     drawTrackingLine.resize(orbits.size());
     asteroidPoint.setMode(OF_PRIMITIVE_POINTS);
     
@@ -135,7 +136,213 @@ void ofApp::setup() {
     
 //    cam.disableInertia();
     
+    
+    sizeConstellation = 2000;
+    starPositions = setStarPositions("APJ-HABCAT2.csv");
+    meshStars = setupMeshStar(starPositions);
+
+    meshStarPoints = setupMeshStarPoints(setStars("stars.txt"));
+    meshStarPoints.enableColors();
+
+    meshBound = setMeshBound(setPathPoints("bound_20.dat.txt"));
+
+    
 }
+
+
+
+
+
+//--------------------------------------------------------------
+ofMesh ofApp::setupMeshStar(vector<StarPosition> _s) {
+    ofMesh _r;
+    _r.setMode(OF_PRIMITIVE_POINTS);
+
+    for (int i = 0; i < _s.size(); i++) {
+        float _radius = sizeConstellation;
+
+        float _theta = _s[i].points.x;
+        float _phi = _s[i].points.y;
+
+        float _x = _radius * cos(_phi) * cos(_theta);
+        float _y = _radius * cos(_phi) * sin(_theta);
+        float _z = _radius * sin(_phi);
+
+        _r.addVertex(ofPoint(_x, _y, _z));
+        _r.addColor(ofColor(255, 255, 255));
+    }
+
+    return _r;
+}
+
+
+//--------------------------------------------------------------
+vector<PathPoint> ofApp::setPathPoints(string fileName) {
+    vector<PathPoint> _r;
+    ofBuffer _bufferBound = ofBufferFromFile(fileName);
+
+    if (_bufferBound.size()) {
+        for (ofBuffer::Line it = _bufferBound.getLines().begin(), end = _bufferBound.getLines().end(); it != end; ++it) {
+            string _line = *it;
+
+            vector<string> result;
+            istringstream iss(_line);
+
+            for (std::string _line; iss >> _line;) {
+                result.push_back(_line);
+            }
+
+            PathPoint _p;
+            _p.points.x = ofMap(stof(result[0]), 0, 24, -180, 180);
+            _p.points.y = ofMap(stof(result[1]), -90, 90, 0, 180);
+            _p.constellation = result[2];
+            _p.io = result[3];
+            _r.push_back(_p);
+        }
+    }
+
+    return _r;
+}
+
+
+//--------------------------------------------------------------
+vector<ofMesh> ofApp::setMeshBound(vector<PathPoint> _p) {
+    vector<ofMesh> _r;
+    string _buffStr = _p[0].constellation;
+    ofMesh _m;
+
+    for (int i = 0; i < _p.size(); i++) {
+        float _radius = sizeConstellation;
+        float _x = cos(ofDegToRad(_p[i].points.x)) * sin(ofDegToRad(_p[i].points.y)) * _radius;
+        float _z = sin(ofDegToRad(_p[i].points.x)) * sin(ofDegToRad(_p[i].points.y))  * _radius;
+        float _y = cos(ofDegToRad(_p[i].points.y)) * _radius;
+
+        if (_p[i].constellation == _buffStr) {
+            _m.setMode(OF_PRIMITIVE_LINE_STRIP);
+            _m.addVertex(ofPoint(_x, _y, _z));
+            _m.addColor(ofColor(120, 180, 255, 80));
+        } else {
+            _r.push_back(_m);
+            _buffStr = _p[i].constellation;
+            _m.clear();
+        }
+    }
+
+    return _r;
+}
+
+
+//--------------------------------------------------------------
+vector<ofMesh> ofApp::setupMeshBoundZRandom(vector<ofMesh> _m) {
+    vector<ofMesh> _r;
+    _r = _m;
+
+    for (int i = 0; i < _m.size(); i++) {
+        float _random = ofRandom(0.95, 1.05);
+
+        // _random = 1.0;
+        for (int j = 0; j < _m[i].getNumVertices(); j++) {
+            ofVec3f _v = _m[i].getVertex(j) * _random;
+            _r[i].setVertex(j, _v);
+        }
+    }
+
+    return _r;
+}
+
+
+//--------------------------------------------------------------
+ofMesh ofApp::setupMeshStarPoints(vector<Star> _s) {
+    ofMesh _m;
+    _m.setMode(OF_PRIMITIVE_POINTS);
+
+    for (int i = 0; i < _s.size(); i++) {
+        float _radius = sizeConstellation;
+        float _x = _s[i].starPoints.x * _radius;
+        float _y = _s[i].starPoints.y * _radius;
+        float _z = _s[i].starPoints.z * _radius;
+
+        _m.addVertex(ofPoint(_x, _y, _z));
+        float _b = ofMap(_s[i].starBrightness, -2, 9, 1, 0);
+        _m.addColor(_b);
+    }
+
+    return _m;
+}
+
+
+//--------------------------------------------------------------
+vector<Star> ofApp::setStars(string fileName) {
+    vector<Star> _stars;
+    ofBuffer bufferStar = ofBufferFromFile(fileName);
+
+    if (bufferStar.size()) {
+        for (ofBuffer::Line it = bufferStar.getLines().begin(), end = bufferStar.getLines().end(); it != end; ++it) {
+            string line = *it;
+
+            vector<string> result;
+            istringstream iss(line);
+
+            for (std::string line; iss >> line;) {
+                result.push_back(line);
+            }
+
+            ofVec3f _p(0, 0, 0);
+            _p.x = ofToFloat(result[0]);
+            _p.y = ofToFloat(result[1]);
+            _p.z = ofToFloat(result[2]);
+
+            Star _s;
+            _s.starPoints = _p;
+            _s.starBrightness = ofToFloat(result[4]);
+            _stars.push_back(_s);
+        }
+    }
+
+    return _stars;
+}
+
+
+//--------------------------------------------------------------
+int ofApp::sgn(float v) {
+    if (v < 0) return -1;
+
+    if (v >= 0) return 1;
+}
+
+
+//--------------------------------------------------------------
+vector<StarPosition> ofApp::setStarPositions(string fileName) {
+    vector<StarPosition> _v;
+    string filePath = fileName;
+    ofFile file(filePath);
+
+    if (!file.exists()) {
+        ofLogError("The file " + filePath + " is missing");
+    }
+
+    ofBuffer _buffer(file);
+
+    for (ofBuffer::Line it = _buffer.getLines().begin(), end = _buffer.getLines().end(); it != end; ++it) {
+        string line = *it;
+        vector<string> _coord = ofSplitString(line, ",");
+
+        if (_coord[0] != "HIP") {
+            StarPosition _sPos;
+
+            if (ofToFloat(_coord[3]) < 18.5) {
+                float _ra = ofToFloat(ofSplitString(_coord[1], " ")[0]) * 15 + ofToFloat(ofSplitString(_coord[1], " ")[1]) * 0.25 + ofToFloat(ofSplitString(_coord[1], " ")[2]) * 0.004166;
+                float _dec = (abs(ofToFloat(ofSplitString(_coord[2], " ")[0])) + ofToFloat(ofSplitString(_coord[1], " ")[1]) / 60.0 + ofToFloat(ofSplitString(_coord[1], " ")[2]) / 3600.0) * sgn(ofToFloat(ofSplitString(_coord[2], " ")[0]));
+                _sPos.points.x = _ra;
+                _sPos.points.y = _dec;
+                _v.push_back(_sPos);
+            }
+        }
+    }
+
+    return _v;
+}
+
 
 
 
@@ -322,21 +529,38 @@ void ofApp::update() {
     cam.setPosition(backOrbitPos[cometIndex]);
     ofVec3f _dirVec = (-backOrbitPos[cometIndex] + currentOrbitPos[cometIndex]) + currentOrbitPos[cometIndex];
     cam.lookAt(_dirVec);
+//
+//    cam.lookAt(ofVec3f(0, 0, 0));
     
     float _degreeX = currentOrbitPos[cometIndex].angle(ofVec3f(0, 1, 0));
     float _degreeY = currentOrbitPos[cometIndex].angle(ofVec3f(0, 0, 1));
     float _degreeZ = currentOrbitPos[cometIndex].angle(ofVec3f(1, 0, 0));
     
-    if (_degreeX < 90) {
-        cam.setOrientation(glm::vec3(_degreeX - 90, _degreeY - 180, 0 - 180));
+//    float _d = atan(sqrt(currentOrbitPos[cometIndex].x * currentOrbitPos[cometIndex].x + currentOrbitPos[cometIndex].y * currentOrbitPos[cometIndex].y))
+
+    float _dY = ofRadToDeg(atan2(currentOrbitPos[cometIndex].x, currentOrbitPos[cometIndex].y));
+//    cout << _dY << endl;
+    
+    if (_dY < 0 && _dY  > -180) {
+//        cam.setOrientation(glm::vec3(_degreeX - 90, _degreeY - 180, 0 - 180));
+//        _degreeX = _degreeX + 90;
+//        _dY = (_dY - 180);
     } else {
-        cam.setOrientation(glm::vec3(_degreeX + 90, _degreeY, 0));
+//        _degreeX = _degreeX - 90;
+//        _dY = (_dY + 180);
     }
     
+    cam.setOrientation(glm::vec3(ofMap(_degreeX, 0, 180, 75, 105), 360 - _dY + 130, ofMap(_degreeZ, 0, 180, 0, 30)));
+//    cam.setOrientation(glm::vec3(90, _dY, 0));
     
-    cout << _degreeX << " : " << _degreeY << " : " << _degreeZ << endl;
+//    cam.setOrientation(glm::vec3(0, 0, 0));
+
+//    cam.rollDeg(90);
+//    cam.panDeg(0);
+    
+//    cout << _degreeX << " : " << _degreeY << " : " << _degreeZ << endl;
         
-//    cam.rollDeg(0);
+//    cam.rollDeg(_d);
 //    cam.panDeg(0);
 //    cam.tiltDeg(0);
         
@@ -470,32 +694,32 @@ void ofApp::draw() {
     drawSun();
     
     ofPushStyle();
-    ofSetColor(0, 255, 180, 180);
+    ofSetColor(0, 255, 180, 255);
     earthOrbit.path.draw();
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(255, 120, 120, 180);
+    ofSetColor(255, 120, 120, 255);
     marsOrbit.path.draw();
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(255, 240, 120, 180);
+    ofSetColor(255, 240, 120, 255);
     jupiterOrbit.path.draw();
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(255, 240, 120, 180);
+    ofSetColor(255, 240, 120, 255);
     saturnOrbit.path.draw();
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(255, 240, 220, 180);
+    ofSetColor(255, 240, 220, 255);
     uranusOrbit.path.draw();
     ofPopStyle();
     
     ofPushStyle();
-    ofSetColor(140, 210, 250, 180);
+    ofSetColor(140, 210, 250, 255);
     neptuneOrbit.path.draw();
     ofPopStyle();
     
@@ -553,6 +777,20 @@ void ofApp::draw() {
     //    ofPopStyle();
     //    ofPopMatrix();
     
+    
+    ofPushMatrix();
+    ofRotateXDeg(90);
+    for (int i = 0; i < meshBound.size(); i++) {
+        meshBound[i].drawFaces();
+    }
+    ofPushStyle();
+    glPointSize(2);
+    meshStarPoints.drawFaces();
+    ofPopStyle();
+    
+    ofPopMatrix();
+    
+    
     ofPushMatrix();
     ofPushStyle();
     ofSetColor(255, 40);
@@ -560,6 +798,7 @@ void ofApp::draw() {
     ofDrawLine(0, 500, 0, -500);
     ofPopStyle();
     ofPopMatrix();
+    
     
     
     cam.end();

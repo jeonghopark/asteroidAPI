@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-               BuildableName = "AsteroidSonic.app"
-               BlueprintName = "AsteroidSonic"
-               ReferencedContainer = "container:AsteroidSonic.xcodeproj">
+               BuildableName = "CometsSonic.app"
+               BlueprintName = "CometsSonic"
+               ReferencedContainer = "container:CometsSonic.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -26,16 +26,16 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES"
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
       <Testables>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "AsteroidSonic.app"
-            BlueprintName = "AsteroidSonic"
-            ReferencedContainer = "container:AsteroidSonic.xcodeproj">
+            BuildableName = "CometsSonic.app"
+            BlueprintName = "CometsSonic"
+            ReferencedContainer = "container:CometsSonic.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -44,17 +44,17 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       ignoresPersistentStateOnLaunch = "NO"
-      debugDocumentVersioning = "YES"
+      debugDocumentVersioning = "NO"
       allowLocationSimulation = "YES">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "AsteroidSonic.app"
-            BlueprintName = "AsteroidSonic"
-            ReferencedContainer = "container:AsteroidSonic.xcodeproj">
+            BuildableName = "CometsSonic.app"
+            BlueprintName = "CometsSonic"
+            ReferencedContainer = "container:CometsSonic.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -64,23 +64,23 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
-      buildConfiguration = "Debug"
-      debugDocumentVersioning = "YES">
+      buildConfiguration = "Release"
+      debugDocumentVersioning = "NO">
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E4B69B5A0A3A1756003C02F2"
-            BuildableName = "AsteroidSonic.app"
-            BlueprintName = "AsteroidSonic"
-            ReferencedContainer = "container:AsteroidSonic.xcodeproj">
+            BuildableName = "CometsSonic.app"
+            BlueprintName = "CometsSonic"
+            ReferencedContainer = "container:CometsSonic.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
-      buildConfiguration = "Debug">
+      buildConfiguration = "Release">
    </AnalyzeAction>
    <ArchiveAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       revealArchiveInOrganizer = "YES">
    </ArchiveAction>
 </Scheme>
